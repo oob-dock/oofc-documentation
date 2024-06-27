@@ -1,0 +1,3219 @@
+{
+	"info": {
+		"_postman_id": "130285e8-65f0-44db-965c-e935d2bb8f5b",
+		"name": "OOI4TPP Core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29933267"
+	},
+	"item": [
+		{
+			"name": "Compartilhamento de Dados - Insurance",
+			"item": [
+				{
+					"name": "resources",
+					"item": [
+						{
+							"name": "resources",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/resources/v1/resources",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"resources",
+										"v1",
+										"resources"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customers",
+					"item": [
+						{
+							"name": "personal/identifications",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/customers/v1/personal/identifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"customers",
+										"v1",
+										"personal",
+										"identifications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "personal/complimentary-information",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/customers/v1/personal/complimentary-information",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"customers",
+										"v1",
+										"personal",
+										"complimentary-information"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "personal/qualifications",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/customers/v1/personal/qualifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"customers",
+										"v1",
+										"personal",
+										"qualifications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "business/identifications",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/customers/v1/business/identifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"customers",
+										"v1",
+										"business",
+										"identifications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "business/complimentary-information",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/customers/v1/business/complimentary-information",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"customers",
+										"v1",
+										"business",
+										"complimentary-information"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "business/qualifications",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/customers/v1/business/qualifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"customers",
+										"v1",
+										"business",
+										"qualifications"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-acceptance-and-branches-abroad",
+					"item": [
+						{
+							"name": "/insurance-acceptance-and-branches-abroad",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-acceptance-and-branches-abroad/v1/insurance-acceptance-and-branches-abroad",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-acceptance-and-branches-abroad",
+										"v1",
+										"insurance-acceptance-and-branches-abroad"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-acceptance-and-branches-abroad/{policyId}/policy-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-acceptance-and-branches-abroad/v1/insurance-acceptance-and-branches-abroad/{{policyId}}/policy-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-acceptance-and-branches-abroad",
+										"v1",
+										"insurance-acceptance-and-branches-abroad",
+										"{{policyId}}",
+										"policy-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-acceptance-and-branches-abroad/{policyId}/premium",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-acceptance-and-branches-abroad/v1/insurance-acceptance-and-branches-abroad/{{policyId}}/premium",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-acceptance-and-branches-abroad",
+										"v1",
+										"insurance-acceptance-and-branches-abroad",
+										"{{policyId}}",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-acceptance-and-branches-abroad/{policyId}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-acceptance-and-branches-abroad/v1/insurance-acceptance-and-branches-abroad/{{policyId}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-acceptance-and-branches-abroad",
+										"v1",
+										"insurance-acceptance-and-branches-abroad",
+										"{{policyId}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-auto",
+					"item": [
+						{
+							"name": "/insurance-auto",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-auto/v1/insurance-auto",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-auto",
+										"v1",
+										"insurance-auto"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-auto/{policyId}/policy-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-auto/v1/insurance-auto/{{policyId}}/policy-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-auto",
+										"v1",
+										"insurance-auto",
+										"{{policyId}}",
+										"policy-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-auto/{policyId}/premium",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-auto/v1/insurance-auto/{{policyId}}/premium",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-auto",
+										"v1",
+										"insurance-auto",
+										"{{policyId}}",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-auto/{policyId}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-auto/v1/insurance-auto/{{policyId}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-auto",
+										"v1",
+										"insurance-auto",
+										"{{policyId}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-financial-risk",
+					"item": [
+						{
+							"name": "/insurance-financial-risk",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-financial-risk/v1/insurance-financial-risk",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-financial-risk",
+										"v1",
+										"insurance-financial-risk"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-financial-risk/{policyId}/policy-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-financial-risk/v1/insurance-financial-risk/{{policyId}}/policy-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-financial-risk",
+										"v1",
+										"insurance-financial-risk",
+										"{{policyId}}",
+										"policy-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-financial-risk/{policyId}/premium",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-financial-risk/v1/insurance-financial-risk/{{policyId}}/premium",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-financial-risk",
+										"v1",
+										"insurance-financial-risk",
+										"{{policyId}}",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-financial-risk/{policyId}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-financial-risk/v1/insurance-financial-risk/{{policyId}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-financial-risk",
+										"v1",
+										"insurance-financial-risk",
+										"{{policyId}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-housing",
+					"item": [
+						{
+							"name": "/insurance-housing",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-housing/v1/insurance-housing",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-housing",
+										"v1",
+										"insurance-housing"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-housing/{policyId}/policy-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-housing/v1/insurance-housing/{{policyId}}/policy-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-housing",
+										"v1",
+										"insurance-housing",
+										"{{policyId}}",
+										"policy-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-housing/{policyId}/premium",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-housing/v1/insurance-housing/{{policyId}}/premium",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-housing",
+										"v1",
+										"insurance-housing",
+										"{{policyId}}",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-housing/{policyId}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-housing/v1/insurance-housing/{{policyId}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-housing",
+										"v1",
+										"insurance-housing",
+										"{{policyId}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-patrimonial",
+					"item": [
+						{
+							"name": "/insurance-patrimonial",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-patrimonial/v1/insurance-patrimonial",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-patrimonial",
+										"v1",
+										"insurance-patrimonial"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-patrimonial/{policyId}/policy-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-patrimonial/v1/insurance-patrimonial/{{policyId}}/policy-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-patrimonial",
+										"v1",
+										"insurance-patrimonial",
+										"{{policyId}}",
+										"policy-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-patrimonial/{policyId}/premium",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-patrimonial/v1/insurance-patrimonial/{{policyId}}/premium",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-patrimonial",
+										"v1",
+										"insurance-patrimonial",
+										"{{policyId}}",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-patrimonial/{policyId}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-patrimonial/v1/insurance-patrimonial/{{policyId}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-patrimonial",
+										"v1",
+										"insurance-patrimonial",
+										"{{policyId}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-responsibility",
+					"item": [
+						{
+							"name": "/insurance-responsibility",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-responsibility/v1/insurance-responsibility",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-responsibility",
+										"v1",
+										"insurance-responsibility"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-responsibility/{policyId}/policy-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-responsibility/v1/insurance-responsibility/{{policyId}}/policy-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-responsibility",
+										"v1",
+										"insurance-responsibility",
+										"{{policyId}}",
+										"policy-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-responsibility/{policyId}/premium",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-responsibility/v1/insurance-responsibility/{{policyId}}/premium",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-responsibility",
+										"v1",
+										"insurance-responsibility",
+										"{{policyId}}",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-responsibility/{policyId}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-responsibility/v1/insurance-responsibility/{{policyId}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-responsibility",
+										"v1",
+										"insurance-responsibility",
+										"{{policyId}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-rural",
+					"item": [
+						{
+							"name": "/insurance-rural",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-rural/v1/insurance-rural",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-rural",
+										"v1",
+										"insurance-rural"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-rural/{policyId}/policy-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-rural/v1/insurance-rural/{{policyId}}/policy-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-rural",
+										"v1",
+										"insurance-rural",
+										"{{policyId}}",
+										"policy-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-rural/{policyId}/premium",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-rural/v1/insurance-rural/{{policyId}}/premium",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-rural",
+										"v1",
+										"insurance-rural",
+										"{{policyId}}",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-rural/{policyId}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-rural/v1/insurance-rural/{{policyId}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-rural",
+										"v1",
+										"insurance-rural",
+										"{{policyId}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-transport",
+					"item": [
+						{
+							"name": "/insurance-transport",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-transport/v1/insurance-transport",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-transport",
+										"v1",
+										"insurance-transport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-transport/{policyId}/policy-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-transport/v1/insurance-transport/{{policyId}}/policy-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-transport",
+										"v1",
+										"insurance-transport",
+										"{{policyId}}",
+										"policy-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-transport/{policyId}/premium",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-transport/v1/insurance-transport/{{policyId}}/premium",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-transport",
+										"v1",
+										"insurance-transport",
+										"{{policyId}}",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-transport/{policyId}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-transport/v1/insurance-transport/{{policyId}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-transport",
+										"v1",
+										"insurance-transport",
+										"{{policyId}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-pension-plan",
+					"item": [
+						{
+							"name": "/insurance-pension-plan/contracts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/contracts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-pension-plan",
+										"v1",
+										"insurance-pension-plan",
+										"contracts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-pension-plan/{pensionIdentification}/contract-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{{pensionIdentification}}/contract-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-pension-plan",
+										"v1",
+										"insurance-pension-plan",
+										"{{pensionIdentification}}",
+										"contract-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-pension-plan/{pensionIdentification}/movements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{{pensionIdentification}}/movements",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-pension-plan",
+										"v1",
+										"insurance-pension-plan",
+										"{{pensionIdentification}}",
+										"movements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-pension-plan/{pensionIdentification}/portabilites",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{{pensionIdentification}}/portabilities",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-pension-plan",
+										"v1",
+										"insurance-pension-plan",
+										"{{pensionIdentification}}",
+										"portabilities"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-pension-plan/{pensionIdentification}/withdrawals",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{{pensionIdentification}}/withdrawals",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-pension-plan",
+										"v1",
+										"insurance-pension-plan",
+										"{{pensionIdentification}}",
+										"withdrawals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-pension-plan/{pensionIdentification}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{{pensionIdentification}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-pension-plan",
+										"v1",
+										"insurance-pension-plan",
+										"{{pensionIdentification}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "insurance-life-pension",
+					"item": [
+						{
+							"name": "/insurance-life-pension/contracts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/contracts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-life-pension",
+										"v1",
+										"insurance-life-pension",
+										"contracts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-life-pension/{pensionIdentification}/contract-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{{pensionIdentification}}/contract-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-life-pension",
+										"v1",
+										"insurance-life-pension",
+										"{{pensionIdentification}}",
+										"contract-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-life-pension/{pensionIdentification}/movements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{{pensionIdentification}}/movements",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-life-pension",
+										"v1",
+										"insurance-life-pension",
+										"{{pensionIdentification}}",
+										"movements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-life-pension/{pensionIdentification}/portabilities",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{{pensionIdentification}}/portabilities",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-life-pension",
+										"v1",
+										"insurance-life-pension",
+										"{{pensionIdentification}}",
+										"portabilities"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-life-pension/{pensionIdentification}/withdrawals",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{{pensionIdentification}}/withdrawals",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-life-pension",
+										"v1",
+										"insurance-life-pension",
+										"{{pensionIdentification}}",
+										"withdrawals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-life-pension/{pensionIdentification}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{{pensionIdentification}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-life-pension",
+										"v1",
+										"insurance-life-pension",
+										"{{pensionIdentification}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "insurance-person",
+					"item": [
+						{
+							"name": "/insurance-person",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-person/v1/insurance-person",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-person",
+										"v1",
+										"insurance-person"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-person/{policyId}/policy-info",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-person/v1/insurance-person/{{policyId}}/policy-info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-person",
+										"v1",
+										"insurance-person",
+										"{{policyId}}",
+										"policy-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-person/{policyId}/claim",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-person/v1/insurance-person/{{policyId}}/claim",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-person",
+										"v1",
+										"insurance-person",
+										"{{policyId}}",
+										"claim"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/insurance-person/{policyId}/movements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-insurance/insurance-person/v1/insurance-person/{{policyId}}/movements",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-insurance",
+										"insurance-person",
+										"v1",
+										"insurance-person",
+										"{{policyId}}",
+										"movements"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "opus-open-insurance/open-insurance/consents/v1/consents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"consentId\", response.data.consentId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"callbackApplicationUri\": \"https://ooi4tpp-callback-url.com/\",\r\n        \"loggedUser\": {\r\n            \"document\": {\r\n                \"identification\": \"12312312387\",\r\n                \"rel\": \"CPF\"\r\n            }\r\n        },\r\n        \"permissions\": [\r\n            \"RESOURCES_READ\",\r\n            \"CUSTOMERS_PERSONAL_IDENTIFICATIONS_READ\",\r\n            \"CUSTOMERS_PERSONAL_QUALIFICATION_READ\",\r\n            \"CUSTOMERS_PERSONAL_ADDITIONALINFO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_ACCEPTANCE_AND_BRANCHES_ABROAD_READ\",\r\n            \"DAMAGES_AND_PEOPLE_ACCEPTANCE_AND_BRANCHES_ABROAD_POLICYINFO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_ACCEPTANCE_AND_BRANCHES_ABROAD_PREMIUM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_ACCEPTANCE_AND_BRANCHES_ABROAD_CLAIM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_AUTO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_AUTO_POLICYINFO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_AUTO_PREMIUM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_AUTO_CLAIM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_FINANCIAL_RISKS_READ\",\r\n            \"DAMAGES_AND_PEOPLE_FINANCIAL_RISKS_POLICYINFO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_FINANCIAL_RISKS_PREMIUM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_FINANCIAL_RISKS_CLAIM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_HOUSING_READ\",\r\n            \"DAMAGES_AND_PEOPLE_HOUSING_POLICYINFO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_HOUSING_PREMIUM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_HOUSING_CLAIM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_PATRIMONIAL_READ\",\r\n            \"DAMAGES_AND_PEOPLE_PATRIMONIAL_POLICYINFO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_PATRIMONIAL_PREMIUM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_PATRIMONIAL_CLAIM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_TRANSPORT_READ\",\r\n            \"DAMAGES_AND_PEOPLE_TRANSPORT_POLICYINFO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_TRANSPORT_PREMIUM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_TRANSPORT_CLAIM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_RESPONSIBILITY_READ\",\r\n            \"DAMAGES_AND_PEOPLE_RESPONSIBILITY_POLICYINFO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_RESPONSIBILITY_PREMIUM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_RESPONSIBILITY_CLAIM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_RURAL_READ\",\r\n            \"DAMAGES_AND_PEOPLE_RURAL_POLICYINFO_READ\",\r\n            \"DAMAGES_AND_PEOPLE_RURAL_PREMIUM_READ\",\r\n            \"DAMAGES_AND_PEOPLE_RURAL_CLAIM_READ\"\r\n        ],\r\n        \"expirationDateTime\": \"2023-06-28T13:48:00Z\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-insurance/open-insurance/consents/v1/consents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-insurance",
+								"open-insurance",
+								"consents",
+								"v1",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-insurance/open-insurance/consents/v1/consents/{{consentId}/authorisation-retry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"consentId\", response.data.consentId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"callbackApplicationUri\": \"https://tpp-client3.127.0.0.1.nip.io:3100/cb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-insurance/open-insurance/consents/v1/consents/{{consentId}}/authorisation-retry",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-insurance",
+								"open-insurance",
+								"consents",
+								"v1",
+								"consents",
+								"{{consentId}}",
+								"authorisation-retry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-insurance/open-insurance/consents/v1/consents/{{consentId}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-insurance/open-insurance/consents/v1/consents/{{consentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-insurance",
+								"open-insurance",
+								"consents",
+								"v1",
+								"consents",
+								"{{consentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-insurance/open-insurance/consents/v1/consents/{{consentId}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-insurance/open-insurance/consents/v1/consents/{{consentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-insurance",
+								"open-insurance",
+								"consents",
+								"v1",
+								"consents",
+								"{{consentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-insurance/participants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-insurance/participants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-insurance",
+								"participants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aplicativo do Iniciador",
+			"item": [
+				{
+					"name": "opus-open-insurance/authorization-result",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"error=access_denied&error_description=Error%20in%20user%20authentication&state=dXJuOmFtYXppbmdiYW5rOmY1ZGY3ZjIxLTdmZTAtNDI1NS05ZDc1LWViYjM0NWIwYzg4MQ&iss=https%3A%2F%2Fobb.qa.oob.opus-software.com.br%2F\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-insurance/authorization-result",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-insurance",
+								"authorization-result"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DCM",
+			"item": [
+				{
+					"name": "opus-open-finance/dcm",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"version\": \"1\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-insurance/dcm",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-insurance",
+								"dcm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/dcm/client",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "default"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-insurance/dcm/client",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-insurance",
+								"dcm",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/dcm",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-insurance/dcm",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-insurance",
+								"dcm"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deeplinks",
+			"item": [
+				{
+					"name": "/.well-known/assetlinks.json",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/.well-known/assetlinks.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								".well-known",
+								"assetlinks.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/.well-known/apple-app-site-association",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/.well-known/apple-app-site-association",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								".well-known",
+								"apple-app-site-association"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "policyId",
+			"value": "2db6eab7-fc84-4e8a-ac10-d0d60b37038e",
+			"type": "default"
+		},
+		{
+			"key": "pensionIdentification",
+			"value": "2db6eab7-fc84-4e8a-ac10-d0d60b37038e",
+			"type": "string"
+		}
+	]
+}

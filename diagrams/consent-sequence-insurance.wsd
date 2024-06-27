@@ -1,0 +1,127 @@
+@startuml consent-sequence
+
+title Autorização de consentimentos de compartilhamento de dados
+
+actor "Usuário\ncorrentista" as cliente
+participant "Browser/Mobile" as app
+participant "Backend TPP" as tpp
+participant "OOC" as ooc
+participant "Instituição\nDestino" as inst
+
+group "Algo" obtendo dados
+
+cliente->app:Quero obter dados
+app<-->tpp:Fluxo front/back TPP
+
+end
+
+group Obtenção dos dados para consentimento
+
+group #B4F8C8 Listagem de instituições
+
+tpp->ooc:**GET /opus-open-insurance/participants**
+activate tpp
+tpp<--ooc:Lista de marcas que suportam a operação desejada
+deactivate tpp
+
+end
+
+app<-->tpp:Fluxo front/back TPP
+cliente->app:Seleciona marca da Instituição Destino\ne outros dados necessários
+app<-->tpp:Fluxo front/back TPP
+
+end
+
+group Criação do consentimento
+
+group #B4F8C8 TPP realiza intenção de consentimento
+
+tpp->ooc:Cria a intenção do consentimento:\n**POST /opus-open-insurance/open-insurance/consents/v1/consents**
+
+activate tpp
+
+ooc<-->inst:Fluxo de intenção\nde consentimento
+ooc<-->inst:Criação da URL\nde autorização
+tpp<--ooc: Redirecionamento do usuário para\nautorização na Instituição Destino
+
+deactivate tpp
+
+end
+
+tpp-->app:Redirecionamento do usuário para\nautorização na Instituição Destino
+
+app-->cliente:Redirecionamento do usuário para\nautorização na Instituição Destino
+
+group Aceite do consentimento na marca da Instituição Destino
+
+cliente->app:Informa credenciais e\naprova/rejeita consentimento
+app<-->inst:Fluxo front/back\nInstituição Destino
+
+end
+
+group #B4F8C8 Fluxo final de autorização pelo aplicativo
+
+inst-->app: Aplicativo intercepta a rota /opus-open-insurance/consents/redirect-uri\nobtendo a query string ou fragment com o resultado do fluxo OIDC
+app<-->tpp:Fluxo front/back TPP
+tpp->ooc:Envia retorno do fluxo OIDC\n**POST /opus-open-insurance/authorization-result**
+
+activate tpp
+ooc-->tpp: Retorna o resultado da autorização: sucesso (204) ou erro (422)
+deactivate tpp
+
+end
+
+group #B4F8C8 Fluxo final de autorização pelo browser
+
+ooc<--inst:Redirect com resultado\nda autorização
+ooc-->app: Informa resultado da autorização via\nURL de callback informada na\ncriação do consentimento
+
+end
+
+alt Consentimento autorizado - status AUTHORISED
+
+app<-->tpp:Fluxo front/back TPP
+
+cliente<--app:Consentimento concluído
+
+note over tpp:Após a conclusão deste fluxo,\né possível chamar as APIs\nrelacionadas ao consentimento.
+
+else Consentimento rejeitado - status REJECTED
+
+
+app<-->tpp:Fluxo front/back TPP
+
+cliente<--app:Consentimento rejeitado
+
+note over tpp:Não será possível prosseguir com\neste consentimento.
+
+else Erro durante autorização - status AWAITING_AUTHORISATION
+
+
+app<-->tpp:Fluxo front/back TPP
+
+cliente<--app:Erro no consentimento
+
+cliente->app:Quero tentar novamente \nobter dados
+app<-->tpp:Fluxo front/back TPP
+
+note over tpp: É recomendado a reutilização de consentimentos que tiveram falha de autenticação.\nNeste caso, o TPP deve utilizar a operação abaixo.
+
+group #B4F8C8 TPP deseja realizar uma nova tentativa de autorização do consentimento
+
+tpp->ooc:Solicita renovação da URL de autorização para um consentimento em andamento:\n**POST /opus-open-insurance/open-insurance/consents/v1/consents/{consentId}/authorisation-retry**
+
+activate tpp
+
+ooc<-->inst: Renovação da URL de autorização do consentimento
+ooc-->tpp: Redirecionamento do usuário para\nautorização na Instituição Destino
+
+deactivate tpp
+
+note over tpp:Após obter a nova URL de autorização,\na TPP deverá acessa-la para realizar o\nredirecionamento para a Instituição Destino.
+
+end
+end
+end
+
+@enduml

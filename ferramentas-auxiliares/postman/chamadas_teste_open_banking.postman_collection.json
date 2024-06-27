@@ -1,0 +1,4177 @@
+{
+	"info": {
+		"_postman_id": "bec75061-e742-4c16-9660-8b749ac34f18",
+		"name": "OpusTpp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14477114"
+	},
+	"item": [
+		{
+			"name": "Compartilhamento de Dados - Banking",
+			"item": [
+				{
+					"name": "accounts-v2",
+					"item": [
+						{
+							"name": "accounts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/accounts/v2/accounts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"accounts",
+										"v2",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{accountId}}",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/accounts/v2/accounts/{{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"accounts",
+										"v2",
+										"accounts",
+										"{{accountId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{accountId}}/balances",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/accounts/v2/accounts/{{accountId}}/balances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"accounts",
+										"v2",
+										"accounts",
+										"{{accountId}}",
+										"balances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{accountId}}/transactions",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/accounts/v2/accounts/{{accountId}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"accounts",
+										"v2",
+										"accounts",
+										"{{accountId}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{accountId}}/transactions-current",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/accounts/v2/accounts/{{accountId}}/transactions-current",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"accounts",
+										"v2",
+										"accounts",
+										"{{accountId}}",
+										"transactions-current"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{accountId}}/overdraft-limits",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/accounts/v2/accounts/{{accountId}}/overdraft-limits",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"accounts",
+										"v2",
+										"accounts",
+										"{{accountId}}",
+										"overdraft-limits"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "accounts",
+					"item": [
+						{
+							"name": "accounts (for certification purposes)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/accounts/v1/accounts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"accounts",
+										"v1",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "credit-cards-accounts-v2",
+					"item": [
+						{
+							"name": "accounts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-cards-accounts/v2/accounts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-cards-accounts",
+										"v2",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{creditCardAccountId}}",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-cards-accounts/v2/accounts/{{creditCardAccountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-cards-accounts",
+										"v2",
+										"accounts",
+										"{{creditCardAccountId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{creditCardAccountId}}/bills",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-cards-accounts/v2/accounts/{{creditCardAccountId}}/bills",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-cards-accounts",
+										"v2",
+										"accounts",
+										"{{creditCardAccountId}}",
+										"bills"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{creditCardAccountId}}/limits",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-cards-accounts/v2/accounts/{{creditCardAccountId}}/limits",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-cards-accounts",
+										"v2",
+										"accounts",
+										"{{creditCardAccountId}}",
+										"limits"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{creditCardAccountId}}/bills/{{billId}}/transactions",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-cards-accounts/v2/accounts/{{creditCardAccountId}}/bills/{{billId}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-cards-accounts",
+										"v2",
+										"accounts",
+										"{{creditCardAccountId}}",
+										"bills",
+										"{{billId}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{creditCardAccountId}}/transactions",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-cards-accounts/v2/accounts/{{creditCardAccountId}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-cards-accounts",
+										"v2",
+										"accounts",
+										"{{creditCardAccountId}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts/{{creditCardAccountId}}/transactions-current",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-cards-accounts/v2/accounts/{{creditCardAccountId}}/transactions-current",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-cards-accounts",
+										"v2",
+										"accounts",
+										"{{creditCardAccountId}}",
+										"transactions-current"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customers-v2",
+					"item": [
+						{
+							"name": "personal/identifications",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/customers/v2/personal/identifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"customers",
+										"v2",
+										"personal",
+										"identifications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "personal/financial-relations",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/customers/v2/personal/financial-relations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"customers",
+										"v2",
+										"personal",
+										"financial-relations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "personal/qualifications",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/customers/v2/personal/qualifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"customers",
+										"v2",
+										"personal",
+										"qualifications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "business/identifications",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/customers/v2/business/identifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"customers",
+										"v2",
+										"business",
+										"identifications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "business/financial-relations",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/customers/v2/business/financial-relations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"customers",
+										"v2",
+										"business",
+										"financial-relations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "business/qualifications",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/customers/v2/business/qualifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"customers",
+										"v2",
+										"business",
+										"qualifications"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "invoice-financings-v2",
+					"item": [
+						{
+							"name": "contracts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/invoice-financings/v2/contracts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"invoice-financings",
+										"v2",
+										"contracts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/invoice-financings/v2/contracts/{{contractId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"invoice-financings",
+										"v2",
+										"contracts",
+										"{{contractId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/payments",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/invoice-financings/v2/contracts/{{contractId}}/payments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"invoice-financings",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/scheduled-instalments",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/invoice-financings/v2/contracts/{{contractId}}/scheduled-instalments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"invoice-financings",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"scheduled-instalments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/warranties",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/invoice-financings/v2/contracts/{{contractId}}/warranties",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"invoice-financings",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"warranties"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "financings-v2",
+					"item": [
+						{
+							"name": "contracts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/financings/v2/contracts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"financings",
+										"v2",
+										"contracts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/financings/v2/contracts/{{contractId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"financings",
+										"v2",
+										"contracts",
+										"{{contractId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/payments",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/financings/v2/contracts/{{contractId}}/payments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"financings",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/scheduled-instalments",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/financings/v2/contracts/{{contractId}}/scheduled-instalments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"financings",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"scheduled-instalments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/warranties",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/financings/v2/contracts/{{contractId}}/warranties",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"financings",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"warranties"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "loans-v2",
+					"item": [
+						{
+							"name": "contracts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/loans/v2/contracts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"loans",
+										"v2",
+										"contracts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/loans/v2/contracts/{{contractId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"loans",
+										"v2",
+										"contracts",
+										"{{contractId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/payments",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/loans/v2/contracts/{{contractId}}/payments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"loans",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/scheduled-instalments",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/loans/v2/contracts/{{contractId}}/scheduled-instalments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"loans",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"scheduled-instalments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/warranties",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/loans/v2/contracts/{{contractId}}/warranties",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"loans",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"warranties"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "unarranged-accounts-overdraft-v2",
+					"item": [
+						{
+							"name": "contracts",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/unarranged-accounts-overdraft/v2/contracts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"unarranged-accounts-overdraft",
+										"v2",
+										"contracts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/unarranged-accounts-overdraft/v2/contracts/{{contractId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"unarranged-accounts-overdraft",
+										"v2",
+										"contracts",
+										"{{contractId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/payments",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/unarranged-accounts-overdraft/v2/contracts/{{contractId}}/payments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"unarranged-accounts-overdraft",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/scheduled-instalments",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/unarranged-accounts-overdraft/v2/contracts/{{contractId}}/scheduled-instalments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"unarranged-accounts-overdraft",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"scheduled-instalments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "contracts/{{contractId}}/warranties",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/unarranged-accounts-overdraft/v2/contracts/{{contractId}}/warranties",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"unarranged-accounts-overdraft",
+										"v2",
+										"contracts",
+										"{{contractId}}",
+										"warranties"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "resources-v2",
+					"item": [
+						{
+							"name": "resources",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/resources/v2/resources",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"resources",
+										"v2",
+										"resources"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "bank-fixed-incomes",
+					"item": [
+						{
+							"name": "investments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/bank-fixed-incomes/v1/investments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"bank-fixed-incomes",
+										"v1",
+										"investments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/bank-fixed-incomes/v1/investments/{{investmentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"bank-fixed-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/balances",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/bank-fixed-incomes/v1/investments/{{investmentId}}/balances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"bank-fixed-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"balances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/bank-fixed-incomes/v1/investments/{{investmentId}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"bank-fixed-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions-current",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/bank-fixed-incomes/v1/investments/{{investmentId}}/transactions-current",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"bank-fixed-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions-current"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "credit-fixed-incomes",
+					"item": [
+						{
+							"name": "investments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-fixed-incomes/v1/investments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-fixed-incomes",
+										"v1",
+										"investments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-fixed-incomes/v1/investments/{{investmentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-fixed-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/balances",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-fixed-incomes/v1/investments/{{investmentId}}/balances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-fixed-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"balances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-fixed-incomes/v1/investments/{{investmentId}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-fixed-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions-current",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/credit-fixed-incomes/v1/investments/{{investmentId}}/transactions-current",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"credit-fixed-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions-current"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "funds",
+					"item": [
+						{
+							"name": "investments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/funds/v1/investments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"funds",
+										"v1",
+										"investments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/funds/v1/investments/{{investmentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"funds",
+										"v1",
+										"investments",
+										"{{investmentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/balances",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/funds/v1/investments/{{investmentId}}/balances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"funds",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"balances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/funds/v1/investments/{{investmentId}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"funds",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions-current",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/funds/v1/investments/{{investmentId}}/transactions-current",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"funds",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions-current"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "treasure-titles",
+					"item": [
+						{
+							"name": "investments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/treasure-titles/v1/investments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"treasure-titles",
+										"v1",
+										"investments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/treasure-titles/v1/investments/{{investmentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"treasure-titles",
+										"v1",
+										"investments",
+										"{{investmentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/balances",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/treasure-titles/v1/investments/{{investmentId}}/balances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"treasure-titles",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"balances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/treasure-titles/v1/investments/{{investmentId}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"treasure-titles",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions-current",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/treasure-titles/v1/investments/{{investmentId}}/transactions-current",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"treasure-titles",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions-current"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "variable-incomes",
+					"item": [
+						{
+							"name": "investments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/variable-incomes/v1/investments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"variable-incomes",
+										"v1",
+										"investments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/variable-incomes/v1/investments/{{investmentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"variable-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/balances",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/variable-incomes/v1/investments/{{investmentId}}/balances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"variable-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"balances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/variable-incomes/v1/investments/{{investmentId}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"variable-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/transactions-current",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/variable-incomes/v1/investments/{{investmentId}}/transactions-current",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"variable-incomes",
+										"v1",
+										"investments",
+										"{{investmentId}}",
+										"transactions-current"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "investments/{{investmentId}}/broker-notes/{{brokerNoteId}}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "default"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/variable-incomes/v1/broker-notes/{{brokerNoteId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"variable-incomes",
+										"v1",
+										"broker-notes",
+										"{{brokerNoteId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "opus-open-finance/consents/v1/consents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"consentId\", response.data.consentId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"callbackApplicationUri\": \"https://oob4tpp-callback-url.com/\",\r\n        \"loggedUser\": {\r\n            \"document\": {\r\n                \"identification\": \"12312312387\",\r\n                \"rel\": \"CPF\"\r\n            }\r\n        },\r\n        \"businessEntity\": {\r\n            \"document\": {\r\n                \"identification\": \"11111678912329\",\r\n                \"rel\": \"CNPJ\"\r\n            }\r\n        },\r\n        \"permissions\": [\r\n            \"ACCOUNTS_READ\",\r\n            \"ACCOUNTS_BALANCES_READ\",\r\n            \"ACCOUNTS_TRANSACTIONS_READ\",\r\n            \"ACCOUNTS_OVERDRAFT_LIMITS_READ\",\r\n            \"CREDIT_CARDS_ACCOUNTS_READ\",\r\n            \"CREDIT_CARDS_ACCOUNTS_BILLS_READ\",\r\n            \"CREDIT_CARDS_ACCOUNTS_BILLS_TRANSACTIONS_READ\",\r\n            \"CREDIT_CARDS_ACCOUNTS_LIMITS_READ\",\r\n            \"CREDIT_CARDS_ACCOUNTS_TRANSACTIONS_READ\",\r\n            \"CUSTOMERS_BUSINESS_IDENTIFICATIONS_READ\",\r\n            \"CUSTOMERS_BUSINESS_ADITTIONALINFO_READ\",\r\n            \"FINANCINGS_READ\",\r\n            \"FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n            \"FINANCINGS_PAYMENTS_READ\",\r\n            \"FINANCINGS_WARRANTIES_READ\",\r\n            \"INVOICE_FINANCINGS_READ\",\r\n            \"INVOICE_FINANCINGS_SCHEDULED_INSTALMENTS_READ\",\r\n            \"INVOICE_FINANCINGS_PAYMENTS_READ\",\r\n            \"INVOICE_FINANCINGS_WARRANTIES_READ\",\r\n            \"LOANS_READ\",\r\n            \"LOANS_SCHEDULED_INSTALMENTS_READ\",\r\n            \"LOANS_PAYMENTS_READ\",\r\n            \"LOANS_WARRANTIES_READ\",\r\n            \"UNARRANGED_ACCOUNTS_OVERDRAFT_READ\",\r\n            \"UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ\",\r\n            \"UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ\",\r\n            \"UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ\",\r\n            \"BANK_FIXED_INCOMES_READ\",\r\n            \"CREDIT_FIXED_INCOMES_READ\",\r\n            \"FUNDS_READ\",\r\n            \"VARIABLE_INCOMES_READ\",\r\n            \"TREASURE_TITLES_READ\",\r\n            \"RESOURCES_READ\"\r\n        ],\r\n        \"expirationDateTime\": \"2024-05-21T08:30:00Z\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/consents/v1/consents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"consents",
+								"v1",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/consents/v1/consents/{{consentId}/authorisation-retry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"consentId\", response.data.consentId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"callbackApplicationUri\": \"https://tpp-client3.127.0.0.1.nip.io:3100/cb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/consents/v1/consents/{{consentId}}/authorisation-retry",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"consents",
+								"v1",
+								"consents",
+								"{{consentId}}",
+								"authorisation-retry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/consents/v1/consents/{{consentId}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/consents/v1/consents/{{consentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"consents",
+								"v1",
+								"consents",
+								"{{consentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/consents/v1/consents/{{consentId}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/consents/v1/consents/{{consentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"consents",
+								"v1",
+								"consents",
+								"{{consentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/participants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/participants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"participants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/consents/v1/consents/{{consentId}}/extends",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-consent-id",
+								"value": "{{consentId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.136.52.40",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"expirationDateTime\": \"2300-01-01T00:00:00Z\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"12312312387\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"businessEntity\": {\r\n      \"document\": {\r\n        \"identification\": \"11111678912329\",\r\n        \"rel\": \"CNPJ\"\r\n      }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/consents/v1/consents/{{consentId}}/extends",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"consents",
+								"v1",
+								"consents",
+								"{{consentId}}",
+								"extends"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/consents/v1/consents/{{consentId}}/extends",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-consent-id",
+								"value": "{{consentId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/consents/v1/consents/{{consentId}}/extends",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"consents",
+								"v1",
+								"consents",
+								"{{consentId}}",
+								"extends"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DCM",
+			"item": [
+				{
+					"name": "Get dcm client",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "default"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/dcm/client",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"dcm",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT DCM",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"version\": \"1.0\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/dcm",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"dcm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET DCM",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/dcm",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"dcm"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Iniciação de Pagamentos",
+			"item": [
+				{
+					"name": "proxy-pix-payments-v2",
+					"item": [
+						{
+							"name": "proxy/open-banking/payments/v1/payments/v2/pix/payments",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"data\": {\r\n      \"localInstrument\": \"MANU\",\r\n      \"payment\": {\r\n        \"amount\": \"10.00\",\r\n        \"currency\": \"BRL\"\r\n      },\r\n      \"creditorAccount\": {\r\n        \"ispb\": \"12345678\",\r\n        \"issuer\": \"1774\",\r\n        \"number\": \"1234567890\",\r\n        \"accountType\": \"CACC\"\r\n      },\r\n      \"remittanceInformation\": \"Pagamento da nota XPTO035-002.\",\r\n      \"cnpjInitiator\": \"00000000000191\",\r\n      \"endToEndId\": \"E9040088820210128000800123873170\"\r\n    }\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/payments/v2/pix/payments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"payments",
+										"v2",
+										"pix",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "proxy/open-banking/payments/v1/payments/v2/pix/payments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/payments/v2/pix/payments/{{paymentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"payments",
+										"v2",
+										"pix",
+										"payments",
+										"{{paymentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "proxy/open-banking/payments/v1/payments/v2/pix/payments",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": {\r\n      \"status\": \"CANC\",\r\n      \"cancellation\": {\r\n        \"cancelledBy\": {\r\n          \"document\": {\r\n            \"identification\": \"12312312387\",\r\n            \"rel\": \"CPF\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/payments/v2/pix/payments/{{paymentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"payments",
+										"v2",
+										"pix",
+										"payments",
+										"{{paymentId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "proxy-pix-payments-v3",
+					"item": [
+						{
+							"name": "proxy/open-banking/payments/v1/payments/v3/pix/payments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var response = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"consentId\", response.data.paymentId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"data\": {\r\n      \"localInstrument\": \"MANU\",\r\n      \"payment\": {\r\n        \"amount\": \"10.00\",\r\n        \"currency\": \"BRL\"\r\n      },\r\n      \"creditorAccount\": {\r\n        \"ispb\": \"12345678\",\r\n        \"issuer\": \"1774\",\r\n        \"number\": \"1234567890\",\r\n        \"accountType\": \"CACC\"\r\n      },\r\n      \"remittanceInformation\": \"Pagamento da nota XPTO035-002.\",\r\n      \"cnpjInitiator\": \"00000000000191\",\r\n      \"endToEndId\": \"E9040088820210128000800123873170\"\r\n    }\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/payments/v3/pix/payments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"payments",
+										"v3",
+										"pix",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "proxy/open-banking/payments/v1/payments/v3/pix/payments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/payments/v3/pix/payments/{{paymentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"payments",
+										"v3",
+										"pix",
+										"payments",
+										"{{paymentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "proxy/open-banking/payments/v1/payments/v3/pix/payments",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-consent-id",
+										"value": "{{consentId}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": {\r\n      \"status\": \"CANC\",\r\n      \"cancellation\": {\r\n        \"cancelledBy\": {\r\n          \"document\": {\r\n            \"identification\": \"12312312387\",\r\n            \"rel\": \"CPF\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/payments/v3/pix/payments/{{paymentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"payments",
+										"v3",
+										"pix",
+										"payments",
+										"{{paymentId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "opus-open-finance/payments/v1/consents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"consentId\", response.data.consentId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"callbackApplicationUri\": \"https://oob4tpp-callback-url.com/\",\r\n        \"loggedUser\": {\r\n            \"document\": {\r\n                \"identification\": \"12312312387\",\r\n                \"rel\": \"CPF\"\r\n            }\r\n        },\r\n        \"creditor\": {\r\n            \"personType\": \"PESSOA_NATURAL\",\r\n            \"cpfCnpj\": \"40506358879\",\r\n            \"name\": \"Marco Antonio de Brito\"\r\n        },\r\n        \"payment\": {\r\n            \"type\": \"PIX\",\r\n            \"currency\": \"BRL\",\r\n            \"amount\": \"10.00\",\r\n            \"date\": \"2023-12-17\",\r\n            \"details\": {\r\n                \"localInstrument\": \"MANU\",\r\n                \"creditorAccount\": {\r\n                    \"ispb\": \"12345678\",\r\n                    \"issuer\": \"1774\",\r\n                    \"number\": \"1234567890\",\r\n                    \"accountType\": \"CACC\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/payments/v1/consents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"payments",
+								"v1",
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/payments/v1/consents/{{consentId}}/authorisation-retry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"consentId\", response.data.consentId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"callbackApplicationUri\": \"https://tpp-client3.127.0.0.1.nip.io:3100/cb\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/payments/v1/consents/{{consentId}}/authorisation-retry",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"payments",
+								"v1",
+								"consents",
+								"{{consentId}}",
+								"authorisation-retry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/payments/v1/consents/{{consentId}}",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/payments/v1/consents/{{consentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"payments",
+								"v1",
+								"consents",
+								"{{consentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/participants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/participants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"participants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aplicativo do Iniciador - Banking",
+			"item": [
+				{
+					"name": "/opus-open-finance/authorization-result",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"code=eJdZXcSfBbuHkLgCbFy7DsrN1u6CuSwlm1jXKUh0GOA&id_token=eyJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkVKU01fbW1UMV9qTTVieTM5aEttR01BSWNTM2lzQ3BPSlB5NVdnUmY3RUUifQ.eyJzdWIiOiJPRkMtYmQzOTU3NTJkZjdlMTQ4ZWZjMjhiMGE0NGU4ODZmMDk4ZWU3M2ZkODVjYWY3ODkyNmU0MGYwNjg0M2EzZDdkNiIsImF1dGhfdGltZSI6MTY5NDY5ODY0NywiYWNyIjoidXJuOmJyYXNpbDpvcGVuYmFua2luZzpsb2EyIiwibm9uY2UiOiJhZWIwYzllZDRjOGZhMDc1Y2VhNjFmZTlmMWQ3MDFjZDNiZjk5NjViZjBiMTQ2OWZhNGYxNTEyMDNlZDEwNzNiIiwiY19oYXNoIjoiRXlMTHFFZGh2RUZsVmlVeGgwbURwdyIsInNfaGFzaCI6IjdOYVhxcE1YZWdvNFdyQ3dQYTlCTlEiLCJhdWQiOiI1aUtkV3JCdlhFRjJHNWgwZ1RaMkMiLCJleHAiOjE2OTQ2OTk1NDcsImlhdCI6MTY5NDY5ODY0NywiaXNzIjoiaHR0cHM6Ly9vYmIucWEub29iLm9wdXMtc29mdHdhcmUuY29tLmJyLyJ9.SfaA8TKo3bawkT1TBzRAXDi-RKrcrbBoh4iBJxn5FX4OGt8pmxjzLcx1LSK4VrbB-jdPHAYBHjpSX0AmEB59tixIErkfdodYcQ_uSV4f254SLk-6xdEj0qaKOnqhWsyMTtFHDrQZihVLVaU7kwca5pBFa73WopgGXemnA4D73TsCisaArVJlKOwCnSC0pJKO37cBYgjhUnMdEryN_R5AAsD-hfOk1ser-xIa29ZSxOkIHZqiHfzOdBBswL_SY15uPr6ujydSHeTwHFANESeJd_LwJv3PqjDxQofx8iOHWbIhjBOMFmRYqZqm4KZ36kgsWNWys-1ZprMmr7LtKQG7tw&state=dXJuOmFtYXppbmdiYW5rOjFiYmIzZTRmLWUwMjUtNGU3Yy1iMTVhLTNlMWRmNmRiNGRmZQ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/authorization-result",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"authorization-result"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deeplinks",
+			"item": [
+				{
+					"name": "/.well-known/assetlinks.json",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/.well-known/assetlinks.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								".well-known",
+								"assetlinks.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/.well-known/apple-app-site-association",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/.well-known/apple-app-site-association",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								".well-known",
+								"apple-app-site-association"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "contractId",
+			"value": "4de63d92-720d-433f-9df7-7557d476ceb4"
+		},
+		{
+			"key": "creditCardAccountId",
+			"value": "4de63d92-720d-433f-9df7-7557d476ceb4",
+			"type": "default"
+		},
+		{
+			"key": "accountId",
+			"value": "F821603A16628867DEFE0E34BC3528BB96A0463DF8047CE27AB1298E85F47955",
+			"type": "default"
+		},
+		{
+			"key": "billId",
+			"value": "41D8FDC6A47E4DDA2F9B5700D122FD1BEA8BCB167B6D3EDF3FFBE5BECB120052",
+			"type": "default"
+		},
+		{
+			"key": "state",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "paymentId",
+			"value": ""
+		},
+		{
+			"key": "code",
+			"value": ""
+		},
+		{
+			"key": "idToken",
+			"value": ""
+		},
+		{
+			"key": "error",
+			"value": ""
+		},
+		{
+			"key": "error_description",
+			"value": ""
+		},
+		{
+			"key": "id_token",
+			"value": ""
+		},
+		{
+			"key": "policyId",
+			"value": "2db6eab7-fc84-4e8a-ac10-d0d60b37038e",
+			"type": "string"
+		},
+		{
+			"key": "pensionIdentification",
+			"value": "7e7fe002-0b1e-4bdb-8fdd-a9382dafe562",
+			"type": "string"
+		},
+		{
+			"key": "investmentId",
+			"value": "F821603A16628867DEFE0E34BC3528BB96A0463DF8047CE27AB1298E85F47955",
+			"type": "default"
+		},
+		{
+			"key": "brokerNoteId",
+			"value": "41D8FDC6A47E4DDA2F9B5700D122FD1BEA8BCB167B6D3EDF3FFBE5BECB120052",
+			"type": "default"
+		}
+	]
+}

@@ -1,0 +1,14 @@
+pipeline {
+	agent any
+	options {
+		disableConcurrentBuilds()
+	}
+	stages {
+		stage('OOFC Git Sync'){
+			when { branch 'master' }
+			steps{	
+				build job: "/oofc-git-sync"
+			}
+		}
+	}
+}
