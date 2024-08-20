@@ -32,39 +32,6 @@ spec:
       volumeMounts:
         - mountPath: /home/jenkins/agent/.m2
           name: global-cache
-    - name: sonar
-      image: sonarsource/sonar-scanner-cli
-      command: ["sleep"]
-      args: ["infinity"]
-      resources:
-        requests:
-          memory: 1Gi
-          cpu: 500m
-        limits:
-          memory: 14Gi
-          cpu: 7500m
-    - name: maven
-      image: quay.io/quarkus/centos-quarkus-maven:22.0-java11
-      command: ["sleep"]
-      args: ["infinity"]
-      securityContext:
-        runAsUser: 1000
-        privileged: true
-      env:
-        - name: USER
-          value: jenkins
-        - name: JAVA_TOOL_OPTIONS
-          value: -Duser.home=/home/jenkins/agent
-      resources:
-        requests:
-          memory: 12Gi
-          cpu: 6500m
-        limits:
-          memory: 14Gi
-          cpu: 7500m
-      volumeMounts:
-        - mountPath: /home/jenkins/agent/.m2
-          name: global-cache
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:

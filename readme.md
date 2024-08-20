@@ -79,6 +79,8 @@ nas seções específicas.
     - [Iniciador de Transação de Pagamento](utilizacao/open-finance-pagamentos/readme.md)
 - [Postman collection de exemplos](ferramentas-auxiliares/postman/readme.md)
 - [Exemplo de uso contra o mockbank](ferramentas-auxiliares/mockbank/readme.md)
+- [Relatório de interoperabilidade](ferramentas-auxiliares/relatorio-de-interoperabilidade/fase-2/readme.md)
+- [Relatório semestral](ferramentas-auxiliares/relatorio-semestral/readme.md)
 
 ## Índice desta documentação para Open Insurance
 
