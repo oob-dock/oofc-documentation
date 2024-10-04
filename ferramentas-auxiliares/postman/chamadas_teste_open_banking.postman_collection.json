@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "82f7d14d-94a8-49e9-b37c-d265c8049e16",
+		"_postman_id": "80c91627-8491-4f48-9779-2e3dce1d79d1",
 		"name": "OpusTpp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "13040428"
@@ -4858,6 +4858,300 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Applications",
+			"item": [
+				{
+					"name": "opus-open-finance/application/v1/application/{applicationId}/external-client/{id}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/application/v1/application/{{applicationId}}/external-client/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"application",
+								"v1",
+								"application",
+								"{{applicationId}}",
+								"external-client",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/application/v1/external-client/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/application/v1/external-client/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"application",
+								"v1",
+								"external-client",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Webhooks",
+			"item": [
+				{
+					"name": "pix-payments",
+					"item": [
+						{
+							"name": "payments-v4",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var response = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"consentId\", response.data.paymentId);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-webhook-interaction-id",
+										"value": "webhook-interaction-id",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": {\r\n    \"timestamp\": \"2024-09-02T08:30:00Z\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/open-banking/webhook/v1/payments/v4/pix/payments/{{paymentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"open-banking",
+										"webhook",
+										"v1",
+										"payments",
+										"v4",
+										"pix",
+										"payments",
+										"{{paymentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "recurring-payments-v4",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var response = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"consentId\", response.data.paymentId);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-webhook-interaction-id",
+										"value": "webhook-interaction-id",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": {\r\n    \"timestamp\": \"2024-09-02T08:30:00Z\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/open-banking/webhook/v1/automatic-payments/v4/pix/recurring-payments/{{paymentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"open-banking",
+										"webhook",
+										"v1",
+										"automatic-payments",
+										"v4",
+										"pix",
+										"recurring-payments",
+										"{{paymentId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "consents",
+					"item": [
+						{
+							"name": "consents-v1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var response = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"consentId\", response.data.paymentId);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-webhook-interaction-id",
+										"value": "webhook-interaction-id",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": {\r\n    \"timestamp\": \"2024-09-02T08:30:00Z\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/open-banking/webhook/v1/payments/v1/consents/{{consentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"open-banking",
+										"webhook",
+										"v1",
+										"payments",
+										"v1",
+										"consents",
+										"{{consentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "recurring-consents-v1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var response = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"consentId\", response.data.paymentId);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-webhook-interaction-id",
+										"value": "webhook-interaction-id",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": {\r\n    \"timestamp\": \"2024-09-02T08:30:00Z\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/open-banking/webhook/v1/automatic-payments/v1/recurring-consents/{{consentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"open-banking",
+										"webhook",
+										"v1",
+										"automatic-payments",
+										"v1",
+										"recurring-consents",
+										"{{consentId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

@@ -1,0 +1,179 @@
+openapi: 3.0.0
+info:
+  title: oofc-core
+  version: 1.0.0
+  description: |2-
+     Opus Open Client - Core de gestão de informações 
+    # Webhooks de pagamentos 
+    Para mais informações sobre o fluxo do webhook de pagamento, 
+        leia a documentação sobre [Utilização](../readme.md).
+tags:
+  - name: Webhooks de Pagamentos
+    description: |-
+      Endpoints para receber notificações de mudanças de status dos pagamentos e
+      consentimentos de pagamentos dos usuários. Oficial ([Open Finance - API
+      Webhooks
+      Payment](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/105021457/Webhook))
+paths:
+  /open-banking/webhook/v1/payments/{versionApi}/pix/payments/{paymentId}:
+    post:
+      tags:
+        - Webhooks
+      summary: Notificar mudanças de status de pagamentos Pix
+      description: |-
+        Método para receber notificações de mudanças de status dos pagamentos
+        Pix
+      operationId: oofcWebhookPostPixPayments
+      parameters:
+        - name: versionApi
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: paymentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: x-webhook-interaction-id
+          in: header
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Accepted
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhookRequest'
+  /open-banking/webhook/v1/automatic-payments/{versionApi}/pix/recurring-payments/{recurringPaymentId}:
+    post:
+      tags:
+        - Webhooks
+      summary: Notificar mudanças de status de pagamentos automáticos Pix
+      description: |-
+        Método para receber notificações de mudanças de status dos pagamentos
+        automáticos Pix
+      operationId: oofcWebhookPostPixRecurringPayments
+      parameters:
+        - name: versionApi
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: recurringPaymentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: x-webhook-interaction-id
+          in: header
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Accepted
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhookRequest'
+  /open-banking/webhook/v1/payments/{versionApi}/consents/{consentId}:
+    post:
+      tags:
+        - Webhooks
+      summary: Notificar mudanças de status de consentimentos dos pagamentos Pix
+      description: |-
+        Método para receber notificações de mudanças de status de consentimentos
+        dos pagamentos Pix
+      operationId: oofcWebhookPostConsentPixPayments
+      parameters:
+        - name: versionApi
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: consentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: x-webhook-interaction-id
+          in: header
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Accepted
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhookRequest'
+  /open-banking/webhook/v1/automatic-payments/{versionApi}/recurring-consents/{recurringConsentId}:
+    post:
+      tags:
+        - Webhooks
+      summary: |-
+        Notificar mudanças de status de consentimentos dos pagamentos
+        automáticos Pix
+      description: |-
+        Método para receber notificações de mudanças de status de consentimentos
+        dos pagamentos automáticos Pix
+      operationId: oofcWebhookPostConsentPixRecurringPayments
+      parameters:
+        - name: versionApi
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: recurringConsentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: x-webhook-interaction-id
+          in: header
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Accepted
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhookRequest'
+components:
+  schemas:
+    webhookRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              example: '2024-09-02T08:30:00Z'
+          required:
+            - timestamp
+      required:
+        - data
+    webhookResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              example: '2024-09-02T08:30:00Z'
+          required:
+            - timestamp
+      required:
+        - data

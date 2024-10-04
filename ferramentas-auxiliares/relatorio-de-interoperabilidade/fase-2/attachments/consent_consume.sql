@@ -82,13 +82,15 @@ begin
 					WHEN r.event_data#>>'{endpoint}' LIKE '%/invoice-financings/v%/contracts/%' THEN 'Direitos Creditórios Descontados - Contrato'
 				end																	  as endpoint_description,
 				case
-					WHEN r.event_data#>>'{endpoint}' LIKE '%/consents/v%/consents/%' then (r.event_data#>>'{endpointUriPrefix}') || (REGEXP_REPLACE(r.event_data#>>'{endpoint}', 'v(.*)/consents/.*', 'v\1/consents/consentId'))
-					WHEN r.event_data#>>'{endpoint}' LIKE '%/accounts/%/bills/%/transactions' then (r.event_data#>>'{endpointUriPrefix}') || (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/accounts/.*/bills/.*/transactions', '/accounts/contractId/bills/billId/transactions'))
-					WHEN r.event_data#>>'{endpoint}' LIKE '%/v%/accounts/%/%' then (r.event_data#>>'{endpointUriPrefix}') || (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/accounts/.*/', '/accounts/accountId/'))
-					WHEN r.event_data#>>'{endpoint}' LIKE '%/v%/accounts/%' then (r.event_data#>>'{endpointUriPrefix}') || (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/accounts/.*', '/accounts/accountId'))
-					WHEN r.event_data#>>'{endpoint}' LIKE '%/contracts/%/%' then (r.event_data#>>'{endpointUriPrefix}') || (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/contracts/.*/', '/contracts/contractId/'))
-					WHEN r.event_data#>>'{endpoint}' LIKE '%/contracts/%' then (r.event_data#>>'{endpointUriPrefix}') || (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/contracts/.*', '/contracts/contractId'))
-					else (r.event_data#>>'{endpointUriPrefix}') || (r.event_data#>>'{endpoint}')
+					WHEN r.event_data#>>'{endpoint}' LIKE '%/consents/v%/consents/%' then (REGEXP_REPLACE(r.event_data#>>'{endpoint}', 'v(.*)/consents/.*', 'v\1/consents/{consentId}'))
+			        WHEN r.event_data#>>'{endpoint}' LIKE '%/accounts/%/bills/%/transactions' then (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/accounts/.*/bills/.*/transactions', '/accounts/{creditCardAccountId}/bills/{billId}/transactions'))
+			        WHEN r.event_data#>>'{endpoint}' LIKE '%credit-cards-accounts/v%/accounts/%/%' then (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/accounts/.*/', '/accounts/{creditCardAccountId}/'))
+			        WHEN r.event_data#>>'{endpoint}' LIKE '%credit-cards-accounts/v%/accounts/%' then (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/accounts/.*', '/accounts/{creditCardAccountId}'))
+			        WHEN r.event_data#>>'{endpoint}' LIKE '%/v%/accounts/%/%' then (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/accounts/.*/', '/accounts/{accountId}/'))
+			        WHEN r.event_data#>>'{endpoint}' LIKE '%/v%/accounts/%' then (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/accounts/.*', '/accounts/{accountId}'))
+			        WHEN r.event_data#>>'{endpoint}' LIKE '%/contracts/%/%' then (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/contracts/.*/', '/contracts/{contractId}/'))
+			        WHEN r.event_data#>>'{endpoint}' LIKE '%/contracts/%' then (REGEXP_REPLACE(r.event_data#>>'{endpoint}', '/contracts/.*', '/contracts/{contractId}'))
+			        else (r.event_data#>>'{endpoint}')
 				end																		as endpoint_uri,
 				REGEXP_REPLACE(r.event_data#>>'{endpoint}', '.*/(v\d+)/.*', '\1')		as "version",
 				client_org_id 															as receptor,

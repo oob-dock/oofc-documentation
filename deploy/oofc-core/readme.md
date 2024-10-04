@@ -203,12 +203,18 @@ Configurações relacionadas ao Dapr.
 * `enabled`: Habilita o Dapr na aplicação para realizar o consumo de eventos.
 Possíveis valores: `true` ou `false`. Default: `true`.
 * `daprPubsubId`: Identificador do componente de pub/sub do Dapr a ser utilizado.
+* `daprPubsubWebhookId`: Identificador do componente de pub/sub do Dapr a ser utilizado para eventos de webhook. (Pode ser usado o mesmo do daprPubsubId)
+* `daprPubsubWebhookTopic`: Topico do Dapr utilizado para eventos de webhook.
+* `daprAppPort`: Porta utilizada para comunicação do Dapr com o oofc-core.
 
 ```yaml
 env:
   dapr:
     enabled: "true"
     daprPubsubId: "pcm-event-pub-sub"
+    daprPubsubWebhookId: "pcm-event-pub-sub"
+    daprPubsubWebhookTopic: "opustpp-webhook-topic"
+    daprAppPort: 3002
 ```
 
 ## additionalVars

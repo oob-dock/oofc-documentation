@@ -27,7 +27,7 @@ suporta a solicitação e obtenção de dados de usuários clientes de institui�
 incluindo: dados cadastrais, transações de contas e cartões de crédito,
 e informações de produtos de crédito contratados.
 2. **Iniciador de Transação de Pagamento:**
-suporta a iniciação e execução de transações de pagamentos,
+suporta a iniciação, execução e acompanhamento de transações de pagamentos,
 incluindo a solicitação e subsequente consumo de consentimentos
 dados por usuários clientes de instituições financeiras.
 
@@ -77,6 +77,7 @@ nas seções específicas.
 - [Utilização do produto](utilizacao/readme.md)
     - [Receptor de Dados Cadastrais e Transacionais](utilizacao/open-finance-dados/readme.md)
     - [Iniciador de Transação de Pagamento](utilizacao/open-finance-pagamentos/readme.md)
+    - [Recebendo atualizações de Pagamentos realizados](utilizacao/open-finance-webhook/readme.md)
 - [Postman collection de exemplos](ferramentas-auxiliares/postman/readme.md)
 - [Exemplo de uso contra o mockbank](ferramentas-auxiliares/mockbank/readme.md)
 - [Relatório de interoperabilidade](ferramentas-auxiliares/relatorio-de-interoperabilidade/fase-2/readme.md)
