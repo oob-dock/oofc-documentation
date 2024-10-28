@@ -204,8 +204,10 @@ Configurações relacionadas ao Dapr.
 Possíveis valores: `true` ou `false`. Default: `true`.
 * `daprPubsubId`: Identificador do componente de pub/sub do Dapr a ser utilizado.
 * `daprPubsubWebhookId`: Identificador do componente de pub/sub do Dapr a ser utilizado para eventos de webhook. (Pode ser usado o mesmo do daprPubsubId)
-* `daprPubsubWebhookTopic`: Topico do Dapr utilizado para eventos de webhook.
 * `daprAppPort`: Porta utilizada para comunicação do Dapr com o oofc-core.
+* `schedulerHostAddress`: host + porta do scheduler dapr interno. Deve ser considerado o namespace, caso esteja em um diferente, como no exemplo.
+* * Para que serve o Scheduler Dapr? - Para gerenciamento de jobs do Opus Open Finance Client, que devem executar em background. 
+* * Posso ficar sem o Scheduler? Não! Sem essa ferramenta, algumas funcionalidades não funcionarão corretamente.  
 
 ```yaml
 env:
@@ -213,7 +215,7 @@ env:
     enabled: "true"
     daprPubsubId: "pcm-event-pub-sub"
     daprPubsubWebhookId: "pcm-event-pub-sub"
-    daprPubsubWebhookTopic: "opustpp-webhook-topic"
+    schedulerHostAddress: "dapr-scheduler-server.oob.svc.cluster.local:50006"
     daprAppPort: 3002
 ```
 
