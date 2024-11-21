@@ -231,3 +231,45 @@ additionalVars:
   - name: OUTGOING_HTTP_LOGGER_ENABLED
     value: "true"
 ```
+
+### SEQUELIZE_POOL_CONNECTION_MIN
+
+Define o tamanho mínimo do pool de conexões com a base de dados. Por padrão este log é **1**.
+
+**Formato:** inteiro
+
+**Ex:**
+
+```yaml
+additionalVars:
+  - name: SEQUELIZE_POOL_CONNECTION_MIN
+    value: "1"
+```
+
+### SEQUELIZE_POOL_CONNECTION_MAX
+
+Define o tamanho máximo do pool de conexões com a base de dados. Por padrão este log é **5**.
+
+**Formato:** inteiro
+
+**Ex:**
+
+```yaml
+additionalVars:
+  - name: SEQUELIZE_POOL_CONNECTION_MAX
+    value: "5"
+```
+
+### SEQUELIZE_LOG_ENABLED
+
+Define se a aplicação deverá logar todos logs do sequelize. Por padrão este log é **desabilitado**.
+
+**Formato:** `true` para habilitado ou `false` para desabilitado.
+
+**Ex:**
+
+```yaml
+additionalVars:
+  - name: SEQUELIZE_LOG_ENABLED
+    value: "false"
+```
