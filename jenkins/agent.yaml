@@ -29,9 +29,6 @@ spec:
         limits:
           memory: 14Gi
           cpu: 7500m
-      volumeMounts:
-        - mountPath: /home/jenkins/agent/.m2
-          name: global-cache
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -46,7 +43,3 @@ spec:
               - key: karpenter.k8s.aws/instance-category
                 operator: In
                 values: ["n"]
-  volumes:
-    - name: global-cache
-      persistentVolumeClaim:
-        claimName: jenkins-agents-global-cache

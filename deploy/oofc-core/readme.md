@@ -206,9 +206,18 @@ Possíveis valores: `true` ou `false`. Default: `true`.
 * `daprPubsubWebhookId`: Identificador do componente de pub/sub do Dapr a ser utilizado para eventos de webhook. (Pode ser usado o mesmo do daprPubsubId)
 * `daprAppPort`: Porta utilizada para comunicação do Dapr com o oofc-core.
 * `schedulerHostAddress`: host + porta do scheduler dapr interno. Deve ser considerado o namespace, caso esteja em um diferente, como no exemplo.
-* * Para que serve o Scheduler Dapr? - Para gerenciamento de jobs do Opus Open Finance Client, que devem executar em background. 
-* * Posso ficar sem o Scheduler? Não! Sem essa ferramenta, algumas funcionalidades não funcionarão corretamente.  
-
+    * Para que serve o Scheduler Dapr? - Para gerenciamento de jobs do Opus Open Finance Client, que devem executar em background. 
+    * Posso ficar sem o Scheduler? Não! Sem essa ferramenta, algumas funcionalidades não funcionarão corretamente.  
+* `stateStore`: 
+    * Para que serve o stateStore Dapr? - Para gerenciamento do cache usado pela aplicação
+    * Posso ficar sem o stateStore? Sim, mas a performance do sistema será afetada negativamente sem o cache.
+    * `enabled`: Habilita o cache do Dapr na aplicação.
+      * Possíveis valores: `true` ou `false`. Default: `false`.
+    * `name`: Nome do componente Dapr a ser inicializado. Se o cache for habilitado, esse campo é obrigatório.
+    * `type`: Tipo do componente Dapr a ser usado como state store. Se o cache for habilitado, esse campo é obrigatório.
+      * Uma lista de componentes pode ser encontrada [aqui](https://docs.dapr.io/reference/components-reference/supported-state-stores/) 
+   * `version`: Nome do componente Dapr a ser inicializado. Se o cache for habilitado, esse campo é obrigatório.
+   * `connectionMetadata`: Configurações a serem carregadas do componente de state store do Dapr. Se o cache for habilitado, esse campo é obrigatório.
 ```yaml
 env:
   dapr:
@@ -217,6 +226,45 @@ env:
     daprPubsubWebhookId: "pcm-event-pub-sub"
     schedulerHostAddress: "dapr-scheduler-server.oob.svc.cluster.local:50006"
     daprAppPort: 3002
+    stateStore:
+      enabled: "true"
+      name: "cacheStateStore"
+      type: "state.postgresql"
+      version: "v1"
+      connectionMetadata:
+        - name: "connectionString"
+          value: "host=db-opus-open-banking.namespace.us-east-1.rds.amazonaws.com user=user password=passwd database=dapr_state"
+        - name: timeout
+          value: 10 
+```
+### Webhook cache
+
+Para habilitar é necessário que as seguinte variáveis estejam configuradas :
+
+```yml
+  dapr:
+    enabled: "true"
+    stateStore:
+      enabled: "true"
+      name: "cacheStateStore"
+      type: "TYPE"
+      version: "v1"
+      connectionMetadata: {}
+```
+Essas variáveis do Dapr estão explicadas na sessão anterior.
+Sobre o cache do Webhook:
+
+* `name`: Nome do componente de cache. `NÃO DEVE SER ALTERADO!`
+* `enabled`: Mesmo o cache geral estando habilitado, esta variável é que define se os dados da funcionalidade do Webhook devem ser ou não salvos em cache.
+  * Possíveis valores: `true` ou `false`. Default: `false`.
+* `ttl`: Tempo em segundos destinado para uma chave ser mantida no cache
+
+```yml
+env:
+  cache:
+    - name: "webhook"
+      enabled: "true"
+      ttl: "900"
 ```
 
 ## additionalVars
