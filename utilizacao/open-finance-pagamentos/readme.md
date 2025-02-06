@@ -430,33 +430,341 @@ Response Error no formato JSON - resposta é retornada no formato JWT:
 }
 ```
 
+### Iniciação de pagamento sem redirecionamento
+
+#### Vínculo de dispositivo
+
+##### Criar vínculo de conta. - POST /opus-open-finance/enrollments/v1/enrollments
+
+Permite criar um novo vínculo de conta. 
+Retorna um enrollment em status AWAITING_RISK_SIGNALS.
+
+Uma explicação detalhada da máquina de estados do status do vínculo pode ser
+encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/640286815/M+quina+de+estados+-+v2.0.0-+SV+V+nculo+de+dispositivo)
+do Open Finance Brasil.
+
+Exemplo de request:
+
+Request Body:
+
+```json
+{
+  "data": {
+    "callbackApplicationUri":"https://client-callback-url.com/",
+    "loggedUser": {
+      "document": {
+        "identification": "11111111111",
+        "rel": "CPF"
+      }
+    },
+    "permissions": [
+      "PAYMENTS_INITIATE"
+    ],
+    "businessEntity": {
+      "document": {
+        "identification": "11111111111111",
+        "rel": "CNPJ"
+      }
+    },
+    "debtorAccount": {
+      "ispb": "12345678",
+      "issuer": "1774",
+      "number": "1234567890",
+      "accountType": "CACC"
+    },
+    "enrollmentName": "Nome Dispositivo"
+  }
+}
+```
+
+Response Body:
+
+```json
+{
+   "data": {
+        "enrollmentId": "urn:amazingbank:0b9d8d77-a9bd-416c-a5cd-29f079c7d41b",
+        "enrollment": "eyJraWQiOiJoRUhYZ21BRS1IVlBVZUNEUFNjblpQVzZkWGp3dWIwLTJuQng2SHZMOUNrIiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdWQiOiIyN2FlYThmNi0yMTE5LTU1ZjgtOTU1My01YWQ0YjA4ZWViMTciLCJkYXRhIjp7ImVucm9sbG1lbnRJZCI6InVybjphbWF6aW5nYmFuazowYjlkOGQ3Ny1hOWJkLTQxNmMtYTVjZC0yOWYwNzljN2Q0MWIiLCJjcmVhdGlvbkRhdGVUaW1lIjoiMjAyNC0xMi0xMlQxMTo0MDozMVoiLCJzdGF0dXNVcGRhdGVEYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIiwic3RhdHVzIjoiQVdBSVRJTkdfUklTS19TSUdOQUxTIiwicGVybWlzc2lvbnMiOlsiUEFZTUVOVFNfSU5JVElBVEUiXSwibG9nZ2VkVXNlciI6eyJkb2N1bWVudCI6eyJpZGVudGlmaWNhdGlvbiI6IjEyMzEyMzEyMzg3IiwicmVsIjoiQ1BGIn19LCJkZWJ0b3JBY2NvdW50Ijp7ImlzcGIiOiIxMjM0NTY3OCIsImlzc3VlciI6IjE3NzQiLCJudW1iZXIiOiIxMjM0NTY3ODkwIiwiYWNjb3VudFR5cGUiOiJDQUNDIn0sImVucm9sbG1lbnROYW1lIjoiTm9tZSBEaXNwb3NpdGl2byJ9LCJtZXRhIjp7InJlcXVlc3REYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIn0sImlzcyI6IjI3YWVhOGY2LTIxMTktNTVmOC05NTUzLTVhZDRiMDhlZWIxNyIsImxpbmtzIjp7InNlbGYiOiJodHRwczovL210bHMtb2JiLnFhLm9vYi5vcHVzLXNvZnR3YXJlLmNvbS5ici9vcGVuLWJhbmtpbmcvZW5yb2xsbWVudHMvdjIvZW5yb2xsbWVudHMvdXJuOmFtYXppbmdiYW5rOjBiOWQ4ZDc3LWE5YmQtNDE2Yy1hNWNkLTI5ZjA3OWM3ZDQxYiJ9LCJpYXQiOjE3MzQwMDM2MzEsImp0aSI6IjI2N2EwOGFjLTViNGQtNDViYS1hOWNmLTllM2M4MDUxYWZhMiJ9.QxXNbSlzBIlLPY8qTNEy5dI_0BTCbauadj2vkKm8ytW7GDeNQKwbMMnUXe9MrtmCpxBRa762IvsSCsTMjJfWzwTGnY99pkoW5gY3uOSyBFpsMiSy3zhFQYFcBbaYZmVqUKzKSBZB2-Kw4TNJQ5_-nA2ZOBYMEs1VNkoqsqtHmnKkYHx10HbDT_LCGfFPCveoZn1smEEU-uPtMv8FZf88WRqa4qCW8cDsaW7HbmNn2XjL6oU5ozHIna3tldhcoFG-w3kEJkidbWs6Uyh579TnfOgof33YoORDWvAETJWHqZBNiLAwqT96yM_vcEER6Fz44U90QEEv7dW-w1Pi3FZAYw"
+    }
+}
+```
+
+##### Consulta de vínculo de conta - GET /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}
+
+Permite consultar um vínculo de conta para iniciação de pagamento sem redirecionamento.
+
+##### Rejeição o revogação de vínculo de conta - PATCH /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}
+
+Permite revogar ou rejeitar um vínculo de conta. Após a execução com sucesso
+deste método irreversível, o vínculo de conta não poderá mais ser utilizado para
+autenticação nem autorização de iniciação de pagamentos. Os conceitos de revogação
+e rejeição estão associados à máquina de estados do vínculo de conta:
+
+• Revogação: Cancelamento de um vínculo de conta no status "AUTHORISED";
+
+• Rejeição: Cancelamento do vínculo de conta nos status "AWATING_RISK_SIGNALS",
+"AWATING_ENROLLMENT" e "AWAITING_ACCOUNT_HOLDER_VALIDATION"
+
+Cabe ao cliente desta API distinguir entre os dois cenários para determinar o
+motivo adequado.
+
+Exemplo de request:
+
+Request Body:
+
+```json
+{
+  "data": {
+    "cancellation": {
+      "cancelledBy": {
+        "document": {
+          "identification": "12312312387",
+          "rel": "CPF"
+        }
+      },
+      "reason": {
+        "rejectionReason": "REJEITADO_TEMPO_EXPIRADO_RISK_SIGNALS"
+      },
+      "additionalInformation": "Contrato entre iniciadora e detentora interrompido"
+    }
+  }
+}
+```
+
+##### Envio de sinais de risco para iniciação do vínculo de dispositivo - POST /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/risk-signals
+
+Permite o envio de sinais de risco para iniciação do vínculo de dispositivo, o
+status do enrollment deve estar em "AWAITING_RISK_SIGNALS".
+Após recebimento com sucesso dos sinais, o status do enrollment deve transitar
+para "AWAITING_ACCOUNT_HOLDER_VALIDATION".
+
+Uma vez recebido a url de redirecionamento, o cliente será levado para a
+detentora para concluir o processo de iniciação do vínculo de dispositivo.
+Ao concluir o processo da detentora com sucesso em menos de 15 minutos, o status
+do enrollment deve transitar para "AWAITING_ENROLLMENT".
+Caso contrário o status deve transitar para "REJECTED".
+
+Uma explicação detalhada da máquina de estados do status do vínculo pode ser
+encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/640286815/M+quina+de+estados+-+v2.0.0-+SV+V+nculo+de+dispositivo)
+do Open Finance Brasil.
+
+Exemplo de request:
+
+Request Body:
+
+```json
+{
+  "data": {
+    "deviceId": "00aa11bb22cc33dd",
+    "isRootedDevice": false,
+    "screenBrightness": 255,
+    "elapsedTimeSinceBoot": 6356027,
+    "osVersion": "14",
+    "userTimeZoneOffset": "-03",
+    "language": "pt",
+    "screenDimensions": {
+      "height": 2340,
+      "width": 1080
+    },
+    "accountTenure": "2023-08-20",
+    "geolocation": {
+      "latitude": -15.738602,
+      "longitude": -47.926498,
+      "type": "FINE"
+    },
+    "isCallingProgress": false,
+    "isDevModeEnabled": false,
+    "isMockGPS": false,
+    "isEmulated": false,
+    "isMonkeyRunner": false,
+    "isCharging": false,
+    "antennaInformation": "CellIdentityLte:{ mCi=2******60 mPci=274 mTac=5***1 mEarfcn=9510 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=10 mAlphaLong=VIVO mAlphaShort=VIVO mAdditionalPlmns={} mCsgInfo=null}, CellIdentityLte:{ mCi=1*****01 mPci=361 mTac=3***6 mEarfcn=9410 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=03 mAlphaLong=TIMBRASIL mAlphaShort=TIMBRASIL mAdditionalPlmns={} mCsgInfo=null}",
+    "isUsbConnected": false,
+    "integrity": {
+      "appRecognitionVerdict": "PLAY_RECOGNIZED",
+      "deviceRecognitionVerdict": "[\\\"MEETS_DEVICE_INTEGRITY\\\"]"
+    }
+  }
+}
+```
+
+Response Body:
+
+```json
+{
+   "data": {
+    "redirectUrl": "https://obb.qa.oob.opus-software.com.br/auth/auth?client_id=8tOS2yj_vfAHagBC-5mSF&scope=openid%20payments%20nrp-consents%20enrollment%3Aurn%3Aamazingbank%3A4d0a6b31-d898-4145-a772-1cdc6b78342a&response_type=code%20id_token&redirect_uri=https%3A%2F%2Foob.127.0.0.1.nip.io%3A3005%2Fopus-open-finance%2Fenrollments%2Fredirect-uri%2Fapp-opus-1&request_uri=urn%3Aietf%3Aparams%3Aoauth%3Arequest_uri%3AY3SJ9Y2FqEiZMOnvrNP26"
+   }
+}
+```
+
+##### Obter parâmetros para criação de credenciais FIDO2 - POST /proxy/open-banking/enrollments/v1/enrollments/{enrollmentId}/fido-registration-options
+
+Método para obter os parâmetros para criação de uma nova credencial FIDO2. Um novo
+challenge deve ser criado a cada chamada. Os parâmetros da resposta devem ser
+compatíveis com a definição [W3C](https://www.w3.org/TR/webauthn-2/#dictionary-makecredentialoptions)
+
+Exemplo de request:
+
+Request Body:
+
+```json
+{
+  "data": {
+    "rp": "tpp-client1.127.0.0.1.nip.io",
+    "platform": "ANDROID"
+  }
+}
+```
+
+Response Body - formato JWT:
+
+eyJraWQiOiJoRUhYZ21BRS1IVlBVZUNEUFNjblpQVzZkWGp3dWIwLTJuQng2SHZMOUNrIiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdWQiOiIyN2FlYThmNi0yMTE5LTU1ZjgtOTU1My01YWQ0YjA4ZWViMTciLCJkYXRhIjp7ImVucm9sbG1lbnRJZCI6InVybjphbWF6aW5nYmFuazpmODM1NTNhYS02ODFjLTQ5MzUtOTJjOC05NGI1MzUxMzc0NDYiLCJycCI6eyJpZCI6InRwcC1jbGllbnQxLjEyNy4wLjAuMS5uaXAuaW8iLCJuYW1lIjoiT09CIENsaWVudCBVbSJ9LCJ1c2VyIjp7ImlkIjoiWm1aaU5tRmpaakV0TldZd1pTMDBPR0ZqTFdJNE1EZ3RaVFF5WW1JeE5qRXdPR0k0IiwibmFtZSI6InVybjphbWF6aW5nYmFuazpmODM1NTNhYS02ODFjLTQ5MzUtOTJjOC05NGI1MzUxMzc0NDYiLCJkaXNwbGF5TmFtZSI6IlJlcXVpcmVyIEd1eSJ9LCJjaGFsbGVuZ2UiOiIxeW54dnl4elF6S0RkY082OEhjTElnIiwicHViS2V5Q3JlZFBhcmFtcyI6W3siYWxnIjotNjU1MzUsInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi0yNTcsInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi0yNTgsInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi0yNTksInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi03LCJ0eXBlIjoicHVibGljLWtleSJ9LHsiYWxnIjotMzUsInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi0zNiwidHlwZSI6InB1YmxpYy1rZXkifSx7ImFsZyI6LTgsInR5cGUiOiJwdWJsaWMta2V5In1dLCJleGNsdWRlQ3JlZGVudGlhbHMiOltdLCJhdXRoZW50aWNhdG9yU2VsZWN0aW9uIjp7InVzZXJWZXJpZmljYXRpb24iOiJwcmVmZXJyZWQiLCJyZXF1aXJlUmVzaWRlbnRLZXkiOmZhbHNlLCJyZXNpZGVudEtleSI6ImRpc2NvdXJhZ2VkIn0sImF0dGVzdGF0aW9uIjoibm9uZSJ9LCJtZXRhIjp7InJlcXVlc3REYXRlVGltZSI6IjIwMjQtMTItMTdUMTQ6Mzk6MTVaIn0sImlzcyI6IjI3YWVhOGY2LTIxMTktNTVmOC05NTUzLTVhZDRiMDhlZWIxNyIsImlhdCI6MTczNDQ0NjM1NSwianRpIjoiZWI3NzdlZjYtNzVmNC00NDAyLWIyNTctNjNiM2MxNGQ2YWZlIn0.QcvTIxeKmHQ2NypdFLiXitzdlqroxizIVCsPyAHWuqbMiA1WPaX07nYYEIHJR4n8b4IrDh3rkGfnGs4ie-8Ra5UFtsCUgMBWNN6brmxkLioeauNZjdX71vtDwjHwvWefXA88c-rwk0urNtcSsHJWgblx0QEbnFt9R-PqRWcrlFFBZynCXcWR53K2Hclyju_Qack82sh4YDp_vTF6NwKzjNnNfYaDhgMKNjcUQu4a5pISF52uI8oE9cwuqeW8E0MmikiHzD7W3NiY_ffRxdzBAqKa58dbqG8l98-aQcbTjh0QpJiYokQM5pPhhibnUvhNSfjtV8-s6OiqSP5LDgGGWw
+
+##### Associação da credencial FIDO2 ao vínculo de conta - POST /proxy/open-banking/enrollments/v1/enrollments/{enrollmentId}/fido-registration
+
+O vínculo de conta deve estar no status "AWAITING_ENROLLMENT". Após o registro
+com sucesso, o vínculo de conta deve transitar ao status "AUTHORISED". A falha de
+verificação da credencial FIDO2 deve causar a rejeição do vínculo de conta por
+parte da detentora, uma vez que não é possível reusar um mesmo "challenge" para
+mais de um registro.
+
+Exemplo de request:
+
+Request Body:
+
+```json
+{
+  "data": {
+    "id": "dChFBsqJa5Bx8G5vUcNZ14wwA0s",
+    "rawId": "dChFBsqJa5Bx8G5vUcNZ14wwA0s",
+    "response": {
+      "clientDataJSON": "eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiwiY2hhbGxlbmdlIjoiMXlueHZ5eHpRektEZGNPNjhIY0xJZyIsIm9yaWdpbiI6Imh0dHBzOi8vdHBwLWNsaWVudDEuMTI3LjAuMC4xLm5pcC5pbzozMDA1IiwiY3Jvc3NPcmlnaW4iOmZhbHNlfQ",
+      "attestationObject": "o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YViYuaPcaIs3vOvomUZNWT85Y-SvtFN4ugAsg6-Cpli-WaddAAAAAPv8MAcVTk7MjAtuAgVX170AFHQoRQbKiWuQcfBub1HDWdeMMANLpQECAyYgASFYIB-TUaUPl98PPse5YWj1Z_MG6Kom_lnK_4eVCpMdH-mzIlggpuIxfx_WS5R4ICIvLt_qu5o6fuSk1xzd8hHbOcpgV3g"
+    },
+    "type": "public-key"
+  }
+}
+```
+
+##### Obter parâmetros para autenticação FIDO2 - POST /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options
+
+Método para obter os parâmetros para autenticação a partir de uma credencial FIDO2
+previamente registrada. Um novo challenge deve ser criado a cada chamada.
+Os parâmetros da resposta devem ser compatíveis com a definição [W3C](https://www.w3.org/TR/webauthn-2/#dictionary-assertion-options).
+
+Exemplo de request:
+
+Request Body:
+
+```json
+{
+  "data": {
+    "rp": "tpp-client1.127.0.0.1.nip.io",
+    "platform": "ANDROID",
+    "consentId": "urn:amazingbank:f83553aa-681c-4935-92c8-94b535137446"
+  }
+}
+```
+
+Response Body:
+
+```json
+{
+  "data": "eyJraWQiOiJoRUhYZ21BRS1IVlBVZUNEUFNjblpQVzZkWGp3dWIwLTJuQng2SHZMOUNrIiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdWQiOiIyN2FlYThmNi0yMTE5LTU1ZjgtOTU1My01YWQ0YjA4ZWViMTciLCJkYXRhIjp7ImNoYWxsZW5nZSI6ImY4R2pfQVVKUUZ1OFUwaHlMalFmVFEiLCJycElkIjoidHBwLWNsaWVudDEuMTI3LjAuMC4xLm5pcC5pbyIsImFsbG93Q3JlZGVudGlhbHMiOlt7ImlkIjoiZENoRkJzcUphNUJ4OEc1dlVjTloxNHd3QTBzIiwidHlwZSI6InB1YmxpYy1rZXkifV0sInVzZXJWZXJpZmljYXRpb24iOiJwcmVmZXJyZWQifSwibWV0YSI6eyJyZXF1ZXN0RGF0ZVRpbWUiOiIyMDI0LTEyLTE3VDE0OjQwOjI1WiJ9LCJpc3MiOiIyN2FlYThmNi0yMTE5LTU1ZjgtOTU1My01YWQ0YjA4ZWViMTciLCJpYXQiOjE3MzQ0NDY0MjUsImp0aSI6IjA1NmIwMDNiLWJiNzMtNGEzZC1iMDkwLWUxNzA2YTQxNTcyNyJ9.qaBLit6ftdtS2OT_vXRljB8shCq_0OIeZdJlwDY5UI-JaPG3r-bIkT6wibIYObWkJyJ3AzWjHXtsTfBm05L0fcjTLmu49T29H8PPRbtYotaFFuZZqsmNfxjiqRk1Zh4uO2Zh9CFAFTqiD7XYpPc6EdgT9sEYybYFg5iS357dLsdnVg5s8bZ3I-fgMmygzxK53YgwxSmThgzkok98fp6K-1JJDSm74ZYUCE9BLovVNLIs1q8Uv4nGehc8NtQWzT-iNKl3uU5svBMFyhCrdsfIv8Kx1QiV8D3A-1m-KyKO3_CMSFqbpDMgb0x6pSTXXOVypxb25GodW6mjvndp741uFQ"
+}
+```
+
+##### Autorização de um consentimento de pagamentos na jornada sem redirecionamento - POST /proxy/open-banking/enrollments/v1/consents/{consentId}/authorise
+
+Autorização de um consentimento de pagamentos em status AWAITING_AUTHORISATION a
+partir do access_token emitido pela jornada sem redirecionamento e envio de sinais
+de risco. Para pagamentos de alçadas únicas, o consentimento de pagamento deve transitar
+ao status AUTHORISED na execução com sucesso desse método. Para pagamentos com múltiplas
+alçadas aprovadoras, o consentimento de pagamento ficará em PARTIALLY_ACCEPTED
+até que todos tenham autorizado. Em caso de falha de negócio (HTTP Status Code 422),
+o consentimento de pagamento precisa transitar para o status REJECTED e seguir
+os motivos de rejeição presentes na API de pagamentos. Caso a detentora identifique
+que a conta de débito informada pelo iniciador na criação do consentimento diverge
+da conta de débito vinculada ao dispositivo, o detentor deve retornar o erro
+HTTP 422 com código CONTA_DEBITO_DIVERGENTE_CONSENTIMENTO_VINCULO e rejeitar o consentimento
+com o motivo CONTA_NAO_PERMITE_PAGAMENTO. Se o iniciador, durante a criação do consentimento,
+omitir a conta de débito, o detentor deve considerar a conta de débito associada
+ao vínculo para o preenchimento do objeto /data/debtorAccount, presente no consentimento,
+após a sua autorização. Os limites relacionados ao vínculo devem ser validados
+apenas em momento de liquidação do pagamento, independente dele ser agendado ou imediato.
+
+Exemplo de request:
+
+Request Body:
+
+```json
+{
+  "data": {
+    "enrollmentId": "urn:amazingbank:f83553aa-681c-4935-92c8-94b535137446",
+    "riskSignals": {
+      "screenBrightness": 90,
+      "deviceId": "5ad82a8f-37e5-4369-a1a3-be4b1fb9c034",
+      "isRootedDevice": true,
+      "elapsedTimeSinceBoot": 28800000,
+      "osVersion": "16.6",
+      "userTimeZoneOffset": "-03",
+      "language": "pt",
+      "accountTenure": "2023-01-01",
+      "screenDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "fidoAssertion": {
+      "id": "dChFBsqJa5Bx8G5vUcNZ14wwA0s",
+      "rawId": "dChFBsqJa5Bx8G5vUcNZ14wwA0s",
+      "response": {
+        "clientDataJSON": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiZjhHal9BVUpRRnU4VTBoeUxqUWZUUSIsIm9yaWdpbiI6Imh0dHBzOi8vdHBwLWNsaWVudDEuMTI3LjAuMC4xLm5pcC5pbzozMDA1IiwiY3Jvc3NPcmlnaW4iOmZhbHNlfQ",
+        "authenticatorData": "uaPcaIs3vOvomUZNWT85Y-SvtFN4ugAsg6-Cpli-WacdAAAAAA",
+        "signature": "MEYCIQDnH28G2uBCPktUSodK8dBuNma2ftwDxTZxSesb0jGGhQIhAJR3Pvttqw_RbSNsdFYpVIb1fO7vZVk3OwY2n_P4Ue7T",
+        "userHandle": "ZmZiNmFjZjEtNWYwZS00OGFjLWI4MDgtZTQyYmIxNjEwOGI4"
+      },
+      "type": "public-key"
+    }
+  }
+}
+```
+
 ## APIs
 
-| Tipo Request   | Endpoint                                                                                             | Descrição                                                          | Sucesso  |
-| -------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | -------- |
-| POST           | /opus-open-finance/payments/v1/consents                                                              | Criação de um consentimento de pagamento                           | 201      |
-| GET            | /opus-open-finance/payments/v1/consents/{consentId}                                                  | Obtenção dos dados do consentimento de pagamento                   | 200      |
-| POST           | /opus-open-finance/payments/v1/consents/{consentId}/authorisation-retry                              | Nova tentativa de autorização do consentimento                     | 200      |
-| POST           | /proxy/open-banking/payments/v2/pix/payments                                                         | Criação de um pagamento                                            | 201      |
-| GET            | /proxy/open-banking/payments/v2/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                    | 200      |
-| PATCH          | /proxy/open-banking/payments/v2/pix/payments/{paymentId}                                             | Revogação de um pagamento                                          | 200      |
-| POST           | /proxy/open-banking/payments/v3/pix/payments                                                         | Criação de um pagamento                                            | 201      |
-| GET            | /proxy/open-banking/payments/v3/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                    | 200      |
-| PATCH          | /proxy/open-banking/payments/v3/pix/payments/{paymentId}                                             | Revogação de um pagamento                                          | 200      |
-| POST           | /proxy/open-banking/payments/v4/pix/payments                                                         | Criação de um pagamento                                            | 201      |
-| GET            | /proxy/open-banking/payments/v4/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                    | 200      |
-| PATCH          | /proxy/open-banking/payments/v4/pix/payments/{paymentId}                                             | Revogação de um pagamento                                          | 200      |
-| PATCH          | /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}                                    | Revogação de todos os pagamentos referentes ao mesmo consentimento | 200      |
-| GET            | /opus-open-finance/dcm                                                                               | Obtenção dos dados de dcm dos brand clients                        | 200      |
-| PUT            | /opus-open-finance/dcm                                                                               | Atualização dos dados de dcm dos brand clients                     | 200      |
-| POST           | /opus-open-finance/automatic-payments/v1/recurring-consents                                          | Criação de um consentimento de pagamento automático                | 201      |
-| GET            | /opus-open-finance/automatic-payments/v1/recurring-consents/{recurringConsentId}                     | Obtenção dos dados do consentimento de pagamento automático        | 200      |
-| PATCH          | /opus-open-finance/automatic-payments/v1/recurring-consents/{recurringConsentId}                     | Revogação de um consentimento de pagamento automático              | 200      |
-| POST           | /opus-open-finance/automatic-payments/v1/recurring-consents/{recurringConsentId}/authorisation-retry | Nova tentativa de autorização do consentimento                     | 200      |
-| POST           | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments                                     | Criação de um pagamento automático                                 | 201      |
-| GET            | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments                                     | Obtenção dos dados dos pagamentos associados a um consentimento    | 200      |
-| GET            | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}                | Obtenção dos dados de um pagamento automático                      | 200      |
-| PATCH          | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}                | Revogação de um pagamento automático                               | 200      |
+| Tipo Request   | Endpoint                                                                                             | Descrição                                     | Sucesso  |
+| -------------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------- | -------- |
+| POST           | /opus-open-finance/payments/v1/consents                                                              | Criação de um consentimento de pagamento                                     | 201      |
+| GET            | /opus-open-finance/payments/v1/consents/{consentId}                                                  | Obtenção dos dados do consentimento de pagamento                    | 200      |
+| POST           | /opus-open-finance/payments/v1/consents/{consentId}/authorisation-retry                              | Nova tentativa de autorização do consentimento                                 | 200      |
+| POST           | /proxy/open-banking/payments/v2/pix/payments                                                         | Criação de um pagamento                                     | 201      |
+| GET            | /proxy/open-banking/payments/v2/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                     | 200      |
+| PATCH          | /proxy/open-banking/payments/v2/pix/payments/{paymentId}                                             | Revogação de um pagamento                                     | 200      |
+| POST           | /proxy/open-banking/payments/v3/pix/payments                                                         | Criação de um pagamento                                     | 201      |
+| GET            | /proxy/open-banking/payments/v3/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                     | 200      |
+| PATCH          | /proxy/open-banking/payments/v3/pix/payments/{paymentId}                                             | Revogação de um pagamento                                     | 200      |
+| POST           | /proxy/open-banking/payments/v4/pix/payments                                                         | Criação de um pagamento                                     | 201      |
+| GET            | /proxy/open-banking/payments/v4/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                     | 200      |
+| PATCH          | /proxy/open-banking/payments/v4/pix/payments/{paymentId}                                             | Revogação de um pagamento                                     | 200      |
+| PATCH          | /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}                                    | Revogação de todos os pagamentos referentes ao mesmo consentimento             | 200      |
+| GET            | /opus-open-finance/dcm                                                                               | Obtenção dos dados de dcm dos brand clients                                 | 200      |
+| PUT            | /opus-open-finance/dcm                                                                               | Atualização dos dados de dcm dos brand clients                                 | 200      |
+| POST           | /opus-open-finance/automatic-payments/v1/recurring-consents                                          | Criação de um consentimento de pagamento automático                          | 201      |
+| GET            | /opus-open-finance/automatic-payments/v1/recurring-consents/{recurringConsentId}                     | Obtenção dos dados do consentimento de pagamento automático         | 200      |
+| PATCH          | /opus-open-finance/automatic-payments/v1/recurring-consents/{recurringConsentId}                     | Revogação de um consentimento de pagamento automático                          | 200      |
+| POST           | /opus-open-finance/automatic-payments/v1/recurring-consents/{recurringConsentId}/authorisation-retry | Nova tentativa de autorização do consentimento                                 | 200      |
+| POST           | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments                                     | Criação de um pagamento automático                                    | 201      |
+| GET            | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments                                     | Obtenção dos dados dos pagamentos associados a um consentimento      | 200      |
+| GET            | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}                | Obtenção dos dados de um pagamento automático                          | 200      |
+| PATCH          | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}                | Revogação de um pagamento automático                                    | 200      |
+| POST           | opus-open-finance/enrollments/v1/enrollments                                                         | Criar vínculo de conta                                         | 200      |
+| GET            | opus-open-finance/enrollments/v1/enrollments/{enrollmentId}                                          | Obtenção dos dados do vínculo de conta                                         | 200      |
+| PATCH          | opus-open-finance/enrollments/v1/enrollments/{enrollmentId}                                          | Rejeição o revogação de vínculo de conta                                      | 204      |
+| POST           | opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/risk-signals                             | Envio de sinais de risco para iniciação do vínculo de dispositivo           | 201      |
+| POST           | opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options                        | Obtenção de parâmetros para autenticação FIDO2                            | 201      |
+| POST           | /proxy/open-banking/enrollments/v1/enrollments/{enrollmentId}/fido-registration-options              | Obtenção de parâmetros para criação de credenciais FIDO2                  | 201      |
+| POST           | /proxy/open-banking/enrollments/v1/enrollments/{enrollmentId}/fido-registration                      | Associação da credencial FIDO2 ao vínculo de conta                           | 201      |
+| POST           | /proxy/open-banking/enrollments/v1/consents/{consentId}/authorise                                    | Autorização de um consentimento de pagamentos na jornada sem redirecionamento | 201      |
 
 ## Orientações importantes
 

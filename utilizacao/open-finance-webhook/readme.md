@@ -66,6 +66,12 @@ realizado anteriormente.
 Recebe a notificação da instituição transmissora de dados, informando que 
 ocorreu uma mudança no estado do pagamento automático Pix realizado anteriormente.
 
+### Pagamentos sem Redirecionamento
+
+#### POST /open-banking/webhook/v1/enrollments/{versionApi}/enrollments/{enrollmentId}
+
+Recebe a notificação da instituição transmissora de dados, informando que
+ocorreu uma mudança no estado do vínculo da conta, que podem ser REJECTED e REVOKED.
 
 ## Orientações importantes
 
@@ -117,6 +123,7 @@ para ser consumida pelo próprio sistema num momento posterior.
 | POST           | /open-banking/webhook/v1/payments/{versionApi}/pix/payments/{paymentId}                              | Notificação de atualização do pagamento Pix                             | 202      |
 | POST           | /open-banking/webhook/v1/automatic-payments/{versionApi}/recurring-consents/{recurringPaymentId}     | Notificação de atualização do consentimento do pagamento automático Pix | 202      |
 | POST           | /open-banking/webhook/v1/automatic-payments/{versionApi}/pix/recurring-payments/{recurringPaymentId} | Notificação de atualização do pagamento automático Pix                  | 202      |
+| POST           | /open-banking/webhook/v1/enrollments/{versionApi}/enrollments/{enrollmentId}                         | Notificação de atualização do vínculo de conta                          | 202      |
 
 ### Exemplo de um payload de notificação de alteração de status de consentimento
 

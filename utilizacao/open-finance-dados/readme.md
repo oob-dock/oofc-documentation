@@ -41,6 +41,7 @@ e informações de status.
 - **Variable Incomes**: dados de operações de renda variável.
 - **Treasure Titles**: dados de operações de títulos de tesouro direto.
 - **Funds**: dados de operações de fundos de investimento.
+- **Exchanges**: dados de operações de câmbio.
 
 ## Orientações importantes
 
@@ -122,6 +123,7 @@ a instituição transmissora retorna o código HTTP Code 422 Unprocessable Entit
             "UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ",
             "UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ",
             "UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ",
+            "EXCHANGES_READ",
             "RESOURCES_READ"
         ],
         "expirationDateTime": "2023-06-21T08:30:00Z"
@@ -173,7 +175,8 @@ do Open Finance Brasil.
                     "UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ",
                     "UNARRANGED_ACCOUNTS_OVERDRAFT_READ",
                     "UNARRANGED_ACCOUNTS_OVERDRAFT_SCHEDULED_INSTALMENTS_READ",
-                    "UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ"
+                    "UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ",
+                    "EXCHANGES_READ"
                 ],
                 "expirationDateTime": "2023-06-21T08:30:00Z"
             },

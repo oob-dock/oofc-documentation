@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "80c91627-8491-4f48-9779-2e3dce1d79d1",
+		"_postman_id": "55bf4984-1dbc-401a-9e58-55a6d6413907",
 		"name": "OpusTpp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "13040428"
@@ -5152,6 +5152,411 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "enrollments",
+					"item": [
+						{
+							"name": "enrollments-v1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-webhook-interaction-id",
+										"value": "webhook-interaction-id",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": {\r\n    \"timestamp\": \"2024-09-02T08:30:00Z\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/open-banking/webhook/v1/enrollments/v1/enrollments/{{enrollmentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"open-banking",
+										"webhook",
+										"v1",
+										"enrollments",
+										"v1",
+										"enrollments",
+										"{{enrollmentId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Iniciação de Vinculo de dispositivo",
+			"item": [
+				{
+					"name": "opus-open-finance/enrollments/v1/enrollments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"enrollmentId\", response.data.enrollmentId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"callbackApplicationUri\": \"https://oob4tpp-callback-url.com/\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"12312312387\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n      \"PAYMENTS_INITIATE\"\r\n    ],\r\n    \"debtorAccount\": {\r\n      \"ispb\": \"12345678\",\r\n      \"issuer\": \"1774\",\r\n      \"number\": \"1234567890\",\r\n      \"accountType\": \"CACC\"\r\n    },\r\n    \"enrollmentName\": \"Nome Dispositivo\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"enrollments",
+								"v1",
+								"enrollments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"enrollments",
+								"v1",
+								"enrollments",
+								"{{enrollmentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"cancellation\": {\r\n      \"cancelledBy\": {\r\n        \"document\": {\r\n          \"identification\": \"12312312387\",\r\n          \"rel\": \"CPF\"\r\n        }\r\n      },\r\n      \"reason\": {\r\n        \"rejectionReason\": \"REJEITADO_TEMPO_EXPIRADO_RISK_SIGNALS\"\r\n      },\r\n      \"additionalInformation\": \"Contrato entre iniciadora e detentora interrompido\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"enrollments",
+								"v1",
+								"enrollments",
+								"{{enrollmentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"rp\": \"tpp-client1.127.0.0.1.nip.io\",\r\n    \"platform\": \"ANDROID\",\r\n    \"consentId\": \"{{consentId}}\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}/fido-sign-options",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"enrollments",
+								"v1",
+								"enrollments",
+								"{{enrollmentId}}",
+								"fido-sign-options"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proxy-open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"rp\": \"tpp-client1.127.0.0.1.nip.io\",\r\n    \"platform\": \"ANDROID\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/proxy/open-banking/enrollments/v2/enrollments/{{enrollmentId}}/fido-registration-options",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"proxy",
+								"open-banking",
+								"enrollments",
+								"v2",
+								"enrollments",
+								"{{enrollmentId}}",
+								"fido-registration-options"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proxy-open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"id\": \"N2NkYzU5YWEtNmRiNi00Y2Q5LWFiZTQtMzQ2YmFhMWE5ZTRk\",\r\n    \"rawId\": \"N2NkYzU5YWEtNmRiNi00Y2Q5LWFiZTQtMzQ2YmFhMWE5ZTRk\",\r\n    \"response\": {\r\n      \"clientDataJSON\": \"eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiwiY2hhbGxlbmdlIjoiMVFlYUpBN0dTLU9oQi13Rkdsc2p5USIsIm9yaWdpbiI6Imh0dHBzOi8vdHBwLWNsaWVudDEuMTI3LjAuMC4xLm5pcC5pbzozMDA1IiwiY3Jvc3NPcmlnaW4iOmZhbHNlLCJvdGhlcl9rZXlzX2Nhbl9iZV9hZGRlZF9oZXJlIjoiZG8gbm90IGNvbXBhcmUgY2xpZW50RGF0YUpTT04gYWdhaW5zdCBhIHRlbXBsYXRlLiBTZWUgaHR0cHM6Ly9nb28uZ2wveWFiUGV4In0\",\r\n      \"attestationObject\": \"o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YViYuaPcaIs3vOvomUZNWT85Y-SvtFN4ugAsg6-Cpli-WaddAAAAAPv8MAcVTk7MjAtuAgVX170AFDhI_ayOn1iiyV0ufWnv9snrkji_pQECAyYgASFYIGbRunMeA80PpaVzGExp4iVKlsYPvtYyUYsKzQWUjWh-Ilggkh2417B_ni1WdX7W_PefN6jWhSGKeVgW0o3DkX1JPBQ\"\r\n    },\r\n    \"type\": \"public-key\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/proxy/open-banking/enrollments/v2/enrollments/{{enrollmentId}}/fido-registration",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"proxy",
+								"open-banking",
+								"enrollments",
+								"v2",
+								"enrollments",
+								"{{enrollmentId}}",
+								"fido-registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proxy-open-banking/enrollments/v2/consents/{consentId}/authorise",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"enrollmentId\": \"{{enrollmentId}}\",\r\n    \"riskSignals\": {\r\n      \"screenBrightness\": 90,\r\n      \"deviceId\": \"5ad82a8f-37e5-4369-a1a3-be4b1fb9c034\",\r\n      \"isRootedDevice\": true,\r\n      \"elapsedTimeSinceBoot\": 28800000,\r\n      \"osVersion\": \"16.6\",\r\n      \"userTimeZoneOffset\": \"-03\",\r\n      \"language\": \"pt\",\r\n      \"accountTenure\": \"2023-01-01\",\r\n      \"screenDimensions\": {\r\n        \"width\": 1920,\r\n        \"height\": 1080\r\n      }\r\n    },\r\n    \"fidoAssertion\": {\r\n     \"id\": \"vUrdT-FnngGfOfUVCooSRoS9cMg\",\r\n  \"rawId\": \"vUrdT-FnngGfOfUVCooSRoS9cMg\",\r\n  \"response\": {\r\n    \"clientDataJSON\": \"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiVmF0RDVwV3lTRzJlRnNsVUUxMVFuQSIsIm9yaWdpbiI6Imh0dHBzOi8vdHBwLWNsaWVudDEuMTI3LjAuMC4xLm5pcC5pbzozMDA1IiwiY3Jvc3NPcmlnaW4iOmZhbHNlfQ\",\r\n    \"authenticatorData\": \"uaPcaIs3vOvomUZNWT85Y-SvtFN4ugAsg6-Cpli-WacdAAAAAA\",\r\n    \"signature\": \"MEQCIA2U73-xNHKezi7JwuFya3AujR_UM3Gw__lNUImvwKdCAiBXEHsQfPhBsm3K66VHDJ1PllfngpcV2HiyJtqwS91law\",\r\n    \"userHandle\": \"ZDljNTMyMzctZTRmZS00NjU3LTgwNTctMzJhYTMwNTAwMjA4\"\r\n  },\r\n  \"type\": \"public-key\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/proxy/open-banking/enrollments/v2/consents/{{consentId}}/authorise",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"proxy",
+								"open-banking",
+								"enrollments",
+								"v2",
+								"consents",
+								"{{consentId}}",
+								"authorise"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/risk-signals",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"deviceId\": \"00aa11bb22cc33dd\",\r\n    \"isRootedDevice\": false,\r\n    \"screenBrightness\": 255,\r\n    \"elapsedTimeSinceBoot\": 6356027,\r\n    \"osVersion\": \"14\",\r\n    \"userTimeZoneOffset\": \"-03\",\r\n    \"language\": \"pt\",\r\n    \"screenDimensions\": {\r\n      \"height\": 2340,\r\n      \"width\": 1080\r\n    },\r\n    \"accountTenure\": \"2023-08-20\",\r\n    \"geolocation\": {\r\n      \"latitude\": -15.738602,\r\n      \"longitude\": -47.926498,\r\n      \"type\": \"FINE\"\r\n    },\r\n    \"isCallInProgress\": false,\r\n    \"isDevModeEnabled\": false,\r\n    \"isMockGPS\": false,\r\n    \"isEmulated\": false,\r\n    \"isMonkeyRunner\": false,\r\n    \"isCharging\": false,\r\n    \"antennaInformation\": \"CellIdentityLte:{ mCi=2******60 mPci=274 mTac=5***1 mEarfcn=9510 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=10 mAlphaLong=VIVO mAlphaShort=VIVO mAdditionalPlmns={} mCsgInfo=null}, CellIdentityLte:{ mCi=1*****01 mPci=361 mTac=3***6 mEarfcn=9410 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=03 mAlphaLong=TIMBRASIL mAlphaShort=TIMBRASIL mAdditionalPlmns={} mCsgInfo=null}\",\r\n    \"isUsbConnected\": false,\r\n    \"integrity\": {\r\n      \"appRecognitionVerdict\": \"PLAY_RECOGNIZED\",\r\n      \"deviceRecognitionVerdict\": \"[\\\\\\\"MEETS_DEVICE_INTEGRITY\\\\\\\"]\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}/risk-signals",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"enrollments",
+								"v1",
+								"enrollments",
+								"{{enrollmentId}}",
+								"risk-signals"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

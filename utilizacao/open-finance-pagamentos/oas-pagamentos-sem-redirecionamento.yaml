@@ -1,0 +1,1423 @@
+openapi: 3.0.0
+info:
+  title: oofc-core
+  description: |-
+    Opus Open Client - Core de gestão de dispositivos vinculados as contas
+
+    # Iniciação de Transação de Pagamentos sem redirecionamento
+
+    Família de API para permitir o pagamento sem redirecionamento via Open Finance Brasil.  
+    Permite tanto o gerenciamento dos dispositivos vinculados as contas quanto a autorização de consentimentos criados via fluxo sem redirecionamento.
+
+    Para mais informações sobre o fluxo de vinculação de contas,
+    leia a documentação sobre [Utilização](../readme.md).
+  version: 1.0.0
+tags:
+  - name: Vínculo de dispositivo
+    description: |-
+      Gerenciamento dos dispositivos vinculados as contas
+  - name: Consentimento
+    description: |-
+      Autorização de consentimentos criados via fluxo sem redirecionamento.
+servers:
+  - url: https://open-finance-core.instituicao.com.br
+paths:
+  /opus-open-finance/enrollments/v1/enrollments:
+    post:
+      tags:
+        - Vínculo de dispositivo
+      operationId: postEnrollments
+      description: Método para criar um novo vínculo de conta. Retorna um enrollment em status AWAITING_RISK_SIGNALS.
+      summary: Criar vínculo de conta.
+      externalDocs:
+        description: Open Finance - API Enrollments for Payment Initiation
+        url: https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEnrollmentRequest'
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '201':
+          description: Dados do vínculo de conta obtidos com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateEnrollmentResponse'
+        '400':
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+  /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}:
+    get:
+      tags:
+        - Vínculo de dispositivo
+      operationId: getEnrollment
+      description: Método para consultar um vínculo de conta para iniciação de pagamento sem redirecionamento.
+      summary: Consultar vínculo de conta.
+      externalDocs:
+        description: Open Finance - API Enrollments for Payment Initiation
+        url: https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/enrollmentId'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '200':
+          description: Dados do vínculo de conta obtidos com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEnrollmentResponse'
+        '400':
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+    patch:
+      tags:
+        - Vínculo de dispositivo
+      operationId: deleteEnrollment
+      description: |
+        Método para revogar ou rejeitar um vínculo de conta. Após a execução com sucesso deste método irreversível, o vínculo de conta
+        não poderá mais ser utilizado para autenticação nem autorização de iniciação de pagamentos.
+        Os conceitos de revogação e rejeição estão associados à máquina de estados do vínculo de conta\:
+        
+        • Revogação: Cancelamento de um vínculo de conta no status "AUTHORISED";
+        
+        • Rejeição: Cancelamento do vínculo de conta nos status "AWATING_RISK_SIGNALS", "AWATING_ENROLLMENT" e "AWAITING_ACCOUNT_HOLDER_VALIDATION"
+        
+        Cabe ao cliente desta API distinguir entre os dois cenários para determinar o motivo adequado.
+      summary: Revogar ou rejeitar vínculo de conta.
+      externalDocs:
+        description: Open Finance - API Enrollments for Payment Initiation
+        url: https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchEnrollmentRequest'
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/enrollmentId'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '204':
+          description: 	
+            Vínculo de conta revogado com sucesso.
+        '400':
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+  /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/risk-signals:
+    post:
+      tags:
+        - Vínculo de dispositivo
+      operationId: riskSignals
+      description: Envio de sinais de risco para iniciação do vínculo de dispositivo, o status do enrollment deve estar em `AWAITING_RISK_SIGNALS`. Após recebimento com sucesso dos sinais, o status do enrollment deve transitar para `AWAITING_ACCOUNT_HOLDER_VALIDATION`.
+      summary: Envio de sinais de risco para iniciação do vínculo de dispositivo
+      externalDocs:
+        description: Open Finance - API Enrollments for Payment Initiation
+        url: https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RiskSignalsEnrollmentRequest'
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/enrollmentId'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '201':
+          description: Dados do vínculo de conta obtidos com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskSignalsEnrollmentResponse'
+        '400':
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+  /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options:
+    post:
+      tags:
+        - Vínculo de dispositivo
+      operationId: enrollmentCreateFidoSigningOptions
+      description: Método para obter os parâmetros para autenticação a partir de uma credencial FIDO2 previamente registrada. Um novo challenge deve ser criado a cada chamada.
+        Os parâmetros da resposta devem ser compatíveis com a [definição W3C](https://www.w3.org/TR/webauthn-2/#dictionary-assertion-options).
+      summary: Obter parâmetros para autenticação FIDO2
+      externalDocs:
+        description: Open Finance - API Enrollments for Payment Initiation
+        url: https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FidoSignOptionsRequest'
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/enrollmentId'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '201':
+          description: Dados do vínculo de conta obtidos com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentFidoSignOptionsResponse'
+        '400':
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
+          content:
+            application/jwt:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+  /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options:
+    post:
+      tags:
+        - Vínculo de dispositivo
+      operationId: enrollmentCreateFidoRegistrationOptions
+      description: |
+        Método para obter os parâmetros para criação de uma nova credencial FIDO2. Um novo challenge deve ser criado a cada chamada.
+        Os parâmetros da resposta devem ser compatíveis com a definição [W3C](https://www.w3.org/TR/webauthn-2/#dictionary-makecredentialoptions)
+      summary: Obter parâmetros para criação de credenciais FIDO2.
+      externalDocs:
+        description: Open Finance - API Enrollments for Payment Initiation
+        url: https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentFidoOptionsRequest'
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/enrollmentId'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+  /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration:
+    post:
+      tags:
+        - Vínculo de dispositivo
+      operationId: enrollmentRegisterFidoCredential
+      description: |
+        O vínculo de conta deve estar no status "AWAITING_ENROLLMENT". 
+        Após o registro com sucesso, o vínculo de conta deve transitar ao status "AUTHORISED".
+        A falha de verificação da credencial FIDO2 deve causar a rejeição do vínculo de conta por parte da detentora, uma vez que não é possível reusar um mesmo "challenge" para mais de um registro.
+      summary: Associação da credencial FIDO2 ao vínculo de conta.
+      externalDocs:
+        description: Open Finance - API Enrollments for Payment Initiation
+        url: https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentFidoRegistration'
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/enrollmentId'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+  /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise:
+    post:
+      tags:
+        - Consentimento
+      operationId: authorizeConsent
+      description: |
+        Autorização de um consentimento de pagamentos em status `AWAITING_AUTHORISATION` a partir do access_token emitido pela jornada sem redirecionamento e envio de sinais de risco. 
+        Para pagamentos de alçadas únicas, o consentimento de pagamento deve transitar ao status `AUTHORISED` na execução com sucesso desse método. 
+        Para pagamentos com múltiplas alçadas aprovadoras, o consentimento de pagamento ficará em `PARTIALLY_ACCEPTED` até que todos tenham autorizado. 
+        Em caso de falha de negócio (HTTP Status Code 422), o consentimento de pagamento precisa transitar para o status `REJECTED` e seguir os motivos de rejeição presentes na API de pagamentos.
+        Caso a detentora identifique que a conta de débito informada pelo iniciador na criação do consentimento diverge da conta de débito vinculada ao dispositivo, o detentor deve retornar o erro HTTP 422 com código `CONTA_DEBITO_DIVERGENTE_CONSENTIMENTO_VINCULO` e rejeitar o consentimento com o motivo `CONTA_NAO_PERMITE_PAGAMENTO`. 
+        Se o iniciador, durante a criação do consentimento, omitir a conta de débito, o detentor deve considerar a conta de débito associada ao vínculo para o preenchimento do objeto `/data/debtorAccount`, presente no consentimento, após a sua autorização.
+        Os limites relacionados ao vínculo devem ser validados apenas em momento de liquidação do pagamento, independente dele ser agendado ou imediato.
+      summary: Autorização de um consentimento de pagamentos na jornada sem redirecionamento
+      externalDocs:
+        description: Open Finance - API Enrollments for Payment Initiation
+        url: https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentAuthorization'
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/consentId'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+components:
+  schemas:
+    UUID:
+      format: uuid
+      pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+      type: string
+      example: '556392bd-b4c2-4cc0-9abe-f2c77a5c5d8f'
+    ResponseError:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          maxItems: 13
+          items:
+            type: object
+            required:
+              - code
+              - title
+              - detail
+            properties:
+              code:
+                description: Código de erro específico do endpoint
+                type: string
+                pattern: '[\w\W\s]*'
+                example: '4XX'
+                maxLength: 255
+              title:
+                description: Título legível por humanos deste erro específico
+                type: string
+                example: 'Título legível por humanos deste erro específico'
+                pattern: '[\w\W\s]*'
+                maxLength: 255
+              detail:
+                description: Descrição legível por humanos deste erro específico
+                type: string
+                example: 'Descrição legível por humanos deste erro específico'
+                pattern: '[\w\W\s]*'
+                maxLength: 2048
+            additionalProperties: false
+        meta:
+          $ref: '#/components/schemas/Meta'
+      additionalProperties: false
+    LoggedUser:
+      type: object
+      description: Usuário (pessoa natural) que encontra-se logado na iniciadora.
+      required:
+        - document
+      properties:
+        document:
+          type: object
+          required:
+            - identification
+            - rel
+          properties:
+            identification:
+              type: string
+              maxLength: 11
+              description: Número do documento de identificação oficial do usuário.
+              example: '11111111111'
+              pattern: '^\d{11}$'
+            rel:
+              type: string
+              maxLength: 3
+              description: Tipo do documento de identificação oficial do usuário.
+              example: CPF
+              pattern: '^[A-Z]{3}$'
+    EnumEnrollmentPermission:
+      type: string
+      enum:
+        - PAYMENTS_INITIATE
+      example: PAYMENTS_INITIATE
+      description: |
+        Permissões atribuídas ao vínculo de conta:
+        
+        • PAYMENTS_INITIATE: Iniciação de pagamentos sem redirecionamento à detentora.
+    EnumEnrollmentCancelledFrom:
+      type: string
+      enum:
+        - INICIADORA
+        - DETENTORA
+      description: |
+        Campo utilizado para informar o meio pelo qual foi realizado o cancelamento do vínculo de conta. Valores possíveis:
+        
+          INICIADORA - Vínculo de conta nos canais da iniciadora.
+
+          DETENTORA - Vínculo de conta nos canais da detentora.
+    DebtorAccount:
+      type: object
+      description: |
+        Objeto que contém a identificação da conta de origem do pagador.  
+        As informações quanto à conta de origem do pagador poderão ser trazidas no vínculo para a detentora, caso a iniciadora tenha coletado essas informações do cliente. Do contrário, será coletada na detentora e trazida para a iniciadora como resposta à criação do vínculo.
+      required:
+        - ispb
+        - number
+        - accountType
+      properties:
+        ispb:
+          type: string
+          minLength: 8
+          maxLength: 8
+          pattern: '^[0-9]{8}$'
+          example: '12345678'
+          description: |
+            Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantâneos) somente com números.
+        issuer:
+          type: string
+          minLength: 1
+          maxLength: 4
+          pattern: '^[0-9]{1,4}$'
+          example: '1774'
+          description: |
+            Código da Agência emissora da conta sem dígito.  
+            (Agência é a dependência destinada ao atendimento aos clientes, ao público em geral e aos associados de cooperativas de crédito,  
+            no exercício de atividades da instituição, não podendo ser móvel ou transitória).  
+            [Restrição] Preenchimento obrigatório para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA) e SVGS (CONTA_POUPANCA).
+        number:
+          type: string
+          minLength: 1
+          maxLength: 20
+          pattern: '^[0-9]{1,20}$'
+          example: '1234567890'
+          description: |
+            Deve ser preenchido com o número da conta transacional do usuário pagador, com dígito verificador (se este existir),  
+            se houver valor alfanumérico, este deve ser convertido para 0.
+        accountType:
+          $ref: '#/components/schemas/EnumAccountPaymentsType'
+    EnumAccountPaymentsType:
+      type: string
+      enum:
+        - CACC
+        - SVGS
+        - TRAN
+      example: CACC
+      description: |
+        Tipos de contas usadas para pagamento via Pix.  
+        Modalidades tradicionais previstas pela Resolução 4.753, não contemplando contas vinculadas,  
+        conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrônica.  
+        Segue descrição de cada valor do ENUM para o escopo do Pix.  
+        CACC - Current - Conta Corrente.    
+        SVGS - Savings - Conta de Poupança.  
+        TRAN - TransactingAccount - Conta de Pagamento pré-paga.
+    BusinessEntity:
+      type: object
+      description: 'Usuário (pessoa jurídica) que encontra-se logado na iniciadora. [Restrição] Preenchimento obrigatório se usuário logado na iniciadora for um CNPJ (pessoa jurídica).'
+      required:
+        - document
+      properties:
+        document:
+          type: object
+          required:
+            - identification
+            - rel
+          properties:
+            identification:
+              type: string
+              maxLength: 14
+              description: Número do documento de identificação oficial do titular pessoa jurídica.
+              example: '11111111111111'
+              pattern: '^\d{14}$'
+            rel:
+              type: string
+              maxLength: 4
+              description: Tipo do documento de identificação oficial do titular pessoa jurídica.
+              example: CNPJ
+              pattern: '^[A-Z]{4}$'
+    Meta:
+      type: object
+      description: Meta informações referente à API requisitada.
+      required:
+        - totalRecords
+        - totalPages
+        - requestDateTime
+      properties:
+        totalRecords:
+          type: integer
+          format: int32
+          description: Número total de registros no resultado
+          example: 1
+        totalPages:
+          type: integer
+          format: int32
+          description: Número total de páginas no resultado
+          example: 1
+        requestDateTime:
+          description: 'Data e hora da consulta, conforme especificação RFC-3339, formato UTC.'
+          type: string
+          maxLength: 20
+          format: date-time
+          example: '2021-05-21T08:30:00Z'
+      additionalProperties: false
+    CreateEnrollmentRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          description: Objeto contendo as informações para criação de vínculo de conta conforme padrão definido pelo BACEN - https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+          required:
+            - callbackApplicationUri
+            - loggedUser
+            - permissions
+          properties:
+            callbackApplicationUri:
+                type: string
+                format: uri
+                maxLength: 2000
+                description: URI de callback da aplicação após o processo de autenticação da iniciação do vínculo de conta (pós risk-signals)
+                example: 'https://aplicativo.instituicao.com.br'
+                pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+            loggedUser:
+              $ref: '#/components/schemas/LoggedUser'
+            permissions:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/EnumEnrollmentPermission'
+            businessEntity:
+              $ref: '#/components/schemas/BusinessEntity'
+            debtorAccount:
+              $ref: '#/components/schemas/DebtorAccount'
+            enrollmentName:
+              description: |
+                [Restrição] Deve ser preenchido sempre que o usuário pagador inserir alguma informação no nome do vínculo/dispositivo tanto no iniciador como no detentor de conta
+              type: string
+              pattern: '[\w\W\s]*'
+              maxLength: 140
+              example: Nome Dispositivo
+    CreateEnrollmentResponse:
+      description: Vínculo de conta criado com sucesso.
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - enrollmentId
+            - enrollment
+          properties:
+            enrollmentId:
+              $ref: '#/components/parameters/enrollmentId'
+            enrollment:
+              type: string
+              example: 'eyJraWQiOiJoRUhYZ21BRS1IVlBVZUNEUFNjblpQVzZkWGp3dWIwLTJuQng2SHZMOUNrIiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdWQiOiIyN2FlYThmNi0yMTE5LTU1ZjgtOTU1My01YWQ0YjA4ZWViMTciLCJkYXRhIjp7ImVucm9sbG1lbnRJZCI6InVybjphbWF6aW5nYmFuazowYjlkOGQ3Ny1hOWJkLTQxNmMtYTVjZC0yOWYwNzljN2Q0MWIiLCJjcmVhdGlvbkRhdGVUaW1lIjoiMjAyNC0xMi0xMlQxMTo0MDozMVoiLCJzdGF0dXNVcGRhdGVEYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIiwic3RhdHVzIjoiQVdBSVRJTkdfUklTS19TSUdOQUxTIiwicGVybWlzc2lvbnMiOlsiUEFZTUVOVFNfSU5JVElBVEUiXSwibG9nZ2VkVXNlciI6eyJkb2N1bWVudCI6eyJpZGVudGlmaWNhdGlvbiI6IjEyMzEyMzEyMzg3IiwicmVsIjoiQ1BGIn19LCJkZWJ0b3JBY2NvdW50Ijp7ImlzcGIiOiIxMjM0NTY3OCIsImlzc3VlciI6IjE3NzQiLCJudW1iZXIiOiIxMjM0NTY3ODkwIiwiYWNjb3VudFR5cGUiOiJDQUNDIn0sImVucm9sbG1lbnROYW1lIjoiTm9tZSBEaXNwb3NpdGl2byJ9LCJtZXRhIjp7InJlcXVlc3REYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIn0sImlzcyI6IjI3YWVhOGY2LTIxMTktNTVmOC05NTUzLTVhZDRiMDhlZWIxNyIsImxpbmtzIjp7InNlbGYiOiJodHRwczovL210bHMtb2JiLnFhLm9vYi5vcHVzLXNvZnR3YXJlLmNvbS5ici9vcGVuLWJhbmtpbmcvZW5yb2xsbWVudHMvdjIvZW5yb2xsbWVudHMvdXJuOmFtYXppbmdiYW5rOjBiOWQ4ZDc3LWE5YmQtNDE2Yy1hNWNkLTI5ZjA3OWM3ZDQxYiJ9LCJpYXQiOjE3MzQwMDM2MzEsImp0aSI6IjI2N2EwOGFjLTViNGQtNDViYS1hOWNmLTllM2M4MDUxYWZhMiJ9.QxXNbSlzBIlLPY8qTNEy5dI_0BTCbauadj2vkKm8ytW7GDeNQKwbMMnUXe9MrtmCpxBRa762IvsSCsTMjJfWzwTGnY99pkoW5gY3uOSyBFpsMiSy3zhFQYFcBbaYZmVqUKzKSBZB2-Kw4TNJQ5_-nA2ZOBYMEs1VNkoqsqtHmnKkYHx10HbDT_LCGfFPCveoZn1smEEU-uPtMv8FZf88WRqa4qCW8cDsaW7HbmNn2XjL6oU5ozHIna3tldhcoFG-w3kEJkidbWs6Uyh579TnfOgof33YoORDWvAETJWHqZBNiLAwqT96yM_vcEER6Fz44U90QEEv7dW-w1Pi3FZAYw'
+              description: JWT contendo o objeto de vínculo de conta retornado pela detentora de conta conforme padrão definido pelo BACEN - https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento. Ver ResponseCreateEnrollmentJWT
+    GetEnrollmentResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - enrollment
+          properties:
+            enrollment:
+              type: string
+              example: 'eyJraWQiOiJoRUhYZ21BRS1IVlBVZUNEUFNjblpQVzZkWGp3dWIwLTJuQng2SHZMOUNrIiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdWQiOiIyN2FlYThmNi0yMTE5LTU1ZjgtOTU1My01YWQ0YjA4ZWViMTciLCJkYXRhIjp7ImVucm9sbG1lbnRJZCI6InVybjphbWF6aW5nYmFuazowYjlkOGQ3Ny1hOWJkLTQxNmMtYTVjZC0yOWYwNzljN2Q0MWIiLCJjcmVhdGlvbkRhdGVUaW1lIjoiMjAyNC0xMi0xMlQxMTo0MDozMVoiLCJzdGF0dXNVcGRhdGVEYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIiwic3RhdHVzIjoiQVdBSVRJTkdfUklTS19TSUdOQUxTIiwicGVybWlzc2lvbnMiOlsiUEFZTUVOVFNfSU5JVElBVEUiXSwibG9nZ2VkVXNlciI6eyJkb2N1bWVudCI6eyJpZGVudGlmaWNhdGlvbiI6IjEyMzEyMzEyMzg3IiwicmVsIjoiQ1BGIn19LCJkZWJ0b3JBY2NvdW50Ijp7ImlzcGIiOiIxMjM0NTY3OCIsImlzc3VlciI6IjE3NzQiLCJudW1iZXIiOiIxMjM0NTY3ODkwIiwiYWNjb3VudFR5cGUiOiJDQUNDIn0sImVucm9sbG1lbnROYW1lIjoiTm9tZSBEaXNwb3NpdGl2byJ9LCJtZXRhIjp7InJlcXVlc3REYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIn0sImlzcyI6IjI3YWVhOGY2LTIxMTktNTVmOC05NTUzLTVhZDRiMDhlZWIxNyIsImxpbmtzIjp7InNlbGYiOiJodHRwczovL210bHMtb2JiLnFhLm9vYi5vcHVzLXNvZnR3YXJlLmNvbS5ici9vcGVuLWJhbmtpbmcvZW5yb2xsbWVudHMvdjIvZW5yb2xsbWVudHMvdXJuOmFtYXppbmdiYW5rOjBiOWQ4ZDc3LWE5YmQtNDE2Yy1hNWNkLTI5ZjA3OWM3ZDQxYiJ9LCJpYXQiOjE3MzQwMDM2MzEsImp0aSI6IjI2N2EwOGFjLTViNGQtNDViYS1hOWNmLTllM2M4MDUxYWZhMiJ9.QxXNbSlzBIlLPY8qTNEy5dI_0BTCbauadj2vkKm8ytW7GDeNQKwbMMnUXe9MrtmCpxBRa762IvsSCsTMjJfWzwTGnY99pkoW5gY3uOSyBFpsMiSy3zhFQYFcBbaYZmVqUKzKSBZB2-Kw4TNJQ5_-nA2ZOBYMEs1VNkoqsqtHmnKkYHx10HbDT_LCGfFPCveoZn1smEEU-uPtMv8FZf88WRqa4qCW8cDsaW7HbmNn2XjL6oU5ozHIna3tldhcoFG-w3kEJkidbWs6Uyh579TnfOgof33YoORDWvAETJWHqZBNiLAwqT96yM_vcEER6Fz44U90QEEv7dW-w1Pi3FZAYw'
+              description: JWT contendo o objeto de vínculo de conta retornado pela detentora de conta conforme padrão definido pelo BACEN - https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento. Ver ResponseCreateEnrollmentJWT
+            enrollmentId:
+              $ref: '#/components/parameters/enrollmentId'
+    PatchEnrollmentRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          description: Objeto contendo as informações de rejeição ou revogação de um vínculo de conta. Para informações dos campos segue o padrão de requisição definidos na documentação oficial ([Open Finance - API Enrollments for Payment Initiation](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento)).
+    RiskSignalsEnrollmentResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - redirectUrl
+          properties:
+            redirectUrl:
+              type: string
+              format: uri
+              maxLength: 2000
+              description: URI de redirecionamento para o authorisation Server da transmissora a fim de solicitar aprovação do início do vínculo de conta
+              example: 'https://authorisation-server.transmissora.com.br/'
+              pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    RiskSignalsEnrollmentRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          description: Informa a integridade do dispositivo e app
+          required:
+            - deviceId
+            - osVersion
+            - userTimeZoneOffset
+            - language
+            - screenDimensions
+            - accountTenure
+          properties:
+            deviceId:
+              type: string
+              description: |
+                ID único do dispositivo gerado pela plataforma.
+
+                Utiliza-se a propriedade do sistema que identifica a combinação de usuário logado, chave de assinatura do aplicativo e dispositivo.
+
+                [Android] Informação obtida através do [link](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
+
+                [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor/).
+              example: 00aa11bb22cc33dd
+            isRootedDevice:
+              type: boolean
+              description: |
+                Indica se o dispositivo atualmente está com permissão de “root”.
+ 
+                [Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+              example: false
+            screenBrightness:
+              type: number
+              format: double
+              description: |
+               Indica o nível de brilho da tela do dispositivo.
+
+               [Android] O valor é inteiro, tipicamente entre 0 a 255, podendo a faixa de valores variar de acordo com o fabricante do celular. Referência no [link](https://developer.android.com/reference/android/provider/Settings.System#SCREEN_BRIGHTNESS).
+
+               [iOS] O valor é ponto flutuante entre “0.0” e “1.0”. Referência no [link](https://developer.apple.com/documentation/uikit/uiscreen/).
+
+               [Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+              example: 255
+            elapsedTimeSinceBoot:
+              type: integer
+              format: int64
+              description: |
+                Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+
+                [Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/SystemClock#elapsedRealtime%28%29).
+
+                [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/kernel/kern/).
+
+                [Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+              example: 6356027
+            osVersion:
+              type: string
+              description: |
+                Versão do sistema operacional.
+
+                [Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/Build.VERSION#RELEASE).
+                [iOS] - Informação obtida através do [link](https://developer.apple.com/documentation/uikit/uidevice/1620043-systemversion/).
+              example: "14"
+            userTimeZoneOffset:
+              type: string
+              description: |
+                Indica a configuração de fuso horário do dispositivo do usuário, com o formato UTC offset: ±hh[:mm]. O formato especificado permite a omissão da parte correspondente aos minutos, caso esta última tenha valor zero. Assim, ambos os valores '-03:00' e '-03' são válidos e representam o mesmo fuso horário.
+
+                [Android] Informação obtida através do [link](https://developer.android.com/reference/java/time/ZonedDateTime#getOffset()) ou, para versões anteriores à 8.0, [link](https://developer.android.com/reference/java/util/TimeZone#getOffset(long)).
+
+                [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/foundation/timezone/).
+              example: '-03'
+            language:
+              type: string
+              description: |
+                Indica o idioma do dispositivo no formato ISO 639-1.
+
+                [Android] Informação obtida através do [link](https://developer.android.com/reference/java/util/Locale#getLanguage()).
+                [iOS] - Informação obtida através do [link](https://developer.apple.com/documentation/foundation/locale/languagecode/).
+              example: 'pt'
+            screenDimensions:
+              type: object
+              description: |
+                Dimensões que o aplicativo ocupa na tela do dispositivo.
+
+                [Android] Informação obtida através do [link](https://developer.android.com/reference/android/view/WindowMetrics#getBounds()), ou, para versões anteriores à 11, [link](https://developer.android.com/reference/android/util/DisplayMetrics).
+
+                [iOS] - Informação obtida através do [link](https://developer.apple.com/documentation/metal/mtlrasterizationratemap/3088873-screensize/).
+              required:
+                - height
+                - width
+              properties:
+                height:
+                  type: integer
+                  description: Altura da tela, em pixels.
+                  example: 2340
+                width:
+                  type: integer
+                  description: Largura da tela, em pixels.
+                  example: 1080
+            accountTenure:
+              type: string
+              format: date
+              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+              description: Data de cadastro do cliente na iniciadora.
+              example: "2023-08-20"
+            geolocation:
+              type: object
+              description: |
+                Localização do usuário, obtida com seu consentimento.
+
+                [Android] Informação obtida através do [link](https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient#public-abstract-tasklocation-getlastlocation) considerando as permissões necessárias.
+
+                [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/corelocation/).
+
+                [Restrição] A ITP deve solicitar ao usuário a permissão para compartilhamento de sua localização. Este campo poderá ser omitido caso o GPS esteja indisponível, isto é, sem sinal, ou em dispositivos sem o hardware necessário; ou caso o usuário negue o consentimento.
+              properties:
+                latitude:
+                  type: number
+                  example: -15.738602
+                longitude:
+                  type: number
+                  example: -47.926498
+                type:
+                  type: string
+                  enum:
+                    - COARSE
+                    - FINE
+                    - INFERRED
+                  example: FINE
+            isCallingProgress:
+              type: boolean
+              description: |
+                Indica chamada ativa no momento do vínculo.
+
+                [Android] Informação obtida através do [link](https://developer.android.com/reference/android/media/AudioManager#getMode()).
+
+                [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/callkit/).
+
+                [Restrição] Caso o sinal de risco esteja disponível (cliente permitiu que fosse coletado), o mesmo deverá ser enviado
+              example: false
+            isDevModeEnabled:
+              type: boolean
+              description: Indica se o dispositivo está em modo de desenvolvedor.
+              example: false
+            isMockGPS:
+              type: boolean
+              description: |
+                Indica se o dispositivo está usando um GPS falso. Deve ser enviado sempre que exista o campo geolocation com tipo `COARSE` ou `FINE`.
+
+                [Android] Informação obtida através do [link](https://developer.android.com/reference/android/location/Location.html#isMock()) ou, para versões anteriores à 12, [link](https://developer.android.com/reference/android/location/Location.html#isFromMockProvider()).
+
+                [iOS] Informação obtida através dos links:
+                sourceInformation, [link](https://developer.apple.com/documentation/corelocation/cllocation/3861803-sourceinformation).
+                isSimulatedBySoftware, [link](https://developer.apple.com/documentation/corelocation/cllocationsourceinformation/3861807-issimulatedbysoftware).
+              example: false
+            isEmulated:
+              type: boolean
+              description: Indica se o dispositivo é emulado ou real.
+              example: false
+            isMonkeyRunner:
+              type: boolean
+              description: Indica o uso do MonkeyRunner.
+              example: false
+            isCharging:
+              type: boolean
+              description: |
+                Indica se a bateria do dispositivo está sendo carregada.
+
+                [Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/BatteryManager).
+
+                [iOS] Informações obtida através do [link](https://developer.apple.com/documentation/uikit/uidevice/1620045-batterymonitoringenabled/).
+              example: false
+            antennaInformation:
+              type: string
+              description: Indica em qual antena o dispositivo está conectado.
+              example: "CellIdentityLte:{ mCi=2******60 mPci=274 mTac=5***1 mEarfcn=9510 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=10 mAlphaLong=VIVO mAlphaShort=VIVO mAdditionalPlmns={} mCsgInfo=null}, CellIdentityLte:{ mCi=1*****01 mPci=361 mTac=3***6 mEarfcn=9410 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=03 mAlphaLong=TIMBRASIL mAlphaShort=TIMBRASIL mAdditionalPlmns={} mCsgInfo=null}"
+            isUsbConnected:
+              type: boolean
+              description: Indica se o dispositivo está conectado a outro dispositivo via USB.
+              example: false
+            integrity:
+              type: object
+              description: |
+                Informa a integridade do dispositivo e app.
+
+                [Android] Conforme documentação Play API Integrity, [link](https://developer.android.com/google/play/integrity/overview?hl=pt-br).
+
+                [iOS] Conforme documentação App Attest, [link](https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity).
+              properties:
+                appRecognitionVerdict:
+                  type: string
+                  description: Informa a integridade do app
+                  example: "PLAY_RECOGNIZED"
+                deviceRecognitionVerdict:
+                  type: string
+                  description: Informa a integridade do dispositivo
+                  example: '[\"MEETS_DEVICE_INTEGRITY\"]'
+    ResponseCreateEnrollmentJWT:
+      type: object
+      required:
+        - data
+        - links
+        - meta
+      properties:
+        data:
+          type: object
+          description: Objeto contendo as informações de resposta da criação de vínculo de conta.
+          required:
+            - enrollmentId
+            - creationDateTime
+            - status
+            - statusUpdateDateTime
+            - permissions
+            - loggedUser
+          properties:
+            enrollmentId:
+              $ref: '#/components/parameters/enrollmentId'
+            creationDateTime:
+              type: string
+              format: date-time
+              example: '2023-07-12T08:30:00Z'
+              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              maxLength: 20
+              description: O instante em que o vínculo de conta foi criado no ambiente da detentora.
+            status:
+              $ref: '#/components/schemas/EnumEnrollmentStatus'
+            statusUpdateDateTime:
+              type: string
+              format: date-time
+              example: '2023-07-12T08:30:00Z'
+              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              maxLength: 20
+              description: O instante em que ocorreu a última alteração de status do vínculo de conta.
+            permissions:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/EnumEnrollmentPermission'
+            expirationDateTime:
+              type: string
+              format: date-time
+              example: '2023-07-12T08:30:00Z'
+              pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+              maxLength: 20
+              description: |
+                Data e hora definida pelo usuário em que o vínculo do dispositivo deve expirar, perdendo sua validade.
+                
+                [Restrição] Campo obrigatório que deverá ser retornado quando o vínculo de dispositivo estiver ou passar pelo estado AUTHORISED;
+            loggedUser:
+              $ref: '#/components/schemas/LoggedUser'
+            businessEntity:
+              $ref: '#/components/schemas/BusinessEntity'
+            debtorAccount:
+              $ref: '#/components/schemas/DebtorAccount'
+            enrollmentName:
+              description: |
+                [Restrição] Deve ser preenchido sempre que o usuário pagador inserir alguma informação no nome do vínculo/dispositivo tanto no iniciador como no detentor de conta
+              type: string
+              pattern: '[\w\W\s]*'
+              maxLength: 140
+              example: Nome Dispositivo
+        links:
+          $ref: '#/components/schemas/LinkSingle'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    LinkSingle:
+      type: object
+      description: Referências para outros recusos da API requisitada.
+      required:
+        - self
+      properties:
+        self:
+          type: string
+          format: url
+          maxLength: 2000
+          description: URI completo que gerou a resposta atual.
+          example: 'https://api.banco.com.br/open-banking/api/v2/resource'
+    EnumEnrollmentStatus:
+      type: string
+      enum:
+        - AWAITING_RISK_SIGNALS
+        - AWAITING_ACCOUNT_HOLDER_VALIDATION
+        - AWAITING_ENROLLMENT
+        - AUTHORISED
+        - REVOKED
+        - REJECTED
+      description: |
+        Status do vínculo de conta:
+
+        • AWAITING_RISK_SIGNALS: Vínculo de conta criado e aguardando envio dos sinais de risco para a dentora.
+        
+        • AWAITING_ACCOUNT_HOLDER_VALIDATION: Vínculo de conta aguardando autorização no ambiente da detentora.
+        
+        • AWAITING_ENROLLMENT: Vínculo de conta autorizado no ambiente da detentora e aguardando o vínculo de credenciais (FIDO2).
+        
+        • AUTHORISED: Vínculo de conta pronto para uso.
+        
+        • REVOKED: Vínculo de conta revogado.
+        
+        • REJECTED: Vínculo de conta rejeitado.
+    FidoSignOptionsRequest:
+      type: object
+      description: Payload para autenticação a partir de uma credencial FIDO2 previamente registrada.
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          description: |
+            Objeto que contém as informações sobre a Relying Party e a plataforma sobre a qual o usuário está utilizando o serviço da iniciadora para utilização de FIDO2.
+          required:
+            - rp
+            - platform
+            - consentId
+          properties:
+            rp:
+              type: string
+              description: Identificador único da Relying Party, que corresponde ao valor do CN do certificado de transporte da iniciadora.
+            platform:
+              type: string
+              description: |
+                Indica a plataforma em que o usuário criará a nova credencial FIDO2. 
+                Este campo permite que o servidor FIDO inclua extensões de acordo com a plataforma utilizada.
+              enum:
+                - ANDROID
+                - BROWSER
+                - CROSS_PLATFORM
+                - IOS
+            consentId:
+              $ref: '#/components/parameters/consentId'
+    EnrollmentFidoSignOptionsResponse:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: object
+          description: Objeto que contém as informações necessárias para assinatura com uma credencial FIDO2 previamente registrada.
+          required:
+            - challenge
+          properties:
+            challenge:
+              type: string
+              format: byte
+              description: Sequência de bytes aleatórios gerados pelo servidor FIDO2. Deve ser o valor em formato base64url sem padding.
+            timeout:
+              type: integer
+              format: int32
+              description: Expiração, em milissegundos, do challenge.
+            rpId:
+              type: string
+              description: Identificador da Relying Party.
+            allowCredentials:
+              type: array
+              items:
+                $ref: '#/components/schemas/FidoPublicKeyCredentialDescriptor'
+            userVerification:
+              type: string
+              example: required, preferred, discouraged
+            extensions:
+              type: object
+              description: Campo de extensão com opções que variam por plataforma.
+              additionalProperties: true
+    FidoPublicKeyCredentialDescriptor:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: string
+          description: Identificador único da credencial.
+        type:
+          type: string
+          description: Identificador do tipo de credencial.
+          example: public-key
+    EnrollmentFidoOptionsRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          description: |
+            Objeto que contém as informações sobre a Relying Party e a plataforma sobre a qual o usuário está utilizando o serviço da iniciadora para utilização de FIDO2.
+          required:
+            - rp
+            - platform
+          properties:
+            rp:
+              type: string
+              description: Identificador único da Relying Party, que corresponde ao valor do CN do certificado de transporte da iniciadora.
+            platform:
+              type: string
+              description: |
+                Indica a plataforma em que o usuário está utilizando a credencial FIDO2. 
+                Este campo permite que o servidor FIDO inclua extensões de acordo com a plataforma utilizada.
+              enum:
+                - ANDROID
+                - BROWSER
+                - CROSS_PLATFORM
+                - IOS
+    EnrollmentFidoRegistration:
+      type: object
+      description: Objeto que contém a resposta da criação de uma nova credencial FIDO2.
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - id
+            - rawId
+            - response
+          properties:
+            id:
+              type: string
+              description: Identificador da credencial. Deve ser o valor em formato base64url do campo rawId da chave pública criada no processo de registro do dispositivo.
+            rawId:
+              type: string
+              description: Identificador da credencial. Para envio ao detentor, o valor deste atributo deve ser idêntico ao valor do atributo id.
+            response:
+              type: object
+              required:
+                - clientDataJSON
+                - attestationObject
+              properties:
+                clientDataJSON:
+                  type: string
+                  format: bytes
+                  description: Agrega as informações do aplicativo que gerou a credencial. Deve ser enviado em formato base64url para o detentor.
+                  example: eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiwiY2hhbGxlbmdlIjoiTVRBeU16azRhMkZxYUhOclpHcG9ZV3R6Iiwib3JpZ2luIjoiaHR0cHM6Ly93d3cudzMub3JnIiwiY3Jvc3NPcmlnaW4iOmZhbHNlfQ==
+                attestationObject:
+                  type: string
+                  format: bytes
+                  description: Agrega as informações da chave pública da credencial. Deve ser enviado em formato base64url para o detentor.
+                  example: o2NmbXRoZmlkby11MmZnYXR0U3RtdKJjc2lnWEcwRQIgZyUMtm43lCCqzoIbSDeoCUpJzh/VSchwQNxFR2UM/DsCIQDWpp4+/nklI7G2HPVZCIqw08R9omcn9kJrKPsuIO5k22N4NWOBWQFIMIIBRDCB6qADAgECAgkBcwb/////QwMwCgYIKoZIzj0EAwIwGzEZMBcGA1UEAxMQR251YmJ5IEhTTSBDQSAwMDAiGA8yMDEyMDYwMTAwMDAwMFoYDzIwNjIwNTMxMjM1OTU5WjAwMRkwFwYDVQQDExBHb29nbGUgR251YmJ5IHYwMRMwEQYDVQQtAwoAAXMG/////0MDMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAELuWVatmVMfAOr53T6fh7X/iIgqKz5SCnKTBUnFo3FtbbslUGi8Qetr1nbyr6BVqGHqcJiXyvF6rVbj5fZqbiBTAKBggqhkjOPQQDAgNJADBGAiEA5GaaFxllkOr24b5s6Qu/4ch3ZgU+3GIAv/D8kj4EGMgCIQDXYfaVAMe7Jzht3ra4TaCKKpaUxp+nRkIO/SKiQZPjgmhhdXRoRGF0YVjEIYvQ2gJvAWdQFFLPcpStJJWLnFoQO0f5vT1T51P/rm5BAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCJ8iR8CqPctr4tz/YAICs6bDwVqhDzdt3oohVVWRQruy+E1AFeEWgPMWsIS4UU0n+sRGW3m2K90z1d9ujtFPxylAQIDJiABIVggaUaH0XDx9F2UOrT0ao02wL+xjGR/BxnCB4WOU2w0H8YiWCATuK2PUWGPophwPsfNIC3CZw4TGlCMEq1R15cw1w5KDg==
+            authenticatorAttachment:
+              type: string
+              description: Indica a forma de comunicação com o autenticador.
+              example: platform, cross-platform
+            type:
+              type: string
+              description: Tipo da credencial
+              example: public-key
+            clientExtensionResults:
+              type: object
+              description: Extensões da credencial, específicas por plataforma
+              additionalProperties: true
+    ConsentAuthorization:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          description: Objeto que contém sinais de risco e o id do vínculo de conta para avaliação da autorização de um consentimento de pagamento.
+          required:
+            - enrollmentId
+            - riskSignals
+            - fidoAssertion
+          properties:
+            enrollmentId:
+              $ref: '#/components/parameters/enrollmentId'
+            riskSignals:
+              type: object
+              required:
+                - deviceId
+                - osVersion
+                - userTimeZoneOffset
+                - language
+                - screenDimensions
+                - accountTenure
+              description: |
+                Conjunto de sinais extraídos do dispositivo do usuário para ativação do consentimento de pagamento.
+                A obrigatoriedade das informações variam de acordo com a plataforma utilizada.
+              properties:
+                deviceId:
+                  type: string
+                  description: |
+                    ID único do dispositivo gerado pela plataforma.
+
+                    Utiliza-se a propriedade do sistema que identifica a combinação de usuário logado, chave de assinatura do aplicativo e dispositivo.
+
+                    [Android] Informação obtida através do [link](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
+
+                    [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor/).
+                isRootedDevice:
+                  type: boolean
+                  description: |
+                    Indica se o dispositivo atualmente está com permissão de “root”.
+
+                    [Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+                screenBrightness:
+                  type: number
+                  format: double
+                  description: |
+                    Indica o nível de brilho da tela do dispositivo.
+
+                    [Android] O valor é inteiro, tipicamente entre 0 a 255, podendo a faixa de valores variar de acordo com o fabricante do celular. Referência no [link](https://developer.android.com/reference/android/provider/Settings.System#SCREEN_BRIGHTNESS).
+
+                    [iOS] O valor é ponto flutuante entre “0.0” e “1.0”. Referência no [link](https://developer.apple.com/documentation/uikit/uiscreen/).
+
+                    [Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+                elapsedTimeSinceBoot:
+                  type: integer
+                  format: int64
+                  description: |
+                    Indica por quanto tempo (em milissegundos) o dispositivo está ligado.
+
+                    [Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/SystemClock#elapsedRealtime%28%29).
+
+                    [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/kernel/kern/).
+
+                    [Restrição] Campos de envio obrigatório quando o sistema operacional utilizado pelo usuário durante a vinculação de conta ou realização do pagamento for Android ou iOS.
+                osVersion:
+                  type: string
+                  description: |
+                    Versão do sistema operacional.
+
+                    [Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/Build.VERSION#RELEASE).
+                    [iOS] - Informação obtida através do [link](https://developer.apple.com/documentation/uikit/uidevice/1620043-systemversion/).
+                userTimeZoneOffset:
+                  type: string
+                  description: |
+                    Indica a configuração de fuso horário do dispositivo do usuário, com o formato UTC offset: ±hh[:mm]. O formato especificado permite a omissão da parte correspondente aos minutos, caso esta última tenha valor zero. Assim, ambos os valores '-03:00' e '-03' são válidos e representam o mesmo fuso horário.
+
+                    [Android] Informação obtida através do [link](https://developer.android.com/reference/java/time/ZonedDateTime#getOffset()) ou, para versões anteriores à 8.0, [link](https://developer.android.com/reference/java/util/TimeZone#getOffset(long)).
+
+                    [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/foundation/timezone/).
+                  example: '-03'
+                language:
+                  type: string
+                  description: |
+                    Indica o idioma do dispositivo no formato ISO 639-1.
+
+                    [Android] Informação obtida através do [link](https://developer.android.com/reference/java/util/Locale#getLanguage()).
+                    [iOS] - Informação obtida através do [link](https://developer.apple.com/documentation/foundation/locale/languagecode/).
+                  example: 'pt'
+                screenDimensions:
+                  type: object
+                  description: |
+                    Dimensões que o aplicativo ocupa na tela do dispositivo.
+
+                    [Android] Informação obtida através do [link](https://developer.android.com/reference/android/view/WindowMetrics#getBounds()), ou, para versões anteriores à 11, [link](https://developer.android.com/reference/android/util/DisplayMetrics).
+
+                    [iOS] - Informação obtida através do [link](https://developer.apple.com/documentation/metal/mtlrasterizationratemap/3088873-screensize/).
+                  required:
+                    - height
+                    - width
+                  properties:
+                    height:
+                      type: integer
+                      description: Altura da tela, em pixels.
+                    width:
+                      type: integer
+                      description: Largura da tela, em pixels.
+                accountTenure:
+                  type: string
+                  format: date
+                  pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])$'
+                  description: Data de cadastro do cliente na iniciadora.
+                  example: 2023-09-01
+                geolocation:
+                  type: object
+                  description: |
+                    Localização do usuário, obtida com seu consentimento.
+
+                    [Android] Informação obtida através do [link](https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient#public-abstract-tasklocation-getlastlocation) considerando as permissões necessárias.
+
+                    [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/corelocation/).
+
+                    [Restrição] A ITP deve solicitar ao usuário a permissão para compartilhamento de sua localização. Este campo poderá ser omitido caso o GPS esteja indisponível, isto é, sem sinal, ou em dispositivos sem o hardware necessário; ou caso o usuário negue o consentimento.
+                  properties:
+                    latitude:
+                      type: number
+                    longitude:
+                      type: number
+                    type:
+                      type: string
+                      enum:
+                        - COARSE
+                        - FINE
+                        - INFERRED
+                isCallInProgress:
+                  type: boolean
+                  description: |
+                    Indica chamada ativa no momento do vínculo.
+
+                    [Android] Informação obtida através do [link](https://developer.android.com/reference/android/media/AudioManager#getMode()).
+
+                    [iOS] Informação obtida através do [link](https://developer.apple.com/documentation/callkit/).
+
+                    [Restrição] Caso o sinal de risco esteja disponível (cliente permitiu que fosse coletado), o mesmo deverá ser enviado
+                isDevModeEnabled:
+                  type: boolean
+                  description: Indica se o dispositivo está em modo de desenvolvedor.
+                isMockGPS:
+                  type: boolean
+                  description: |
+                    Indica se o dispositivo está usando um GPS falso. Deve ser enviado sempre que exista o campo geolocation com tipo `COARSE` ou `FINE`.
+
+                    [Android] Informação obtida através do [link](https://developer.android.com/reference/android/location/Location.html#isMock()) ou, para versões anteriores à 12, [link](https://developer.android.com/reference/android/location/Location.html#isFromMockProvider()).
+
+                    [iOS] Informação obtida através dos links:
+                    sourceInformation, [link](https://developer.apple.com/documentation/corelocation/cllocation/3861803-sourceinformation).
+                    isSimulatedBySoftware, [link](https://developer.apple.com/documentation/corelocation/cllocationsourceinformation/3861807-issimulatedbysoftware).
+                isEmulated:
+                  type: boolean
+                  description: Indica se o dispositivo é emulado ou real.
+                isMonkeyRunner:
+                  type: boolean
+                  description: Indica o uso do MonkeyRunner.
+                isCharging:
+                  type: boolean
+                  description: |
+                    Indica se a bateria do dispositivo está sendo carregada.
+
+                    [Android] Informação obtida através do [link](https://developer.android.com/reference/android/os/BatteryManager).
+
+                    [iOS] Informações obtida através do [link](https://developer.apple.com/documentation/uikit/uidevice/1620045-batterymonitoringenabled/).
+                antennaInformation:
+                  type: string
+                  description: Indica em qual antena o dispositivo está conectado.
+                isUsbConnected:
+                  type: boolean
+                  description: Indica se o dispositivo está conectado a outro dispositivo via USB.
+                integrity:
+                  type: object
+                  description: |
+                    Informa a integridade do dispositivo e app.
+
+                    [Android] Conforme documentação Play API Integrity, [link](https://developer.android.com/google/play/integrity/overview?hl=pt-br).
+
+                    [iOS] Conforme documentação App Attest, [link](https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity).
+                  properties:
+                    appRecognitionVerdict:
+                      type: string
+                      description: Informa a integridade do app
+                    deviceRecognitionVerdict:
+                      type: string
+                      description: Informa a integridade do dispositivo
+            fidoAssertion:
+              type: object
+              description: Dados da asserção
+              required:
+                - id
+                - rawId
+                - type
+                - response
+              properties:
+                id:
+                  type: string
+                  description: Identificador da credencial. Deve ser o valor em formato base64url do campo rawId da chave pública utilizada no processo de autenticação.
+                rawId:
+                  type: string
+                  description: Identificador da credencial. Para envio à detentora de conta, o valor deste atributo deve ser idêntico ao valor do atributo id.
+                type:
+                  type: string
+                  description: Tipo da credencial.
+                response:
+                  type: object
+                  description: Traz as informações da resposta a asserção.
+                  required:
+                    - clientDataJSON
+                    - authenticatorData
+                    - signature
+                    - userHandle
+                  properties:
+                    clientDataJSON:
+                      type: string
+                      format: bytes
+                      description: Agrega as informações do aplicativo que gerou a credencial. Deve ser enviado no formato base64url para a detentora de conta.
+                    authenticatorData:
+                      type: string
+                      format: bytes
+                      description: Representa a estrutura de dados do autenticador. Deve ser enviado no formato base64url para a detentora de conta.
+                    signature:
+                      type: string
+                      format: bytes
+                      description: Sequência de bytes contendo a assinatura. Deve ser enviado no formato base64url para a detentora de conta.
+                    userHandle:
+                      type: string
+                      format: bytes
+                      description: Nome de usuário que foi enviado durante a criação da credencial. Deve ser enviado no formato base64url para a detentora de conta.
+                clientExtensionResults:
+                  type: object
+                  description: Estrutura para extensão de resultados
+                  additionalProperties: true
+  parameters:
+    applicationId:
+      name: x-application-id
+      in: header
+      required: true
+      description: Identificador do aplicativo que realiza a requisição
+      schema:
+        $ref: '#/components/schemas/UUID'
+    authorisationServerId:
+      name: x-authorisation-server-id
+      required: true
+      description: Identificador do Authorisation Server da trasmissora do consentimento, obtido através da consula da lista de participantes
+      in: header
+      schema:
+        $ref: '#/components/schemas/UUID'
+    enrollmentId:
+      name: enrollmentId
+      required: true
+      in: path
+      description: |
+        Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - 
+        Uniform Resource Name. Um URN, conforme definido na RFC8141 é um Uniform Resource Identifier - URI - que é 
+        atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN seja um identificador
+        de recurso persistente e independente da localização. Considerando a string urn:bancoex:C1DD33123 
+        como exemplo para enrollmentId temos:
+        - o namespace(urn)
+        - o identificador associado ao namespace da instituição transnmissora (bancox)
+        - o identificador específico dentro do namespace (f865cd66-392a-420b-9ff0-1b6d7cc60ee0).
+        Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+      schema:
+        type: string
+        pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
+        maxLength: 256
+      example: 'urn:bancox:f865cd66-392a-420b-9ff0-1b6d7cc60ee0'
+    consentId:
+      name: consentId
+      required: true
+      in: path
+      description: |
+        O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.
+        Um URN, conforme definido na RFC8141 é um Uniform Resource Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN seja um identificador de recurso persistente e independente da localização.
+        Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+
+        - namespace(urn)
+        - identificador associado ao namespace da instituição detentora de conta (bancoex)
+        - identificador específico dentro do namespace (C1DD33123).
+        Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na RFC8141.
+      schema:
+        type: string
+        pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
+        maxLength: 256
+      example: 'urn:bancox:f865cd66-392a-420b-9ff0-1b6d7cc60ee0'

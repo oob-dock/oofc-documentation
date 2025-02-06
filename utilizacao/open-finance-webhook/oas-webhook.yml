@@ -149,6 +149,39 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/webhookRequest'
+  /open-banking/webhook/v1/enrollments/{versionApi}/enrollments/{enrollmentId}:
+    post:
+      tags:
+        - Webhooks
+      summary: |-
+        Notificar mudanças de status de vínculo de conta
+      description: |-
+        Método para receber notificações de mudanças de status de vínculo de conta
+      operationId: oofcWebhookPostEnrollments
+      parameters:
+        - name: versionApi
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: enrollmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: x-webhook-interaction-id
+          in: header
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Accepted
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhookRequest'
 components:
   schemas:
     webhookRequest:

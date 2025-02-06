@@ -55,6 +55,9 @@ tags:
   - name: Deeplinks
     description: |-
       Endpoints para obtenção das configurações de iOS Universal Links e Android App Links para que o aplicativo da Instituição receptora possa interceptar URLs.
+  - name: Câmbio
+    description: |-
+      Endpoints de consulta a dados de câmbio. Os modelos de dados esperados e retornados são os mesmos que os definidos pela documentação oficial ([Open Finance - API Exchanges](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/114032641/DC+API+-+C+mbio)).
 servers:
   - url: https://open-finance-core.instituicao.com.br
 paths:
@@ -2090,6 +2093,80 @@ paths:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pelo BACEN
+  /proxy/open-banking/exchanges/v1/operations:
+     get:
+      tags:
+        - Câmbio
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/headerConsentId'
+      description: 'Obtém a lista de operações de Câmbio mantidas pelo cliente na instituição transmissora e para as quais ele tenha fornecido consentimento.'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a transmissora
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+  /proxy/open-banking/exchanges/v1/operations/{operationId}:
+     get:
+      tags:
+        - Câmbio
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/headerConsentId'
+        - $ref: '#/components/parameters/operationId'
+      description: 'Obtém os dados da operação de Câmbio identificada por operationId. As alterações efetuadas na operação original devem ser representadas através de eventos. A operação original não é atualizada para refletir eventuais eventos de alteração. Somente os campos `/operationOutstandingBalance` e `/dueDate` devem ser atualizados'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a transmissora
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+  /proxy/open-banking/exchanges/v1/operations/{operationId}/events:
+     get:
+      tags:
+        - Câmbio
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/headerConsentId'
+        - $ref: '#/components/parameters/operationId'
+      description: 'Obtém os dados dos eventos da operação de Câmbio identificada por operationId.'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a transmissora
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
 components:
   schemas:
     DcmData:
@@ -2826,6 +2903,13 @@ components:
       required: true
     brokerNoteId:
       name: brokerNoteId
+      description: 'Identifica de forma única o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora'
+      in: path
+      schema:
+        type: string
+      required: true
+    operationId:
+      name: operationId
       description: 'Identifica de forma única o relacionamento do cliente com o produto, mantendo as regras de imutabilidade dentro da instituição transmissora'
       in: path
       schema:
