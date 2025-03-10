@@ -18,7 +18,7 @@ begin
         inner join application a on a.id = c.id_application
         inner join organisation o on a.id_organisation = o.id_organisation
         inner join brand b ON c.id_brand = b.id
-        where status = 'AUTHORISED' AND dt_invalidation > dt_end_utc AND c.tp_consent = 1 AND dt_creation < dt_end_utc AND access_token_data is not null AND (b.id = brand OR brand is null)
+        where status = 'AUTHORISED' AND (dt_invalidation > dt_end_utc or dt_invalidation is null) AND c.tp_consent = 1 AND dt_creation < dt_end_utc AND access_token_data is not null AND (b.id = brand OR brand is null)
         group by o.id_organisation, c.id_brand;
 end;$function$
 ;

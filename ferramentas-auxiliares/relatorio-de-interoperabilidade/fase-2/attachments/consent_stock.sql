@@ -19,7 +19,7 @@ begin
 		inner join organisation o on a.id_organisation = o.id_organisation
 		inner join brand b ON c.id_brand = b.id
 		inner join authorisation_server as1 on as1.id_brand = b.id
-        where status = 'AUTHORISED' AND dt_invalidation > dt_end_utc AND c.tp_consent = 1 AND dt_creation < dt_end_utc and access_token_data is not null and (b.id = brand or brand is null)
+        where status = 'AUTHORISED' AND (dt_invalidation > dt_end_utc or dt_invalidation is null) AND c.tp_consent = 1 AND dt_creation < dt_end_utc and access_token_data is not null and (b.id = brand or brand is null)
 		group by o.id_organisation, as1.id_authorisation_server, c.id_brand;
 end;$function$
 ;
