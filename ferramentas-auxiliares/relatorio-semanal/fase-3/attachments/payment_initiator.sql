@@ -40,12 +40,7 @@ begin
 		r.event_data#>>'{endpoint}' as endpoint_uri,
 		regexp_replace(r.event_data #>> '{endpoint}', '^.*?/v(\d+)/.*$', '\1') AS api_version,
 		(r.event_data #> '{additionalInfo,errorCodes}' ->> 0) as error_code,
-		case r.event_data #>> '{additionalInfo,paymentType}'
-	        when 'SCHEDULED' then 'AGENDADO'
-	        when 'IMMEDIATE' then 'IMEDIATO'
-	        when 'RECURRENT' then 'RECORRENTE'
-	        else r.event_data #>> '{additionalInfo,paymentType}'
-        end as produto,
+		r.event_data #>> '{additionalInfo,paymentType}' as produto,
 		count(*) as qty_requests
 		from report r
 		where r.event_role = 'CLIENT' and r.event_data#>>'{httpMethod}' = 'POST' and

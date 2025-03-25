@@ -405,6 +405,128 @@ paths:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pelo BACEN
+  /proxy/open-banking/automatic-payments/v2/pix/recurring-payments:
+    post:
+      tags:
+        - Pagamento Automático
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/headerRecurringConsentId'
+      description: 'Método para criação de uma transação de pagamento. Retorna um recurringPaymentId.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: 'Segue o padrão de requisição definidos na documentação oficial ([Open Finance - API Payment Initiation](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/345178397/Informa+es+T+cnicas+-+SV+Pagamentos+Autom+ticos+-+v1.0.0)).'
+              example: {}
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+    get:
+      tags:
+        - Pagamento Automático
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/headerRecurringConsentId'
+      description: |
+        Método para buscar informações sobre um conjunto de pagamentos associados ao mesmo recurringConsentId. 
+        Também é possível enviar uma data de início (startDate) e final (endDate), caso a busca seja por transações em uma determinada janela de tempo.
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+  /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}:
+    get:
+      tags:
+        - Pagamento Automático
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/headerRecurringConsentId'
+        - name: recurringPaymentId
+          in: path
+          description: Identificador da operação de pagamento
+          schema:
+            type: string
+          required: true
+          example: D730A10D6784379085391417F3EF657C1247B2B3645210DD97F739B33B349376
+      description: Método de proxy para consultar uma iniciação de pagamento.
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+    patch:
+      tags:
+        - Pagamento Automático
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/headerRecurringConsentId'
+        - name: recurringPaymentId
+          in: path
+          description: Identificador da operação de pagamento
+          schema:
+            type: string
+          required: true
+          example: D730A10D6784379085391417F3EF657C1247B2B3645210DD97F739B33B349376
+      description: Método de proxy para revogar uma iniciação de pagamento.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: 'Segue o padrão de requisição definidos na documentação oficial ([Open Finance - API Payment Initiation](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347079010/Informa+es+T+cnicas+-+SV+Pagamentos+-+v4.0.0)).'
+              example: {}
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
   /opus-open-finance/dcm:
     get:
       operationId: oofcGetDcm

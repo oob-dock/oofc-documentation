@@ -757,6 +757,10 @@ Request Body:
 | GET            | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments                                     | Obtenção dos dados dos pagamentos associados a um consentimento      | 200      |
 | GET            | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}                | Obtenção dos dados de um pagamento automático                          | 200      |
 | PATCH          | /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}                | Revogação de um pagamento automático                                    | 200      |
+| POST           | /proxy/open-banking/automatic-payments/v2/pix/recurring-payments                                     | Criação de um pagamento automático                                    | 201      |
+| GET            | /proxy/open-banking/automatic-payments/v2/pix/recurring-payments                                     | Obtenção dos dados dos pagamentos associados a um consentimento      | 200      |
+| GET            | /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}                | Obtenção dos dados de um pagamento automático                          | 200      |
+| PATCH          | /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}                | Revogação de um pagamento automático                                    | 200      |
 | POST           | opus-open-finance/enrollments/v1/enrollments                                                         | Criar vínculo de conta                                         | 200      |
 | GET            | opus-open-finance/enrollments/v1/enrollments/{enrollmentId}                                          | Obtenção dos dados do vínculo de conta                                         | 200      |
 | PATCH          | opus-open-finance/enrollments/v1/enrollments/{enrollmentId}                                          | Rejeição o revogação de vínculo de conta                                      | 204      |

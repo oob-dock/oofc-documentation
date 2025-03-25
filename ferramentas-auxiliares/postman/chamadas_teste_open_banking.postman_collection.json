@@ -4397,6 +4397,267 @@
 					]
 				},
 				{
+					"name": "proxy-pix-recurring-payments-v2",
+					"item": [
+						{
+							"name": "proxy/open-banking/payments/v1/automatic-payments/v2/pix/recurring-payments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jwt = pm.response.text();\r",
+											"var base64Payload = jwt.split('.')[1];\r",
+											"base64Payload = base64Payload.replace(/-/g, '+').replace(/_/g, '/');\r",
+											"var payload = atob(base64Payload);\r",
+											"var data = JSON.parse(payload);\r",
+											"\r",
+											"postman.setEnvironmentVariable(\"recurringPaymentId\", data.data.recurringPaymentId);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-recurring-consent-id",
+										"value": "{{recurringConsentId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"data\": {\r\n    \"date\": \"2024-08-12\",\r\n    \"proxy\": \"98380199000125\",\r\n    \"localInstrument\": \"DICT\",\r\n    \"remittanceInformation\": \"Conformance Suite Test\",\r\n    \"document\": {\r\n      \"identification\": \"98380199000125\",\r\n      \"rel\": \"CNPJ\"\r\n    },\r\n    \"recurringConsentId\": \"{{recurringConsentId}}\",\r\n    \"cnpjInitiator\": \"44471172000119\",\r\n    \"payment\": {\r\n      \"amount\": \"300.00\",\r\n      \"currency\": \"BRL\"\r\n    },\r\n    \"endToEndId\": \"E44471172202406110120SDMjnFMqHul\",\r\n    \"riskSignals\": {\r\n      \"manual\": {\r\n        \"isMonkeyRunner\": true,\r\n        \"isEmulated\": true,\r\n        \"language\": \"pt\",\r\n        \"isCharging\": true,\r\n        \"screenDimensions\": {\r\n          \"width\": 0,\r\n          \"height\": 0\r\n        },\r\n        \"deviceId\": \"00000000-54b3-e7c7-0000-000046bffd97\",\r\n        \"isDevModeEnabled\": true,\r\n        \"accountTenure\": \"2023-12-21\",\r\n        \"isCallInProgress\": true,\r\n        \"isMockGPS\": true,\r\n        \"integrity\": {\r\n          \"appRecognitionVerdict\": \"string\",\r\n          \"deviceRecognitionVerdict\": \"string\"\r\n        },\r\n        \"osVersion\": \"string\",\r\n        \"isRootedDevice\": false,\r\n        \"screenBrightness\": 0,\r\n        \"userTimeZoneOffset\": \"-03\",\r\n        \"elapsedTimeSinceBoot\": 0,\r\n        \"isUsbConnected\": true,\r\n        \"geolocation\": {\r\n          \"latitude\": 0,\r\n          \"type\": \"COARSE\",\r\n          \"longitude\": 0\r\n        },\r\n        \"antennaInformation\": \"string\"\r\n      }\r\n    }\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/automatic-payments/v2/pix/recurring-payments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"automatic-payments",
+										"v2",
+										"pix",
+										"recurring-payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "proxy/open-banking/payments/v1/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-recurring-consent-id",
+										"value": "{{recurringConsentId}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": {\r\n    \"status\": \"REJECTED\",\r\n    \"cancellation\": {\r\n      \"cancelledBy\": {\r\n        \"document\": {\r\n          \"identification\": \"12312312387\",\r\n          \"rel\": \"CPF\"\r\n        }\r\n      }\r\n    }\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{{recurringPaymentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"automatic-payments",
+										"v2",
+										"pix",
+										"recurring-payments",
+										"{{recurringPaymentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "proxy/open-banking/payments/v1/automatic-payments/v2/pix/recurring-payments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-recurring-consent-id",
+										"value": "{{recurringConsentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/automatic-payments/v2/pix/recurring-payments?recurringConsentId={{recurringConsentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"automatic-payments",
+										"v2",
+										"pix",
+										"recurring-payments"
+									],
+									"query": [
+										{
+											"key": "recurringConsentId",
+											"value": "{{recurringConsentId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "proxy/open-banking/payments/v1/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-application-id",
+										"value": "{{applicationId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-authorisation-server-id",
+										"value": "{{authorisationServerId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-idempotency-key",
+										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-recurring-consent-id",
+										"value": "{{recurringConsentId}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{{recurringPaymentId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"proxy",
+										"open-banking",
+										"automatic-payments",
+										"v2",
+										"pix",
+										"recurring-payments",
+										"{{recurringPaymentId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "opus-open-finance/payments/v1/consents",
 					"event": [
 						{

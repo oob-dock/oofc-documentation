@@ -1,0 +1,226 @@
+@startuml consent-sequence
+
+title Autorização de vínculo de dipositivo e autorização de transação de pagamento
+
+actor "Usuário\ncorrentista" as cliente
+participant "Browser/Mobile" as app
+participant "Backend TPP" as tpp
+participant "OOC" as ooc
+participant "Instituição\nDestino" as inst
+
+group "Algo" iniciando vínculo de dispositivo
+
+cliente->app:Quero realizar\num vínculo de dispositivo
+app<-->tpp:Fluxo front/back TPP
+
+end
+
+group Obtenção dos dados para vínculo de dispositivo
+
+group #B4F8C8 Listagem de instituições
+
+tpp->ooc:**GET /opus-open-finance/participants**
+activate tpp
+tpp<--ooc:Lista de marcas que suportam a operação desejada
+deactivate tpp
+
+end
+
+app<-->tpp:Fluxo front/back TPP
+cliente->app:Seleciona marca da Instituição Destino\ne outros dados necessários
+app<-->tpp:Fluxo front/back TPP
+
+end
+
+group Criação do vínculo de dispositivo
+
+group #B4F8C8 TPP realiza criação do vínculo de dispositivo
+
+note over tpp: Após a criação do vínculo \nde dispositivo o status \né AWAITING_RISK_SIGNALS
+
+tpp->ooc:Cria o vínculo de dispositivo:\n**POST /opus-open-finance/enrollments/v1/enrollments**
+
+activate tpp
+
+ooc-->inst:Fluxo de criação\nde vínculo de dispositivo
+tpp<--inst:Resposta da criação\ndo vínculo de dispositivo
+
+
+deactivate tpp
+
+end
+
+app-->tpp: Envia sinais de risco
+
+group #B4F8C8 TPP realiza envio dos sinais de risco
+
+note over tpp: Após o envio dos\nsinais de risco o status \nvai para AWAITING_ACCOUNT_HOLDER_VALIDATION
+
+tpp->ooc: Envia sinais de risco:\n**POST /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/risk-signals**
+
+activate tpp
+
+ooc<-->inst: Fluxo de envio \nde sinais de risco
+ooc<-->inst: Criação da URL \nde autorização
+tpp<--ooc: Redirecionamento do usuário para \nautorização na Instituição Destino
+
+deactivate tpp
+
+end
+
+app<--tpp: Redirecionamento do usuário para \nautorização na Instituição Destino
+cliente<--app: Redirecionamento do usuário para \nautorização na Instituição Destino
+
+group Aceite do vínculo de dispositivo na marca da Instituição Destino
+
+cliente->app:Informa credenciais e\nconfirma/rejeita vínculo de dispositivo
+app<-->inst:Fluxo front/back\nInstituição Destino
+
+end
+
+group #B4F8C8 Fluxo final de autorização
+
+note over tpp: Após a confirmação do vínculo de dispostivo\no status vai para AWAITING_ENROLLMENT
+
+inst-->ooc: Recebe o redirect através da rota \n/opus-open-finance/enrollments/redirect-uri\nobtendo a query string ou fragment com o retorno do fluxo OIDC
+ooc-->inst: Executa processo de callback
+ooc<--inst:Redirect com resultado\nda autorização
+ooc-->app: Informa resultado da autorização via\nURL de callback informada na\ncriação do consentimento
+
+end
+
+group Notificação de mudança de status do vínculo de dispositivo
+
+group #B4F8C8 Fluxo de notificação webhook
+
+inst<-->inst: Atualização do status \ndo vínculo de dispositivo
+inst->ooc: Notificação de mudança de status do vínculo de dispositivo:\n**POST /open-banking/webhook/v1/enrollments/v1/enrollments/{enrollmentId}**
+ooc-->tpp:Notificação de mudança de status do vínculo de dispositivo
+
+end
+
+tpp-->app: Notifica mudança de status\nde vínculo de dispositivo para usuário\nna Instituição Destino
+
+app-->cliente: Notifica mudança de status\nde vínculo de dispositivo para usuário\nna Instituição Destino
+
+end
+
+app-->tpp:Fluxo front/back TPP
+
+group #B4F8C8 TPP realiza envio das opções de registro FIDO
+
+tpp->ooc:Cria o envio de opções de registro FIDO:\n**POST /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options**
+
+activate tpp
+
+ooc-->inst:Fluxo de opções\nde registro FIDO
+tpp<--inst:Resposta das opções\nde registro FIDO
+
+deactivate tpp
+
+end
+
+app<-tpp: Requisita a criação da credencial FIDO2
+cliente<-app: Requisita um challenge FIDO2 para o usuário
+cliente->app: Realiza o gesto de autenticação
+
+activate app
+app->app: Cria a credencial FIDO2
+
+deactivate app
+
+app->tpp: Envia a credencial pública
+
+group #B4F8C8 TPP realiza envio do registro FIDO
+
+note over tpp: Após o envio do registro FIDO\no status vai para AUTHORISED
+
+tpp->ooc:Cria o envio do registro FIDO:\n**POST /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration**
+
+activate tpp
+
+ooc-->inst:Fluxo de\nregistro FIDO
+tpp<--inst:204 OK
+
+deactivate tpp
+
+end
+
+app<--tpp: 204 OK
+cliente<--app: 204 OK
+end
+
+group "Algo" iniciando um pagamento sem redirecionamento
+
+cliente->app:Quero realizar\num pagamento sem redirecionamento
+app<-->tpp:Fluxo front/back TPP
+
+end
+
+group Iniciação de pagamento sem redirecionamento
+
+group #B4F8C8 TPP realiza criação do consentimento de pagamento
+
+tpp->ooc:Cria o consentimento de pagamento:\n**POST /opus-open-finance/payments/v1/consents**
+
+activate tpp
+
+ooc-->inst: Fluxo de criação \nde consentimento
+tpp<--inst: Resposta da criação de consentimento
+
+deactivate tpp
+
+end
+
+group #B4F8C8 TPP realiza a obtenção dos parâmetros para autenticação FIDO
+
+tpp->ooc: Cria a obtenção dos parâmetros para autenticação FIDO:\n**POST /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options**
+
+activate tpp
+
+ooc-->inst: Fluxo de obtenção dos parâmetros \npara autenticação FIDO
+tpp<--inst: Resposta dos parâmetros para autenticação FIDO
+
+deactivate tpp
+
+end
+
+app<-tpp: Requisita assinatura FIDO2
+cliente<-app: Solicita gesto de autenticação para o usuário
+cliente->app: Realiza gesto \n(ex.: biometria, PIN)
+app->tpp: Envia informações da autenticação FIDO2
+
+group #B4F8C8 TPP realiza a autorização do consentimento de pagamento
+
+note over tpp: Após a autorização do consentimento\no status do consentimento de pagamento vai para AUTHORISED
+
+tpp->ooc: Cria a autorização do consentimento de pagamento:\n**POST /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise**
+
+activate tpp
+
+ooc-->inst: Fluxo de autorização do consentimento
+tpp<--inst: 204 OK
+
+deactivate tpp
+
+end
+
+group #B4F8C8 TPP realiza a criação do pagamento
+
+tpp->ooc: Cria a iniciação do pagamento:\n**POST /proxy/open-banking/payments/v4/pix/payments**
+
+activate tpp
+
+ooc-->inst: Fluxo de criação de pagamento
+tpp<--inst: Resposta da criação do pagamento
+
+deactivate tpp
+
+end
+
+app<--tpp: Retorna pagamento para usuário \nna Instituição Destino
+cliente<--app: Retorna pagamento para usuário \nna Instituição Destino
+
+end
+
+@enduml

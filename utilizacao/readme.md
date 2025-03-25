@@ -34,7 +34,7 @@ Para o Open Insurance temos o seguinte diagrama:
 
 ![Diagrama de sequência](../out/diagrams/consent-sequence-insurance/consent-sequence.png)
 
-### 1 - Listagem das Instituições do Diretório de Participantes - GET /opus-open-finance/participants ou /opus-open-insurance/participants 
+### 1 - Listagem das Instituições do Diretório de Participantes - GET /opus-open-finance/participants ou /opus-open-insurance/participants
 
 Esta chamada retorna a lista de *marcas* de instituições cadastradas no
 Diretório de Participantes do Open Finance Brasil
@@ -219,3 +219,158 @@ o carácter *?*.
 
 Considerando o exemplo acima, os recursos da próxima página deveriam ser acessados
 através da seguinte URL: `https://ooc.instituicao.com.br/proxy/open-insurance/resources/v1/resources?page=3&page-size=25`
+
+## Fluxo de solicitação de iniciação de pagamento
+
+O fluxo para solicitação de iniciação de pagamentos deve ser
+realizado após a autorização do consentimento de pagamento.
+
+Para esse fluxo devem ser utilizadas as APIs de proxy
+que podem ser detalhadas nas seguintes paginas:
+
+- [Iniciação de Transação de Pagamento](./open-finance-pagamentos/readme.md#iniciação-de-pagamento).
+- [Iniciação de Transação de Pagamento Automático](./open-finance-pagamentos/readme.md#iniciação-de-pagamento-automático).
+
+![Diagrama de sequência](../out/diagrams/payment-sequence-finance/payment-sequence.png)
+
+## Fluxo de solicitação de vínculo de dispositivo
+
+![Diagrama de sequência](../out/diagrams/enrollment-sequence-finance/enrollment-sequence.png)
+
+### 1 - Listagem das Instituições do Diretório de Participantes - GET /opus-open-finance/participants
+
+Segue da mesma forma que é feito no
+consentimento [Listagem das Instituições do Diretório de Participantes](#1---listagem-das-instituições-do-diretório-de-participantes---get-opus-open-financeparticipants-ou-opus-open-insuranceparticipants).
+
+### 2 - Criação do vínculo de dispositivo
+
+Nesta etapa, o endpoint utilizado é:
+
+- POST /opus-open-finance/enrollments/v1/enrollments
+
+Esta chamada envia à Instituição Destino (Detentora)
+as informações do vínculo de dispositivo que se deseja criar.
+Uma resposta com código HTTP 201 Created significa que
+o pedido de vínculo foi criado,
+e o payload contém o código identificador do vínculo de dispositivo (`enrollmentId`)
+que deverá ser utilizado nas etapas seguintes.
+
+O status do vínculo de dispositivo após esta etapa é **AWAITING_RISK_SIGNALS**.
+
+**Importante**: Caso a instituição (Detentora) disponibilize mais de uma
+versão de API, a chamada será realizada sempre com a maior versão, ou seja,
+se disponível a versão 1 e versão 2 a chamada será através da versão 2.
+
+### 3 - Envio dos sinais de risco
+
+Nesta etapa o endpoint utilizado é:
+
+- POST /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/risk-signals
+
+Esta chamada envia à Instituição Destino (Detentora)
+as informações dos sinais de risco.
+Ela retorna a URL de autorização para que o usuário
+seja redirecionado para a Instituição Destino.
+
+O status do vínculo de dispositivo após esta etapa vai para **AWAITING_ACCOUNT_HOLDER_VALIDATION**.
+
+### 4 - Redirecionamento do usuário para autorização na Instituição Destino
+
+Após o envio dos sinais de risco,
+o usuário deve ser redirecionado para a Instituição Destino.
+
+Uma vez identificado,
+o usuário poderá adicionar limites para transaçôes,
+adicionar data de expiração do vínculo, adicionar o nome
+do dispositivo e confirma-lo (ou rejeita-lo) no
+ambiente da Instituição Destino.
+
+Após esse processo ele estará na etapa final do fluxo de autorização.
+
+### 5 - Retorno do resultado da autorização de vínculo de dispositivo
+
+Após a confirmação (ou rejeição) do vínculo de dispositivo na Instituição Destino,
+o resultado é recebido pelo Opus Open Client, onde é processado o retorno
+do fluxo OIDC e realizado o processo de callback para geração de tokens.
+Após isso, o usuário é redirecionado de volta à aplicação TPP com o resultado da
+autorização.
+
+Caso o vínculo de dispositivo seja confirmado, seu status será alterado para **AWAITING_ENROLLMENT**
+e os tokens de acesso serão gerados automaticamente pelo Opus Open Client
+junto à Instituição Destino.
+Eles serão armazenados pelo Opus Open Client e utilizados de maneira transparente
+nas etapas de utilização do vínculo de dispositivo.
+
+Caso o vínculo de dispositivo seja negado, seu status será alterado para **REJECTED**
+e o fluxo será encerrado.
+
+### 6 - Envio das opções de registro FIDO
+
+Após o processo de autorização é necessário enviar as opções de registro FIDO.
+
+Nesta etapa o endpoint utilizado é:
+
+- POST /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options
+
+Está chamada busca na Instituição Destino as informações necessarias para realizar
+a autenticação FIDO2.
+
+Com as opções de registro o usuário deve realizar o gesto de autenticação
+(ex.: biometrica, PIN) para criar a credencial FIDO2.
+
+### 7 - Envio do registro FIDO
+
+Após o usuário realizar o gesto de autenticação e for criado
+a credencial FIDO2, é necessario enviar a credencial para a Instituição
+Destino.
+
+Nesta etapa o endpoint utilizado é:
+
+- POST /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration
+
+Está chamada envia os dados da credencial FIDO2 para
+a Instituição Destino.
+
+O status do vínculo de dispositivo após esta etapa vai para **AUTHORISED**.
+
+### 8 - Criação do pagamento
+
+Depois que o vínculo de dispositivo é aprovado, ele pode ser utilizado para
+intenção do consentimento de pagamento.
+
+Para isso, é necessário iniciar uma intenção de consentimento de pagamento via:
+
+- POST /opus-open-finance/payments/v1/consents
+
+### 9 - Obtenção dos parâmetros para autenticação FIDO
+
+Após iniciar uma intenção de consentimento de pagamento é necessário obter os
+parâmetros para autenticação FIDO através do endpoint:
+
+- POST /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options
+
+Está chamada envia os dados do Relying Party e a plataforma sobre a qual
+o usuário está utilizando o serviço da iniciadora para utilização de FIDO2.
+E envia o ID da intenção de consentimento de pagamento para atrelar
+o consentimento ao vículo de dispositivo.
+
+Após a obtenção dos parâmetros para autenticação é necessário que o usuário
+realize o gesto de autenticação (ex.: biometria, PIN) e envie os dados
+(ex.: fidoAssertion, sinais de risco) para o Opus Open Client.
+
+### 10 - Autorização do consentimento de pagamento
+
+Após o usuário realizar a autenticação FIDO2 é necessário realizar
+a autorização do consentimento de pagamento.
+
+Nesta etapa o endpoint utilizado é:
+
+- POST /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise
+
+Está chamada envia os sinais de risco e os dados da asserção FIDO2 para
+a Instituição Destino.
+
+Após a autorização do consentimento o status do consentimento de pagamento vai
+para **AUTHORISED**
+
+Com isso, a iniciação do pagamento pode ser realizado no padrão dos demais fluxos.

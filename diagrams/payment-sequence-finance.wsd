@@ -1,0 +1,105 @@
+@startuml payment-sequence
+
+title Iniciação de transação de pagamento
+
+actor "Usuário" as cliente
+participant "Browser/Mobile" as app
+participant "Backend TPP" as tpp
+participant "OOC" as ooc
+participant "Instituição\nDestino" as inst
+
+group "Algo" iniciando pagamento
+
+cliente->app:Quero realizar\num pagamento
+app<-->tpp:Fluxo front/back TPP
+
+end
+
+group Fluxo de pagamento
+
+group Criação do pagamento
+
+note over tpp: Aqui foi feito o pedido do pagamento, mas não o pagamento em si. \nO pagamento só será realizado, quando a Instituição Destino avisar que houve uma mudança de status para ACSC
+
+group #B4F8C8 TPP realiza criação do pagamento
+
+tpp->ooc:Cria a iniciação do pagamento:\n**POST /proxy/open-banking/payments/v4/pix/payments** **OU**\n**POST /proxy/open-banking/automatic-payments/v2/pix/recurring-payments**
+
+activate tpp
+
+ooc-->inst:Fluxo de criação\nde pagamento
+tpp<--inst:Resposta da criação\ndo pagamento
+
+
+deactivate tpp
+
+end
+
+tpp-->app:Retorna pagamento para usuário\nna Instituição Destino
+
+app-->cliente:Retorna pagamento para usuário\nna Instituição Destino
+
+end
+
+group Notificação de mudança de status do pagamento via webhook
+
+group #B4F8C8 Fluxo de notificação webhook
+
+inst<-->inst: Atualização do status do pagamento
+
+inst->ooc: Notificação de mudança de status do pagamento:\n**POST /open-banking/webhook/v1/payments/v4/pix/payments/{paymentId}** **OU**\n**POST /open-banking/webhook/v1/automatic-payments/v2/pix/recurring-payments/{paymentId}**
+
+ooc-->tpp:Notificação de mudança de status do pagamento
+
+end
+
+tpp-->app: Notifica mudança de status\nde pagamento para usuário\nna Instituição Destino
+
+app-->cliente: Notifica mudança de status\nde pagamento para usuário\nna Instituição Destino
+
+end
+
+group Consulta do pagamento 
+
+note over tpp: É possível realizar o pooling do status do pagamento via GET /proxy/open-banking/payments/v4/pix/payments/{paymentId}.
+
+group #B4F8C8 TPP realiza consulta do pagamento
+
+tpp->ooc: Cria a consulta do pagamento:\n**GET /proxy/open-banking/payments/v4/pix/payments/{paymentId}** **OU**\n**GET /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}** **OU**\n**GET /proxy/open-banking/automatic-payments/v2/pix/recurring-payments**
+
+activate tpp
+
+ooc-->inst: Fluxo de constulta\ndo pagamento
+tpp<--inst: Resposta da consulta do pagamento
+
+deactivate tpp
+
+end
+
+app<--tpp:Retorna pagamento para usuário\nna Instituição Destino
+cliente<--app:Retorna pagamento para usuário\nna Instituição Destino
+
+end
+
+group Revogação do pagamento
+
+group #B4F8C8 TPP realiza revogação do pagamento
+
+tpp->ooc: Cria revogação do pagamento:\n**PATCH /proxy/open-banking/payments/v4/pix/payments/{paymentId}** **OU**\n**PATCH /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}** **OU**\n**PATCH /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}**
+
+activate tpp
+
+ooc-->inst: Fluxo de revogação\ndo pagamento
+tpp<--inst: Resposta da revogação do pagamento
+
+deactivate tpp
+
+end
+
+app<--tpp:Retorna pagamento para usuário\nna Instituição Destino
+cliente<--app:Retorna pagamento para usuário\nna Instituição Destino
+
+end
+end
+
+@enduml
