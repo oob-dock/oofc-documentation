@@ -17,11 +17,11 @@ executado no **banco de dados do OOD4TPP**.
 Para obter os dados, execute função com o seguinte comando:
 
 ```sql
-SELECT * FROM consent_receptor('<data_inicio>','<data_fim>','<brand_id_opcional>');
+SELECT * FROM consent_receptor('<data_inicio>','<data_fim>','<org_id_opcional>');
 ```
 
 Sendo que os parâmetros devem ser preenchidos no formato yyyy-MM-dd, 
-com o id da marca sendo opcional, por exemplo:
+com o id da organização sendo opcional, por exemplo:
 
 ```sql
 SELECT * FROM consent_receptor('2023-01-02','2023-01-08');
@@ -41,11 +41,11 @@ executados no **banco de dados do OOD4TPP**.
 Para obter os dados, execute função com o seguinte comando:
 
 ```sql
-SELECT * FROM consent_stock_clients('<data_fim>','<brand_id_opcional>');
+SELECT * FROM consent_stock_clients('<data_fim>','<org_id_opcional>');
 ```
 
 Sendo que os parâmetros devem ser preenchidos no formato yyyy-MM-dd,
-com o id da marca sendo opcional, por exemplo:
+com o id da organização sendo opcional, por exemplo:
 
 ```sql
 SELECT * FROM consent_stock_clients('2023-01-08');
@@ -59,11 +59,11 @@ SELECT * FROM consent_stock_clients('2023-01-08', '27a20310-756e-43b8-a43c-6927b
 Para obter os dados, execute função com o seguinte comando:
 
 ```sql
-SELECT * FROM consent_stock('<data_fim>', '<brand_id_opcional>');
+SELECT * FROM consent_stock('<data_fim>', '<org_id_opcional>');
 ```
 
 Sendo que os parâmetros devem ser preenchidos no formato yyyy-MM-dd,
-com o id da marca sendo opcional, por exemplo:
+com o id da organização sendo opcional, por exemplo:
 
 ```sql
 SELECT * FROM consent_stock('2023-01-08');
@@ -95,8 +95,8 @@ SELECT * FROM consent_consume('2023-01-02','2023-01-08', '27a20310-756e-43b8-a43
 
 Para obter as informações da organização transmissora deve-se executar o script
 [getOrganization](../../get-organisation-script/getOrganization.js)
-informando os IDs dos Authorisation Servers retornados pelas consultas *consent_receptor*,
-*consent_stock_clients* e *consent_stock* ou os IDs das organizações retorados pela
+informando os IDs dos Authorisation Servers retornados pela consulta *consent_receptor*,
+*consent_stock_clients* e *consent_stock* ou os IDs das organizações retornados pela
 consulta *consent_consume*.
 
 Será necessário instalar a versão do [Node.js](https://nodejs.org/en/download)

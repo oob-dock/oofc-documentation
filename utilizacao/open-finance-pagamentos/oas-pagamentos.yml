@@ -219,36 +219,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
-  /proxy/open-banking/payments/v3/pix/payments:
-    post:
-      tags:
-        - Pagamento
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/authorisationServerId'
-        - $ref: '#/components/parameters/headerConsentId'
-      description: 'Método de proxy para criar uma iniciação de pagamento.'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: 'Segue o padrão de requisição definidos na documentação oficial ([Open Finance - API Payment Initiation](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/142671873/v3.0.0-beta.2+-+Pagamentos)).'
-              example: {}
-      responses:
-        '502':
-          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        '504':
-          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        default:
-          description: Segue o padrão de resposta definido pelo BACEN
   /proxy/open-banking/payments/v4/pix/payments:
     post:
       tags:
@@ -263,73 +233,6 @@ paths:
           application/json:
             schema:
               description: 'Segue o padrão de requisição definidos na documentação oficial ([Open Finance - API Payment Initiation](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347079010/Informa+es+T+cnicas+-+SV+Pagamentos+-+v4.0.0)).'
-              example: {}
-      responses:
-        '502':
-          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        '504':
-          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        default:
-          description: Segue o padrão de resposta definido pelo BACEN
-  /proxy/open-banking/payments/v3/pix/payments/{paymentId}:
-    get:
-      tags:
-        - Pagamento
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/authorisationServerId'
-        - $ref: '#/components/parameters/headerConsentId'
-        - name: paymentId
-          in: path
-          description: Identificador da operação de pagamento
-          schema:
-            type: string
-          required: true
-          example: D730A10D6784379085391417F3EF657C1247B2B3645210DD97F739B33B349376
-      description: Método de proxy para consultar uma iniciação de pagamento.
-      responses:
-        '502':
-          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        '504':
-          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-        default:
-          description: Segue o padrão de resposta definido pelo BACEN
-    patch:
-      tags:
-        - Pagamento
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/authorisationServerId'
-        - $ref: '#/components/parameters/headerConsentId'
-        - name: paymentId
-          in: path
-          description: Identificador da operação de pagamento
-          schema:
-            type: string
-          required: true
-          example: D730A10D6784379085391417F3EF657C1247B2B3645210DD97F739B33B349376
-      description: Método de proxy para revogar uma iniciação de pagamento.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: 'Segue o padrão de requisição definidos na documentação oficial ([Open Finance - API Payment Initiation](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/142671873/v3.0.0-beta.2+-+Pagamentos)).'
               example: {}
       responses:
         '502':

@@ -20,6 +20,11 @@ o OOC oferece APIs de *proxy* que se comportam
 de maneira idêntica às APIs regulatórias
 e garantem a correta utilização dos tokens de acesso gerados previamente.
 
+**Importante**: Nas APIs de *proxy* é possível alterar a versão da API de acordo
+com a versão retornada na API de solicitação de consentimento, dado que a
+solicitação de consentimento sempre utiliza a versão maior disponibilizada pela
+instituição no Diretório de Participantes.
+
 ## Fluxo de solicitação de consentimento
 
 O fluxo para solicitação de consentimentos é muito similar

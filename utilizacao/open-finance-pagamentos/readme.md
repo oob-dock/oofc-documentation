@@ -15,7 +15,12 @@ após o fluxo de autorização do consentimento pelo usuário, descrito [aqui](.
 
 ### Iniciação de pagamento
 
-#### POST /proxy/open-banking/payments/v4/pix/payments
+#### Iniciação da transação do pagamento
+
+Endpoints disponíveis:
+
+- **Versão 4**: `POST /proxy/open-banking/payments/v4/pix/payments`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078657/v4.0.0+-+SV+Pagamentos)
 
 Após a aprovação do consentimento,
 é necessário requisitar o início do pagamento junto à Detentora de Conta.
@@ -32,7 +37,7 @@ Já para os casos de falha na criação do pagamento, a Detentora retornará
 HTTP 422 Unprocessable Entity com o código referente ao erro ocorrido,
 e o status de seu consentimento se tornará **REJECTED**.
 Para mais informações sobre os códigos de erro durante a criação do pagamento PIX,
-consultar a [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078657/v4.0.0+-+SV+Pagamentos)
+consultar a documentação oficial
 (seção *"Informações Técnicas - Pagamentos"*, schema `422ResponseErrorCreatePixPayment`).
 
 Exemplo de request com amount (100.00) diferente do definido no consentimento (10.00):
@@ -89,15 +94,24 @@ Response Error no formato JSON - resposta é retornada no formato JWT:
 }
 ```
 
-#### Consulta de status do pagamento - GET /proxy/open-banking/payments/v4/pix/payments/{paymentId}
+#### Consulta de status do pagamento
+
+Endpoints disponíveis:
+
+- **Versão 4**: `GET /proxy/open-banking/payments/v4/pix/payments/{paymentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078805/M+quina+de+Estados+-+v4.0.0+-+SV+Pagamentos)
 
 Permite a consulta do status e as informações de um pagamento.
 
 Uma explicação detalhada da máquina de estados do status do pagamento pode ser
-encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078805/M+quina+de+Estados+-+v4.0.0+-+SV+Pagamentos)
-do Open Finance Brasil.
+encontrada na documentação oficial do Open Finance Brasil.
 
-#### Revogação do pagamento - PATCH /proxy/open-banking/payments/v4/pix/payments/{paymentId}
+#### Revogação do pagamento
+
+Endpoints disponíveis:
+
+- **Versão 4**: `PATCH /proxy/open-banking/payments/v4/pix/payments/{paymentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078657/v4.0.0+-+SV+Pagamentos)
 
 Permite a revogação de um pagamento.
 
@@ -111,7 +125,7 @@ iniciado.
 Já para os casos de falha na criação do pagamento, a Detentora retornará
 HTTP 422 Unprocessable Entity com o código referente ao erro ocorrido.
 Para mais informações sobre os códigos de erro durante a revogação do pagamento PIX,
-consultar a [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078657/v4.0.0+-+SV+Pagamentos)
+consultar a documentação oficial
 (seção *"Informações Técnicas - Pagamentos"*, schema `422ResponseErrorCreatePixPayment`).
 
 Exemplo de request:
@@ -155,7 +169,12 @@ Response Error no formato JSON - resposta é retornada no formato JWT:
 }
 ```
 
-#### Revogação de pagamentos - PATCH /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}
+#### Revogação de pagamentos
+
+Endpoints disponíveis:
+
+- **Versão 4**: `PATCH /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078657/v4.0.0+-+SV+Pagamentos)
 
 Permite a revogação de todos os pagamentos referentes ao mesmo consentimento.
 
@@ -170,7 +189,7 @@ iniciado.
 Já para os casos de falha na criação do pagamento, a Detentora retornará
 HTTP 422 Unprocessable Entity com o código referente ao erro ocorrido.
 Para mais informações sobre os códigos de erro durante a revogação do pagamento PIX,
-consultar a [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078657/v4.0.0+-+SV+Pagamentos)
+consultar a documentação oficial
 (seção *"Informações Técnicas - Pagamentos"*, schema `422ResponseErrorCreatePixPayment`).
 
 Exemplo de request:
@@ -224,7 +243,15 @@ do Open Finance Brasil.
 
 ### Iniciação de pagamento automático
 
-#### POST /proxy/open-banking/automatic-payments/v1/pix/recurring-payments
+#### Iniciação da transação do pagamento automático
+
+Endpoints disponíveis:
+
+- **Versão 1**: `POST /proxy/open-banking/automatic-payments/v1/pix/recurring-payments`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/345178113/v1.0.0+SV+Pagamentos+Autom+ticos)
+
+- **Versão 2**: `POST /proxy/open-banking/automatic-payments/v2/pix/recurring-payments`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/896368641/v2.0.0+SV+Pagamentos+Autom+ticos)
 
 Após a aprovação do consentimento,
 é necessário requisitar o início da transação do pagamento junto à Detentora de Conta.
@@ -242,7 +269,7 @@ Já para os casos de falha na criação do pagamento, a Detentora retornará
 HTTP 422 Unprocessable Entity com o código referente ao erro ocorrido,
 e o status de seu consentimento se tornará **REJECTED**.
 Para mais informações sobre os códigos de erro durante a criação do pagamento PIX,
-consultar a [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/345178113/v1.0.0+SV+Pagamentos+Autom+ticos)
+consultar a documentação oficial
 (seção *"Informações Técnicas - Pagamentos Automáticos"*, schema `422ResponseErrorCreatePixRecurringPayment`).
 
 Exemplo de request com amount (100.00) diferente do definido no consentimento (10.00):
@@ -290,23 +317,45 @@ Response Error no formato JSON - resposta é retornada no formato JWT:
 }
 ```
 
-#### Consulta de pagamentos associados a um consentimento - GET /proxy/open-banking/automatic-payments/v1/pix/recurring-payments
+#### Consulta de pagamentos associados a um consentimento
+
+Endpoints disponíveis:
+
+- **Versão 1**: `GET /proxy/open-banking/automatic-payments/v1/pix/recurring-payments`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/345178187/M+quina+de+Estados+-+v1.0.0+-+SV+Pagamentos+Autom+ticos)
+
+- **Versão 2**: `GET /proxy/open-banking/automatic-payments/v2/pix/recurring-payments`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/896368699/M+quina+de+Estados+-+v2.0.0+-+SV+Pagamentos+Autom+ticos)
 
 Permite a consulta do status e as informações de pagamento associados a um consentimento.
 
 Uma explicação detalhada da máquina de estados do status do pagamento pode ser
-encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/345178187/M+quina+de+Estados+-+v1.0.0+-+SV+Pagamentos+Autom+ticos)
-do Open Finance Brasil.
+encontrada na documentação oficial do Open Finance Brasil.
 
-#### Consulta de status do pagamento automático - GET /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}
+#### Consulta de status do pagamento automático
+
+Endpoints disponíveis:
+
+- **Versão 1**: `GET /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/345178187/M+quina+de+Estados+-+v1.0.0+-+SV+Pagamentos+Autom+ticos)
+
+- **Versão 2**: `GET /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/896368699/M+quina+de+Estados+-+v2.0.0+-+SV+Pagamentos+Autom+ticos)
 
 Permite a consulta do status e as informações de um pagamento automático.
 
 Uma explicação detalhada da máquina de estados do status do pagamento pode ser
-encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/345178187/M+quina+de+Estados+-+v1.0.0+-+SV+Pagamentos+Autom+ticos)
-do Open Finance Brasil.
+encontrada na documentação oficial do Open Finance Brasil.
 
-#### Revogação do pagamento - PATCH /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}
+#### Revogação do pagamento
+
+Endpoints disponíveis:
+
+- **Versão 1**: `PATCH /proxy/open-banking/automatic-payments/v1/pix/recurring-payments/{recurringPaymentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/345178113/v1.0.0+SV+Pagamentos+Autom+ticos)
+
+- **Versão 2**: `PATCH /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/896368641/v2.0.0+SV+Pagamentos+Autom+ticos)
 
 Permite a revogação de um pagamento.
 
@@ -321,7 +370,7 @@ iniciado.
 Já para os casos de falha na revogação do pagamento, a Detentora retornará
 HTTP 422 Unprocessable Entity com o código referente ao erro ocorrido.
 Para mais informações sobre os códigos de erro durante a revogação do pagamento PIX,
-consultar a [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/345178113/v1.0.0+SV+Pagamentos+Autom+ticos)
+consultar a documentação oficial
 (seção *"Informações Técnicas - Pagamentos Automáticos"*, schema `422ResponseErrorCreateRecurringPaymentsPaymentId`).
 
 Exemplo de request:
@@ -436,11 +485,11 @@ Response Error no formato JSON - resposta é retornada no formato JWT:
 
 ##### Criar vínculo de conta. - POST /opus-open-finance/enrollments/v1/enrollments
 
-Permite criar um novo vínculo de conta. 
+Permite criar um novo vínculo de conta.
 Retorna um enrollment em status AWAITING_RISK_SIGNALS.
 
 Uma explicação detalhada da máquina de estados do status do vínculo pode ser
-encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/640286815/M+quina+de+estados+-+v2.0.0-+SV+V+nculo+de+dispositivo)
+encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503675/M+quina+de+estados+-+v2.1.0-+SV+V+nculo+de+dispositivo)
 do Open Finance Brasil.
 
 Exemplo de request:
@@ -544,7 +593,7 @@ do enrollment deve transitar para "AWAITING_ENROLLMENT".
 Caso contrário o status deve transitar para "REJECTED".
 
 Uma explicação detalhada da máquina de estados do status do vínculo pode ser
-encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/640286815/M+quina+de+estados+-+v2.0.0-+SV+V+nculo+de+dispositivo)
+encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503675/M+quina+de+estados+-+v2.1.0-+SV+V+nculo+de+dispositivo)
 do Open Finance Brasil.
 
 Exemplo de request:
@@ -597,7 +646,12 @@ Response Body:
 }
 ```
 
-##### Obter parâmetros para criação de credenciais FIDO2 - POST /proxy/open-banking/enrollments/v1/enrollments/{enrollmentId}/fido-registration-options
+##### Obter parâmetros para criação de credenciais FIDO2
+
+Endpoints disponíveis:
+
+- **Versão 2**: `POST /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503617/v2.1.0+-+SV+V+nculo+de+dispositivo)
 
 Método para obter os parâmetros para criação de uma nova credencial FIDO2. Um novo
 challenge deve ser criado a cada chamada. Os parâmetros da resposta devem ser
@@ -620,7 +674,12 @@ Response Body - formato JWT:
 
 eyJraWQiOiJoRUhYZ21BRS1IVlBVZUNEUFNjblpQVzZkWGp3dWIwLTJuQng2SHZMOUNrIiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdWQiOiIyN2FlYThmNi0yMTE5LTU1ZjgtOTU1My01YWQ0YjA4ZWViMTciLCJkYXRhIjp7ImVucm9sbG1lbnRJZCI6InVybjphbWF6aW5nYmFuazpmODM1NTNhYS02ODFjLTQ5MzUtOTJjOC05NGI1MzUxMzc0NDYiLCJycCI6eyJpZCI6InRwcC1jbGllbnQxLjEyNy4wLjAuMS5uaXAuaW8iLCJuYW1lIjoiT09CIENsaWVudCBVbSJ9LCJ1c2VyIjp7ImlkIjoiWm1aaU5tRmpaakV0TldZd1pTMDBPR0ZqTFdJNE1EZ3RaVFF5WW1JeE5qRXdPR0k0IiwibmFtZSI6InVybjphbWF6aW5nYmFuazpmODM1NTNhYS02ODFjLTQ5MzUtOTJjOC05NGI1MzUxMzc0NDYiLCJkaXNwbGF5TmFtZSI6IlJlcXVpcmVyIEd1eSJ9LCJjaGFsbGVuZ2UiOiIxeW54dnl4elF6S0RkY082OEhjTElnIiwicHViS2V5Q3JlZFBhcmFtcyI6W3siYWxnIjotNjU1MzUsInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi0yNTcsInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi0yNTgsInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi0yNTksInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi03LCJ0eXBlIjoicHVibGljLWtleSJ9LHsiYWxnIjotMzUsInR5cGUiOiJwdWJsaWMta2V5In0seyJhbGciOi0zNiwidHlwZSI6InB1YmxpYy1rZXkifSx7ImFsZyI6LTgsInR5cGUiOiJwdWJsaWMta2V5In1dLCJleGNsdWRlQ3JlZGVudGlhbHMiOltdLCJhdXRoZW50aWNhdG9yU2VsZWN0aW9uIjp7InVzZXJWZXJpZmljYXRpb24iOiJwcmVmZXJyZWQiLCJyZXF1aXJlUmVzaWRlbnRLZXkiOmZhbHNlLCJyZXNpZGVudEtleSI6ImRpc2NvdXJhZ2VkIn0sImF0dGVzdGF0aW9uIjoibm9uZSJ9LCJtZXRhIjp7InJlcXVlc3REYXRlVGltZSI6IjIwMjQtMTItMTdUMTQ6Mzk6MTVaIn0sImlzcyI6IjI3YWVhOGY2LTIxMTktNTVmOC05NTUzLTVhZDRiMDhlZWIxNyIsImlhdCI6MTczNDQ0NjM1NSwianRpIjoiZWI3NzdlZjYtNzVmNC00NDAyLWIyNTctNjNiM2MxNGQ2YWZlIn0.QcvTIxeKmHQ2NypdFLiXitzdlqroxizIVCsPyAHWuqbMiA1WPaX07nYYEIHJR4n8b4IrDh3rkGfnGs4ie-8Ra5UFtsCUgMBWNN6brmxkLioeauNZjdX71vtDwjHwvWefXA88c-rwk0urNtcSsHJWgblx0QEbnFt9R-PqRWcrlFFBZynCXcWR53K2Hclyju_Qack82sh4YDp_vTF6NwKzjNnNfYaDhgMKNjcUQu4a5pISF52uI8oE9cwuqeW8E0MmikiHzD7W3NiY_ffRxdzBAqKa58dbqG8l98-aQcbTjh0QpJiYokQM5pPhhibnUvhNSfjtV8-s6OiqSP5LDgGGWw
 
-##### Associação da credencial FIDO2 ao vínculo de conta - POST /proxy/open-banking/enrollments/v1/enrollments/{enrollmentId}/fido-registration
+##### Associação da credencial FIDO2 ao vínculo de conta
+
+Endpoints disponíveis:
+
+- **Versão 2**: `POST /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503617/v2.1.0+-+SV+V+nculo+de+dispositivo)
 
 O vínculo de conta deve estar no status "AWAITING_ENROLLMENT". Após o registro
 com sucesso, o vínculo de conta deve transitar ao status "AUTHORISED". A falha de
@@ -674,7 +733,12 @@ Response Body:
 }
 ```
 
-##### Autorização de um consentimento de pagamentos na jornada sem redirecionamento - POST /proxy/open-banking/enrollments/v1/consents/{consentId}/authorise
+##### Autorização de um consentimento de pagamentos na jornada sem redirecionamento
+
+Endpoints disponíveis:
+
+- **Versão 2**: `POST /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503617/v2.1.0+-+SV+V+nculo+de+dispositivo)
 
 Autorização de um consentimento de pagamentos em status AWAITING_AUTHORISATION a
 partir do access_token emitido pela jornada sem redirecionamento e envio de sinais
@@ -737,12 +801,6 @@ Request Body:
 | POST           | /opus-open-finance/payments/v1/consents                                                              | Criação de um consentimento de pagamento                                     | 201      |
 | GET            | /opus-open-finance/payments/v1/consents/{consentId}                                                  | Obtenção dos dados do consentimento de pagamento                    | 200      |
 | POST           | /opus-open-finance/payments/v1/consents/{consentId}/authorisation-retry                              | Nova tentativa de autorização do consentimento                                 | 200      |
-| POST           | /proxy/open-banking/payments/v2/pix/payments                                                         | Criação de um pagamento                                     | 201      |
-| GET            | /proxy/open-banking/payments/v2/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                     | 200      |
-| PATCH          | /proxy/open-banking/payments/v2/pix/payments/{paymentId}                                             | Revogação de um pagamento                                     | 200      |
-| POST           | /proxy/open-banking/payments/v3/pix/payments                                                         | Criação de um pagamento                                     | 201      |
-| GET            | /proxy/open-banking/payments/v3/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                     | 200      |
-| PATCH          | /proxy/open-banking/payments/v3/pix/payments/{paymentId}                                             | Revogação de um pagamento                                     | 200      |
 | POST           | /proxy/open-banking/payments/v4/pix/payments                                                         | Criação de um pagamento                                     | 201      |
 | GET            | /proxy/open-banking/payments/v4/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                     | 200      |
 | PATCH          | /proxy/open-banking/payments/v4/pix/payments/{paymentId}                                             | Revogação de um pagamento                                     | 200      |
@@ -766,9 +824,9 @@ Request Body:
 | PATCH          | opus-open-finance/enrollments/v1/enrollments/{enrollmentId}                                          | Rejeição o revogação de vínculo de conta                                      | 204      |
 | POST           | opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/risk-signals                             | Envio de sinais de risco para iniciação do vínculo de dispositivo           | 201      |
 | POST           | opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options                        | Obtenção de parâmetros para autenticação FIDO2                            | 201      |
-| POST           | /proxy/open-banking/enrollments/v1/enrollments/{enrollmentId}/fido-registration-options              | Obtenção de parâmetros para criação de credenciais FIDO2                  | 201      |
-| POST           | /proxy/open-banking/enrollments/v1/enrollments/{enrollmentId}/fido-registration                      | Associação da credencial FIDO2 ao vínculo de conta                           | 201      |
-| POST           | /proxy/open-banking/enrollments/v1/consents/{consentId}/authorise                                    | Autorização de um consentimento de pagamentos na jornada sem redirecionamento | 201      |
+| POST           | /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options              | Obtenção de parâmetros para criação de credenciais FIDO2                  | 201      |
+| POST           | /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration                      | Associação da credencial FIDO2 ao vínculo de conta                           | 201      |
+| POST           | /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise                                    | Autorização de um consentimento de pagamentos na jornada sem redirecionamento | 201      |
 
 ## Orientações importantes
 

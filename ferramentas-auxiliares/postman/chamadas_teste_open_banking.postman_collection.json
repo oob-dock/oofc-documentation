@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "55bf4984-1dbc-401a-9e58-55a6d6413907",
+		"_postman_id": "a55f5bf1-6354-47a5-9d83-23db8e8ee36f",
 		"name": "OpusTpp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "13040428"
@@ -2026,7 +2026,7 @@
 					]
 				},
 				{
-					"name": "resources-v2",
+					"name": "resources-v3",
 					"item": [
 						{
 							"name": "resources",
@@ -2050,7 +2050,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/proxy/open-banking/resources/v2/resources",
+									"raw": "{{baseUrl}}/proxy/open-banking/resources/v3/resources",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -2058,7 +2058,7 @@
 										"proxy",
 										"open-banking",
 										"resources",
-										"v2",
+										"v3",
 										"resources"
 									]
 								}
@@ -3650,308 +3650,6 @@
 		{
 			"name": "Iniciação de Pagamentos",
 			"item": [
-				{
-					"name": "proxy-pix-payments-v2",
-					"item": [
-						{
-							"name": "proxy/open-banking/payments/v1/payments/v2/pix/payments",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "x-application-id",
-										"value": "{{applicationId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-authorisation-server-id",
-										"value": "{{authorisationServerId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-consent-id",
-										"value": "{{consentId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-idempotency-key",
-										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
-										"type": "text",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"data\": {\r\n      \"localInstrument\": \"MANU\",\r\n      \"payment\": {\r\n        \"amount\": \"10.00\",\r\n        \"currency\": \"BRL\"\r\n      },\r\n      \"creditorAccount\": {\r\n        \"ispb\": \"12345678\",\r\n        \"issuer\": \"1774\",\r\n        \"number\": \"1234567890\",\r\n        \"accountType\": \"CACC\"\r\n      },\r\n      \"remittanceInformation\": \"Pagamento da nota XPTO035-002.\",\r\n      \"cnpjInitiator\": \"00000000000191\",\r\n      \"endToEndId\": \"E9040088820210128000800123873170\"\r\n    }\r\n  }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/proxy/open-banking/payments/v2/pix/payments",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"proxy",
-										"open-banking",
-										"payments",
-										"v2",
-										"pix",
-										"payments"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "proxy/open-banking/payments/v1/payments/v2/pix/payments",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "x-application-id",
-										"value": "{{applicationId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-authorisation-server-id",
-										"value": "{{authorisationServerId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-consent-id",
-										"value": "{{consentId}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/proxy/open-banking/payments/v2/pix/payments/{{paymentId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"proxy",
-										"open-banking",
-										"payments",
-										"v2",
-										"pix",
-										"payments",
-										"{{paymentId}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "proxy/open-banking/payments/v1/payments/v2/pix/payments",
-							"request": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "x-application-id",
-										"value": "{{applicationId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-authorisation-server-id",
-										"value": "{{authorisationServerId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-consent-id",
-										"value": "{{consentId}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"data\": {\r\n      \"status\": \"CANC\",\r\n      \"cancellation\": {\r\n        \"cancelledBy\": {\r\n          \"document\": {\r\n            \"identification\": \"12312312387\",\r\n            \"rel\": \"CPF\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/proxy/open-banking/payments/v2/pix/payments/{{paymentId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"proxy",
-										"open-banking",
-										"payments",
-										"v2",
-										"pix",
-										"payments",
-										"{{paymentId}}"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "proxy-pix-payments-v3",
-					"item": [
-						{
-							"name": "proxy/open-banking/payments/v1/payments/v3/pix/payments",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var response = JSON.parse(responseBody);\r",
-											"postman.setEnvironmentVariable(\"consentId\", response.data.paymentId);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "x-application-id",
-										"value": "{{applicationId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-authorisation-server-id",
-										"value": "{{authorisationServerId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-consent-id",
-										"value": "{{consentId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-idempotency-key",
-										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
-										"type": "text",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"data\": {\r\n      \"localInstrument\": \"MANU\",\r\n      \"payment\": {\r\n        \"amount\": \"10.00\",\r\n        \"currency\": \"BRL\"\r\n      },\r\n      \"creditorAccount\": {\r\n        \"ispb\": \"12345678\",\r\n        \"issuer\": \"1774\",\r\n        \"number\": \"1234567890\",\r\n        \"accountType\": \"CACC\"\r\n      },\r\n      \"remittanceInformation\": \"Pagamento da nota XPTO035-002.\",\r\n      \"cnpjInitiator\": \"00000000000191\",\r\n      \"endToEndId\": \"E9040088820210128000800123873170\"\r\n    }\r\n  }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/proxy/open-banking/payments/v3/pix/payments",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"proxy",
-										"open-banking",
-										"payments",
-										"v3",
-										"pix",
-										"payments"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "proxy/open-banking/payments/v1/payments/v3/pix/payments",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "x-application-id",
-										"value": "{{applicationId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-authorisation-server-id",
-										"value": "{{authorisationServerId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-consent-id",
-										"value": "{{consentId}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/proxy/open-banking/payments/v3/pix/payments/{{paymentId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"proxy",
-										"open-banking",
-										"payments",
-										"v3",
-										"pix",
-										"payments",
-										"{{paymentId}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "proxy/open-banking/payments/v1/payments/v3/pix/payments",
-							"request": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "x-application-id",
-										"value": "{{applicationId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-authorisation-server-id",
-										"value": "{{authorisationServerId}}",
-										"type": "text"
-									},
-									{
-										"key": "x-consent-id",
-										"value": "{{consentId}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"data\": {\r\n      \"status\": \"CANC\",\r\n      \"cancellation\": {\r\n        \"cancelledBy\": {\r\n          \"document\": {\r\n            \"identification\": \"12312312387\",\r\n            \"rel\": \"CPF\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/proxy/open-banking/payments/v3/pix/payments/{{paymentId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"proxy",
-										"open-banking",
-										"payments",
-										"v3",
-										"pix",
-										"payments",
-										"{{paymentId}}"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
 				{
 					"name": "proxy-pix-payments-v4",
 					"item": [
