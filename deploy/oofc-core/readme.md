@@ -146,6 +146,10 @@ env:
     port: 5001
 ```
 
+### Execução de scripts DDL
+
+Vide a [definição](../shared-definitions.md#scripts-ddl)
+
 ### config
 
 * `logLevel`: Define o nível de detalhe do log da aplicação. É recomendável
