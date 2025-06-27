@@ -2468,6 +2468,18 @@
                 ApiVersion:
                   type: number
                   example: 1
+          AuthorisationServerFlags:
+            description: Objeto que representa flags do Authorisation Server, onde cada chave é uma categoria ou status e o valor é um array de descrições relacionadas.
+            type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+            example:
+              Suporta Contas PF:
+                - "Suporta Contas PF"
+              generated:
+                - "Instituições Bancárias"
       Meta:
         type: object
         description: Meta informações referente à API requisitada.
