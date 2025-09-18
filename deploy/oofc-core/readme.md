@@ -271,6 +271,26 @@ env:
       ttl: "900"
 ```
 
+### Logs request response regulatório
+
+Configuração relacionado ao armazenamento de logs regulatórios.
+
+* `logRequestResponseCollectorEnable`: Habilita o envio dos logs de requisição e
+resposta para o coletor de logs.
+  * Possíveis valores: `true` ou `false`. Default: `true`.
+* `logRequestResponseCollectorUrl`: Endereço da ferramenta coletora de logs que
+será responsável por receber os logs das requisições e respostas regulatórias.
+Essa variável é de preenchimento obrigatório caso a variável
+`logRequestResponseCollectorEnable` esteja definida como `true`.
+
+```yaml
+env:
+  logs:
+    collector:
+      logRequestResponseCollectorEnable: "true"
+      logRequestResponseCollectorUrl: "http://fluent-bit-log.logging.svc.cluster.local"
+```
+
 ## additionalVars
 
 Utilizado para definir configurações opcionais na aplicação. Essa configuração

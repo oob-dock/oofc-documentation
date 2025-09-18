@@ -116,8 +116,8 @@ INSERT INTO public.organisation(id_organisation, name)
 VALUES('<código_de_participante>', '<razão_social>');
 
 INSERT INTO public.software_statement
-(id_software_statement, software_statement_client_id, ssa_data)
-VALUES('<Software_Statement_ID_emitido_pelo_diretório>', '<client_id>', null);
+(id_software_statement, software_statement_client_id, ssa_data, proxy_url)
+VALUES('<Software_Statement_ID_emitido_pelo_diretório>', '<client_id>', null, null);
 
 INSERT INTO public.application
 (id, id_organisation, id_software_statement, name, kid, kid_id_token_enc, fqdn, redirect_identifier)
@@ -133,6 +133,11 @@ Serviço de Diretório;
 - `id_software_statement`: UUID - Software Statement ID gerado pelo Diretório;
 - `software_statement_client_id`: Identificador associado ao Código de Participante
 e ao Software Statement ID;
+- `proxy_url`: URL do proxy para redirecionamento de chamadas mTLS. **Opcional**.
+  - *Se configurado*: o Opus Open Client redireciona todas as chamadas mTLS para
+  a URL configurada.
+  - *Se não configurado*: as chamadas mTLS são direcionadas diretamente para a
+  instituição destino (comportamento padrão).
 - `id`: UUID - identificador de um aplicativo relacionado a um Software Statement
 Id;
 - `kid`: Key ID, especifica a chave para a validação de assinaturas;
@@ -153,8 +158,8 @@ INSERT INTO public.organisation(id_organisation, name)
 VALUES('edd26f3e-888a-47f3-b599-f9c87fff3317', 'INSTITUICAO EXEMPLO');
 
 INSERT INTO public.software_statement
-(id_software_statement, software_statement_client_id, ssa_data)
-VALUES('0e87dafd-2802-4aaf-ad55-f79f91bf7126', 'KEF5Jg2HD0Xn47k1oWC1r', null);
+(id_software_statement, software_statement_client_id, ssa_data, proxy_url)
+VALUES('0e87dafd-2802-4aaf-ad55-f79f91bf7126', 'KEF5Jg2HD0Xn47k1oWC1r', null, null);
 
 INSERT INTO public.application
 (id, id_organisation, id_software_statement, name, kid, kid_id_token_enc)
