@@ -25,7 +25,9 @@ O produto é composto por dois módulos
 1. **Receptor de Dados Cadastrais e Transacionais:**
 suporta a solicitação e obtenção de dados de usuários clientes de instituições financeiras,
 incluindo: dados cadastrais, transações de contas e cartões de crédito,
-e informações de produtos de crédito contratados.
+e informações de produtos de crédito contratados. Possui um módulo a parte para busca e atualização
+automática dos dados, chamado Opus Data Receiver. O [Opus Data Receiver](deploy/oofc-odr/readme.md) armazena e atualiza automaticamente os dados financeiros dos usuários de um cliente. 
+
 2. **Iniciador de Transação de Pagamento:**
 suporta a iniciação, execução e acompanhamento de transações de pagamentos,
 incluindo a solicitação e subsequente consumo de consentimentos

@@ -146,6 +146,28 @@ env:
     port: 5001
 ```
 
+### opentelemetry
+Lista de configurações do monitoramento com o open telemetry. Caso não seja fornecido uma rota, a aplicação não exportará o trace.
+
+Exemplo:
+```yaml
+env:
+  opentelemetry:
+    sample:
+      rate: "1"
+    batch:
+      span:
+        size: "512"
+      flush:
+        delay:
+          seconds: "3"
+    tracer:
+      exporter:
+        url:
+          grpc: "http://tempo-distributor:4317"
+
+```
+
 ### Execução de scripts DDL
 
 Vide a [definição](../shared-definitions.md#scripts-ddl)
@@ -185,6 +207,11 @@ para IOS.
   * `value`: Variável responsável por armazenar o conteúdo do arquivo de *Apple
   App Site Association*. O conteúdo do arquivo deverá ser configurado como *plain
   text* e será exposto na rota `GET https://<fqdn>/.well-known/apple-app-site-association.json`.
+* `companyProfileInfoUri`: Define a URI para obter os dados de natureza jurídica
+e porte da empresa na criação de consentimentos PJ para o envio de eventos da
+Plataforma de Coleta de Métricas (PCM).
+    * A URI está defina com o valor `https://0zxk5tr550.execute-api.sa-east-1.amazonaws.com/prod/v1/empresas`
+    por padrão.
 
 ```yaml
 env:
@@ -198,6 +225,7 @@ env:
         value: '[{\"relation\":[\"delegate_permission/common.handle_all_urls\"],\"target\":{\"namespace\":\"android_app\",\"package_name\":\"br.com.teste.app\",\"sha256_cert_fingerprints\":[]}}]'
     appleAppSiteAssociationFile:
       - value: '{\"applinks\":{\"apps\":[],\"details\":[{\"appID\":\"6KBUHP7MVP.org.reactjs.native.example.app2as\",\"paths\":[\"/auth/auth\",\"/auth/handoff/*\"],\"appIDs\":[\"6KBUHP7MVP.org.reactjs.native.example.app2as\"],\"components\":[{\"/\":\"/auth/auth\"},{\"/\":\"/auth/handoff/*\"}]}]}}'
+    companyProfileInfoUri: "https://0zxk5tr550.execute-api.sa-east-1.amazonaws.com/prod/v1/empresas"
 ```
 
 ### dapr
