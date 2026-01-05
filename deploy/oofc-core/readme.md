@@ -301,7 +301,7 @@ env:
 
 ### Logs request response regulatório
 
-Configuração relacionado ao armazenamento de logs regulatórios.
+Configuração relacionada ao armazenamento de logs regulatórios.
 
 * `logRequestResponseCollectorEnable`: Habilita o envio dos logs de requisição e
 resposta para o coletor de logs.
@@ -317,6 +317,19 @@ env:
     collector:
       logRequestResponseCollectorEnable: "true"
       logRequestResponseCollectorUrl: "http://fluent-bit-log.logging.svc.cluster.local"
+```
+
+### MQD
+
+Configuração relacionada ao Motor de Qualidade de Dados (MQD)
+
+* `enabled`: Habilita o envio de informações sobre as requisições para o MQD.
+  * Possíveis valores: `true` ou `false`. Default: `true`.
+
+```yaml
+env:
+  mqd:
+    enabled: "true"
 ```
 
 ## additionalVars
