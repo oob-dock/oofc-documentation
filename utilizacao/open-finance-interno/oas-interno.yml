@@ -64,6 +64,11 @@ paths:
           description: Webhook Url criada ou atualizada com sucesso.
         '404':
           description: Nenhuma aplicação encontrada com o applicationId informado.
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
 components:
   schemas:
     GetsExternalClientIdResponse:
@@ -91,6 +96,31 @@ components:
             webhookUrl:
               type: string
               example: 'https://client.instituicao.com.br/webhook'
+    EnumOriginError:
+      type: string
+      enum:
+        - opus-tpp
+        - participant
+        - directory
+        - unknown
+      example: opus-tpp
+      description: |
+        Origem do erro reportado:
+        - **opus-tpp**: erro originado no Opus TPP.
+        - **participant**: erro originado na instituição transmissora ou detentora.
+        - **directory**: erro originado no Diretório de Participantes.
+        - **unknown**: origem não identificada.
+  headers:
+    xOriginError:
+      description: Indica a origem do erro.
+      schema:
+        $ref: '#/components/schemas/EnumOriginError'
+      required: false
+    xErrorSourceUrl:
+      description: URL da chamada que originou o erro, presente apenas quando `x-origin-error` = `participant`.
+      schema:
+        type: string
+      required: false
   parameters:
     applicationId:
       name: applicationId

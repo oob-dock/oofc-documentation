@@ -110,11 +110,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -127,6 +137,11 @@
                 schema:
                   $ref: '#/components/schemas/CreateConsentResponse'
           default:
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Erro enviado pela transmissora, respeitando o padrão definido pelo BACEN
             content:
               application/json:
@@ -151,11 +166,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -188,11 +213,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -220,11 +255,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -259,17 +304,32 @@
                   $ref: '#/components/schemas/GetConsentResponse'
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           default:
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Erro enviado pela transmissora, respeitando o padrão definido pelo BACEN
             content:
               application/json:
@@ -293,17 +353,32 @@
             description: Consentimento revogado com sucesso.
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           default:
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Erro enviado pela transmissora, respeitando o padrão definido pelo BACEN
             content:
               application/jwt:
@@ -339,11 +414,21 @@
                   $ref: '#/components/schemas/ParticipantsResponse'
           '502':
             description: Erro no Opus Open Client ao se comunicar com a API de participantes do BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a API de participantes do BACEN
             content:
               application/json:
@@ -365,11 +450,21 @@
                   $ref: '#/components/schemas/DcmData'
           '502':
             description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a API de participantes do BACEN
             content:
               application/json:
@@ -397,11 +492,21 @@
                   $ref: '#/components/schemas/DcmData'
           '502':
             description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a API de participantes do BACEN
             content:
               application/json:
@@ -423,6 +528,11 @@
           '204':
             description: Sucesso no processo de autorização
           '422':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Erro no processo de autorização
             content:
               application/json:
@@ -442,11 +552,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -454,6 +574,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/customers/v2/personal/identifications:
       get:
         tags:
@@ -468,11 +593,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -480,6 +615,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/customers/v2/business/identifications:
       get:
         tags:
@@ -494,11 +634,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -506,6 +656,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/customers/v2/personal/qualifications:
       get:
         tags:
@@ -518,11 +673,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -530,6 +695,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/customers/v2/business/qualifications:
       get:
         tags:
@@ -542,11 +712,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -554,6 +734,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/customers/v2/personal/financial-relations:
       get:
         tags:
@@ -566,11 +751,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -578,6 +773,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/customers/v2/business/financial-relations:
       get:
         tags:
@@ -590,11 +790,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -602,6 +812,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-cards-accounts/v2/accounts:
       get:
         tags:
@@ -616,11 +831,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -628,6 +853,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-cards-accounts/v2/accounts/{creditCardAccountId}:
       get:
         tags:
@@ -641,11 +871,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -653,6 +893,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-cards-accounts/v2/accounts/{creditCardAccountId}/limits:
       get:
         tags:
@@ -666,11 +911,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -678,6 +933,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-cards-accounts/v2/accounts/{creditCardAccountId}/transactions:
       get:
         tags:
@@ -698,11 +958,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -710,6 +980,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-cards-accounts/v2/accounts/{creditCardAccountId}/transactions-current:
       get:
         tags:
@@ -730,11 +1005,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -742,6 +1027,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-cards-accounts/v2/accounts/{creditCardAccountId}/bills:
       get:
         tags:
@@ -762,11 +1052,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -774,6 +1074,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-cards-accounts/v2/accounts/{creditCardAccountId}/bills/{billId}/transactions:
       get:
         tags:
@@ -800,11 +1105,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -812,6 +1127,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/accounts/v2/accounts:
       get:
         tags:
@@ -827,11 +1147,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -839,6 +1169,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/accounts/v2/accounts/{accountId}:
       get:
         tags:
@@ -852,11 +1187,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -864,6 +1209,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/accounts/v2/accounts/{accountId}/balances:
       get:
         tags:
@@ -877,11 +1227,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -889,6 +1249,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/accounts/v2/accounts/{accountId}/transactions:
       get:
         tags:
@@ -907,11 +1272,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -919,6 +1294,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/accounts/v2/accounts/{accountId}/transactions-current:
       get:
         tags:
@@ -937,11 +1317,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -949,6 +1339,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/accounts/v2/accounts/{accountId}/overdraft-limits:
       get:
         tags:
@@ -962,11 +1357,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -974,6 +1379,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/loans/v2/contracts:
       get:
         tags:
@@ -988,11 +1398,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1000,6 +1420,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/loans/v2/contracts/{contractId}:
       get:
         tags:
@@ -1013,11 +1438,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1025,6 +1460,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/loans/v2/contracts/{contractId}/warranties:
       get:
         tags:
@@ -1038,11 +1478,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1050,6 +1500,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/loans/v2/contracts/{contractId}/payments:
       get:
         tags:
@@ -1063,11 +1518,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1075,6 +1540,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/loans/v2/contracts/{contractId}/scheduled-instalments:
       get:
         tags:
@@ -1088,11 +1558,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1100,6 +1580,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/financings/v2/contracts:
        get:
         tags:
@@ -1114,11 +1599,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1126,6 +1621,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/financings/v2/contracts/{contractId}:
        get:
         tags:
@@ -1139,11 +1639,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1151,6 +1661,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/financings/v2/contracts/{contractId}/warranties:
        get:
         tags:
@@ -1164,11 +1679,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1176,6 +1701,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/financings/v2/contracts/{contractId}/payments:
        get:
         tags:
@@ -1189,11 +1719,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1201,6 +1741,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/financings/v2/contracts/{contractId}/scheduled-instalments:
        get:
         tags:
@@ -1214,11 +1759,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1226,6 +1781,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/unarranged-accounts-overdraft/v2/contracts:
        get:
         tags:
@@ -1240,11 +1800,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1252,6 +1822,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/unarranged-accounts-overdraft/v2/contracts/{contractId}:
        get:
         tags:
@@ -1265,11 +1840,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1277,6 +1862,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/unarranged-accounts-overdraft/v2/contracts/{contractId}/warranties:
        get:
         tags:
@@ -1290,11 +1880,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1302,6 +1902,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/unarranged-accounts-overdraft/v2/contracts/{contractId}/payments:
        get:
         tags:
@@ -1315,11 +1920,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1327,6 +1942,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/unarranged-accounts-overdraft/v2/contracts/{contractId}/scheduled-instalments:
        get:
         tags:
@@ -1340,11 +1960,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1352,6 +1982,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/invoice-financings/v2/contracts:
        get:
         tags:
@@ -1366,11 +2001,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1378,6 +2023,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/invoice-financings/v2/contracts/{contractId}:
        get:
         tags:
@@ -1391,11 +2041,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1403,6 +2063,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/invoice-financings/v2/contracts/{contractId}/warranties:
        get:
         tags:
@@ -1416,11 +2081,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1428,6 +2103,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/invoice-financings/v2/contracts/{contractId}/payments:
        get:
         tags:
@@ -1441,11 +2121,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1453,6 +2143,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/invoice-financings/v2/contracts/{contractId}/scheduled-instalments:
        get:
         tags:
@@ -1466,11 +2161,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1478,6 +2183,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/bank-fixed-incomes/v1/investments:
        get:
         tags:
@@ -1492,11 +2202,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1504,6 +2224,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/bank-fixed-incomes/v1/investments/{investmentId}:
        get:
         tags:
@@ -1517,11 +2242,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1529,6 +2264,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/bank-fixed-incomes/v1/investments/{investmentId}/balances:
        get:
         tags:
@@ -1542,11 +2282,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1554,6 +2304,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/bank-fixed-incomes/v1/investments/{investmentId}/transactions:
        get:
         tags:
@@ -1571,11 +2326,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1583,6 +2348,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/bank-fixed-incomes/v1/investments/{investmentId}/transactions-current:
        get:
         tags:
@@ -1600,11 +2370,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1612,6 +2392,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-fixed-incomes/v1/investments:
        get:
         tags:
@@ -1626,11 +2411,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1638,6 +2433,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-fixed-incomes/v1/investments/{investmentId}:
        get:
         tags:
@@ -1651,11 +2451,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1663,6 +2473,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-fixed-incomes/v1/investments/{investmentId}/balances:
        get:
         tags:
@@ -1676,11 +2491,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1688,6 +2513,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-fixed-incomes/v1/investments/{investmentId}/transactions:
        get:
         tags:
@@ -1705,11 +2535,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1717,6 +2557,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/credit-fixed-incomes/v1/investments/{investmentId}/transactions-current:
        get:
         tags:
@@ -1734,11 +2579,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1746,6 +2601,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/variable-incomes/v1/investments:
        get:
         tags:
@@ -1760,11 +2620,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1772,6 +2642,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/variable-incomes/v1/investments/{investmentId}:
        get:
         tags:
@@ -1785,11 +2660,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1797,6 +2682,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/variable-incomes/v1/investments/{investmentId}/balances:
        get:
         tags:
@@ -1810,11 +2700,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1822,6 +2722,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/variable-incomes/v1/investments/{investmentId}/transactions:
        get:
         tags:
@@ -1839,11 +2744,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1851,6 +2766,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/variable-incomes/v1/investments/{investmentId}/transactions-current:
        get:
         tags:
@@ -1868,11 +2788,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1880,6 +2810,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/variable-incomes/v1/broker-notes/{brokerNoteId}:
        get:
         tags:
@@ -1893,11 +2828,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1905,6 +2850,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/treasure-titles/v1/investments:
        get:
         tags:
@@ -1919,11 +2869,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1931,6 +2891,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/treasure-titles/v1/investments/{investmentId}:
        get:
         tags:
@@ -1944,11 +2909,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1956,6 +2931,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/treasure-titles/v1/investments/{investmentId}/balances:
        get:
         tags:
@@ -1969,11 +2949,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -1981,6 +2971,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/treasure-titles/v1/investments/{investmentId}/transactions:
        get:
         tags:
@@ -1998,11 +2993,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2010,6 +3015,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/treasure-titles/v1/investments/{investmentId}/transactions-current:
        get:
         tags:
@@ -2027,11 +3037,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2039,6 +3059,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/funds/v1/investments:
        get:
         tags:
@@ -2053,11 +3078,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2065,6 +3100,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/funds/v1/investments/{investmentId}:
        get:
         tags:
@@ -2078,11 +3118,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2090,6 +3140,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/funds/v1/investments/{investmentId}/balances:
        get:
         tags:
@@ -2103,11 +3158,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2115,6 +3180,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/funds/v1/investments/{investmentId}/transactions:
        get:
         tags:
@@ -2132,11 +3202,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2144,6 +3224,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/funds/v1/investments/{investmentId}/transactions-current:
        get:
         tags:
@@ -2161,11 +3246,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2173,6 +3268,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/exchanges/v1/operations:
        get:
         tags:
@@ -2187,11 +3287,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2199,6 +3309,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/exchanges/v1/operations/{operationId}:
        get:
         tags:
@@ -2212,11 +3327,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2224,6 +3349,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
     /proxy/open-banking/exchanges/v1/operations/{operationId}/events:
        get:
         tags:
@@ -2239,11 +3369,21 @@
         responses:
           '502':
             description: Erro no Opus Open Client ao se comunicar com a transmissora
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             content:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ResponseError'
           '504':
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
             description: Tempo limite de conexão excedido ao se comunicar com a transmissora
             content:
               application/json:
@@ -2251,6 +3391,11 @@
                   $ref: '#/components/schemas/ResponseError'
           default:
             description: Segue o padrão de resposta definido pelo BACEN
+            headers:
+              x-origin-error:
+                $ref: '#/components/headers/xOriginError'
+              x-error-source-url:
+                $ref: '#/components/headers/xErrorSourceUrl'
   components:
     schemas:
       DcmData:
@@ -2950,6 +4095,31 @@
           Identificação do Tipo de Pessoa da pessoa envolvida na transação.   
           Pessoa Natural - Informar CPF no campo “partieCnpjCpf”.   
           Pessoa Jurídica - Informar CNPJ no campo “partieCnpjCpf”.
+      EnumOriginError:
+        type: string
+        enum:
+          - opus-tpp
+          - participant
+          - directory
+          - unknown
+        example: opus-tpp
+        description: |
+          Origem do erro reportado:
+          - **opus-tpp**: erro originado no Opus TPP.
+          - **participant**: erro originado na instituição transmissora ou detentora.
+          - **directory**: erro originado no Diretório de Participantes.
+          - **unknown**: origem não identificada.
+    headers:
+      xOriginError:
+        description: Indica a origem do erro.
+        schema:
+          $ref: '#/components/schemas/EnumOriginError'
+        required: false
+      xErrorSourceUrl:
+        description: URL da chamada que originou o erro, presente apenas quando `x-origin-error` = `participant`.
+        schema:
+          type: string
+        required: false
     parameters:
       applicationId:
         name: x-application-id

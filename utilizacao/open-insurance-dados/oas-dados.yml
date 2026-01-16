@@ -107,12 +107,22 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
@@ -125,6 +135,11 @@ paths:
                 $ref: '#/components/schemas/CreateConsentResponse'
         default:
           description: Erro enviado pela transmissora, respeitando o padrão definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
@@ -148,12 +163,22 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
@@ -187,18 +212,33 @@ paths:
                 $ref: '#/components/schemas/GetConsentResponse'
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Erro enviado pela transmissora, respeitando o padrão definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
@@ -221,18 +261,33 @@ paths:
           description: Consentimento revogado com sucesso.
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Erro enviado pela transmissora, respeitando o padrão definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/jwt:
               schema:
@@ -264,12 +319,22 @@ paths:
                 $ref: '#/components/schemas/ParticipantsResponse'
         '502':
           description: Erro no Opus Open Client ao se comunicar com a API de participantes da Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a API de participantes da Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
@@ -290,12 +355,22 @@ paths:
                 $ref: '#/components/schemas/DcmData'
         '502':
           description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a API de participantes do BACEN
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
@@ -322,12 +397,22 @@ paths:
                 $ref: '#/components/schemas/DcmData'
         '502':
           description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a API de participantes do BACEN
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
@@ -349,6 +434,11 @@ paths:
           description: Sucesso no processo de autorização
         '422':
           description: Erro no processo de autorização
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
@@ -365,18 +455,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/customers/v1/personal/identifications:
     get:
       tags:
@@ -389,18 +494,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/customers/v1/business/identifications:
     get:
       tags:
@@ -413,18 +533,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/customers/v1/personal/qualifications:
     get:
       tags:
@@ -437,18 +572,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/customers/v1/business/qualifications:
     get:
       tags:
@@ -461,18 +611,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/customers/v1/personal/complimentary-information:
     get:
       tags:
@@ -485,18 +650,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/customers/v1/business/complimentary-information:
     get:
       tags:
@@ -509,18 +689,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-acceptance-and-branches-abroad/v1/insurance-acceptance-and-branches-abroad:
     get:
       tags:
@@ -533,18 +728,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-acceptance-and-branches-abroad/v1/insurance-acceptance-and-branches-abroad/{policyId}/policy-info:
     get:
       tags:
@@ -558,18 +768,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-acceptance-and-branches-abroad/v1/insurance-acceptance-and-branches-abroad/{policyId}/premium:
     get:
       tags:
@@ -583,18 +808,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-acceptance-and-branches-abroad/v1/insurance-acceptance-and-branches-abroad/{policyId}/claim:
     get:
       tags:
@@ -608,18 +848,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-auto/v1/insurance-auto:
     get:
       tags:
@@ -632,18 +887,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-auto/v1/insurance-auto/{policyId}/policy-info:
     get:
       tags:
@@ -657,18 +927,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-auto/v1/insurance-auto/{policyId}/premium:
     get:
       tags:
@@ -682,18 +967,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-auto/v1/insurance-auto/{policyId}/claim:
     get:
       tags:
@@ -707,18 +1007,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-financial-risk/v1/insurance-financial-risk:
     get:
       tags:
@@ -731,18 +1046,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-financial-risk/v1/insurance-financial-risk/{policyId}/policy-info:
     get:
       tags:
@@ -756,18 +1086,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-financial-risk/v1/insurance-financial-risk/{policyId}/premium:
     get:
       tags:
@@ -781,18 +1126,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-financial-risk/v1/insurance-financial-risk/{policyId}/claim:
     get:
       tags:
@@ -806,18 +1166,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-housing/v1/insurance-housing:
     get:
       tags:
@@ -830,18 +1205,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-housing/v1/insurance-housing/{policyId}/policy-info:
     get:
       tags:
@@ -855,18 +1245,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-housing/v1/insurance-housing/{policyId}/premium:
     get:
       tags:
@@ -880,18 +1285,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-housing/v1/insurance-housing/{policyId}/claim:
     get:
       tags:
@@ -905,18 +1325,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-patrimonial/v1/insurance-patrimonial:
     get:
       tags:
@@ -929,18 +1364,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-patrimonial/v1/insurance-patrimonial/{policyId}/policy-info:
     get:
       tags:
@@ -954,18 +1404,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-patrimonial/v1/insurance-patrimonial/{policyId}/premium:
     get:
       tags:
@@ -979,18 +1444,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-patrimonial/v1/insurance-patrimonial/{policyId}/claim:
     get:
       tags:
@@ -1004,18 +1484,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-transport/v1/insurance-transport:
     get:
       tags:
@@ -1028,18 +1523,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-transport/v1/insurance-transport/{policyId}/policy-info:
     get:
       tags:
@@ -1053,18 +1563,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-transport/v1/insurance-transport/{policyId}/premium:
     get:
       tags:
@@ -1078,18 +1603,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-transport/v1/insurance-transport/{policyId}/claim:
     get:
       tags:
@@ -1103,18 +1643,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-responsibility/v1/insurance-responsibility:
     get:
       tags:
@@ -1127,18 +1682,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-responsibility/v1/insurance-responsibility/{policyId}/policy-info:
     get:
       tags:
@@ -1152,18 +1722,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-responsibility/v1/insurance-responsibility/{policyId}/premium:
     get:
       tags:
@@ -1177,18 +1762,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-responsibility/v1/insurance-responsibility/{policyId}/claim:
     get:
       tags:
@@ -1202,18 +1802,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-rural/v1/insurance-rural:
     get:
       tags:
@@ -1226,18 +1841,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-rural/v1/insurance-rural/{policyId}/policy-info:
     get:
       tags:
@@ -1251,18 +1881,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-rural/v1/insurance-rural/{policyId}/premium:
     get:
       tags:
@@ -1276,18 +1921,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-rural/v1/insurance-rural/{policyId}/claim:
     get:
       tags:
@@ -1301,18 +1961,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/contracts:
     get:
       tags:
@@ -1325,18 +2000,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{pensionIdentification}/contract-info:
     get:
       tags:
@@ -1350,18 +2040,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{pensionIdentification}/movements:
     get:
       tags:
@@ -1375,18 +2080,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{pensionIdentification}/portabilities:
     get:
       tags:
@@ -1400,18 +2120,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{pensionIdentification}/withdrawals:
     get:
       tags:
@@ -1425,18 +2160,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-pension-plan/v1/insurance-pension-plan/{pensionIdentification}/claim:
     get:
       tags:
@@ -1450,18 +2200,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/contracts:
     get:
       tags:
@@ -1474,18 +2239,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{pensionIdentification}/contract-info:
     get:
       tags:
@@ -1499,18 +2279,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{pensionIdentification}/movements:
     get:
       tags:
@@ -1524,18 +2319,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{pensionIdentification}/portabilities:
     get:
       tags:
@@ -1549,18 +2359,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{pensionIdentification}/withdrawals:
     get:
       tags:
@@ -1574,18 +2399,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-life-pension/v1/insurance-life-pension/{pensionIdentification}/claim:
     get:
       tags:
@@ -1599,18 +2439,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-person/v1/insurance-person:
     get:
       tags:
@@ -1623,18 +2478,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-person/v1/insurance-person/{policyId}/policy-info:
     get:
       tags:
@@ -1648,18 +2518,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-person/v1/insurance-person/{policyId}/claim:
     get:
       tags:
@@ -1673,18 +2558,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
   /proxy/open-insurance/insurance-person/v1/insurance-person/{policyId}/movements:
     get:
       tags:
@@ -1698,18 +2598,33 @@ paths:
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '504':
           description: Tempo limite de conexão excedido ao se comunicar com a transmissora
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         default:
           description: Segue o padrão de resposta definido pela Susep
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
 components:
   schemas:
     DcmData:
@@ -2279,6 +3194,31 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       additionalProperties: false
+    EnumOriginError:
+      type: string
+      enum:
+        - opus-tpp
+        - participant
+        - directory
+        - unknown
+      example: opus-tpp
+      description: |
+        Origem do erro reportado:
+        - **opus-tpp**: erro originado no Opus TPP.
+        - **participant**: erro originado na instituição transmissora ou detentora.
+        - **directory**: erro originado no Diretório de Participantes.
+        - **unknown**: origem não identificada.
+  headers:
+    xOriginError:
+      description: Indica a origem do erro.
+      schema:
+        $ref: '#/components/schemas/EnumOriginError'
+      required: false
+    xErrorSourceUrl:
+      description: URL da chamada que originou o erro, presente apenas quando `x-origin-error` = `participant`.
+      schema:
+        type: string
+      required: false
   parameters:
     applicationId:
       name: x-application-id
