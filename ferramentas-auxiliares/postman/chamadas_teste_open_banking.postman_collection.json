@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a55f5bf1-6354-47a5-9d83-23db8e8ee36f",
+		"_postman_id": "daed68ac-95c5-48e7-a07c-758406010ff6",
 		"name": "OpusTpp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "13040428"
+		"_exporter_id": "32857418"
 	},
 	"item": [
 		{
@@ -4365,7 +4365,9 @@
 									"var response = JSON.parse(responseBody);\r",
 									"postman.setEnvironmentVariable(\"consentId\", response.data.consentId);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -4383,6 +4385,11 @@
 							{
 								"key": "x-authorisation-server-id",
 								"value": "{{authorisationServerId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-flow-intent",
+								"value": "hybrid",
 								"type": "text"
 							}
 						],
@@ -4421,7 +4428,8 @@
 									"postman.setEnvironmentVariable(\"recurringConsentId\", response.data.recurringConsentId);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -4439,6 +4447,11 @@
 							{
 								"key": "x-authorisation-server-id",
 								"value": "{{authorisationServerId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-flow-intent",
+								"value": "hybvrid",
 								"type": "text"
 							}
 						],

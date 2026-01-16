@@ -68,6 +68,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/applicationId'
         - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/authorisationFlowIntent'
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a detentora de conta
@@ -896,6 +897,16 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       additionalProperties: false
+    EnumAuthorisationFlowIntent:
+      type: string
+      enum:
+        - hybrid
+        - fido
+        - ciba
+      example: hybrid
+      default: hybrid
+      description: |
+        Tipos de modelos de aprovação de consentimentos de pagamento
   parameters:
     applicationId:
       name: x-application-id
@@ -940,3 +951,10 @@ components:
         pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
         maxLength: 256
       example: 'urn:bancox:f865cd66-392a-420b-9ff0-1b6d7cc60ee0'
+    authorisationFlowIntent:
+      name: x-authorisation-flow-intent
+      required: false
+      description: Indicador de qual será o modelo de aprovação do consentimento de pagamento
+      in: header
+      schema:
+        $ref: '#/components/schemas/EnumAuthorisationFlowIntent'

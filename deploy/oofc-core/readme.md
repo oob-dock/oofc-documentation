@@ -212,6 +212,10 @@ e porte da empresa na criação de consentimentos PJ para o envio de eventos da
 Plataforma de Coleta de Métricas (PCM).
     * A URI está defina com o valor `https://0zxk5tr550.execute-api.sa-east-1.amazonaws.com/prod/v1/empresas`
     por padrão.
+* `pepper`: valor aleatório e criptograficamente forte, gerenciado internamente
+pela instituição. Recomenda-se um tamanho de 128 a 256 bits. Usado para criação
+do `tokenId`, identificador único de chamadas que auxilia na rastreabilidade de
+jornadas pela Plataforma de Coleta de Métricas do Open Finance Brasil.
 
 ```yaml
 env:
