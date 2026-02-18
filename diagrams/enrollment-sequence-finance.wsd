@@ -161,7 +161,7 @@ group Iniciação de pagamento sem redirecionamento
 
 group #B4F8C8 TPP realiza criação do consentimento de pagamento
 
-tpp->ooc:Cria o consentimento de pagamento:\n**POST /opus-open-finance/payments/v1/consents**
+tpp->ooc:Cria o consentimento de pagamento:\n**POST /opus-open-finance/payments/v1/consents** **OU**\n**POST /opus-open-finance/automatic-payments/v1/recurring-consents**
 
 activate tpp
 
@@ -194,7 +194,7 @@ group #B4F8C8 TPP realiza a autorização do consentimento de pagamento
 
 note over tpp: Após a autorização do consentimento\no status do consentimento de pagamento vai para AUTHORISED
 
-tpp->ooc: Cria a autorização do consentimento de pagamento:\n**POST /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise**
+tpp->ooc: Cria a autorização do consentimento de pagamento:\n**POST /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise** **OU**\n**POST /proxy/open-banking/enrollments/v2/recurring-consents/{recurringConsentId}/authorise**
 
 activate tpp
 
@@ -207,7 +207,7 @@ end
 
 group #B4F8C8 TPP realiza a criação do pagamento
 
-tpp->ooc: Cria a iniciação do pagamento:\n**POST /proxy/open-banking/payments/v4/pix/payments**
+tpp->ooc: Cria a iniciação do pagamento:\n**POST /proxy/open-banking/payments/v4/pix/payments** **OU**\n**POST /proxy/open-banking/automatic-payments/v2/pix/recurring-payments**
 
 activate tpp
 

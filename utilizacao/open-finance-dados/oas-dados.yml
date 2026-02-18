@@ -3722,7 +3722,7 @@
               permissions:
                 type: array
                 items:
-                  description: 'Especifica os tipos de permissões de acesso às APIs no escopo do Open Finance Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usuário e necessários ao acesso a cada endpoint das APIs.'
+                  description: 'Especifica os tipos de permissões de acesso às APIs no escopo do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os blocos de consentimento fornecidos pelo usuário e necessários ao acesso a cada endpoint das APIs. Esse array não deve ter duplicidade de itens.'
                   type: string
                   enum:
                     - ACCOUNTS_READ
@@ -3755,6 +3755,12 @@
                     - UNARRANGED_ACCOUNTS_OVERDRAFT_PAYMENTS_READ
                     - UNARRANGED_ACCOUNTS_OVERDRAFT_WARRANTIES_READ
                     - RESOURCES_READ
+                    - BANK_FIXED_INCOMES_READ
+                    - CREDIT_FIXED_INCOMES_READ
+                    - FUNDS_READ
+                    - VARIABLE_INCOMES_READ
+                    - TREASURE_TITLES_READ
+                    - EXCHANGES_READ
                 minItems: 1
                 maxItems: 30
                 example:
@@ -3762,11 +3768,22 @@
                   - ACCOUNTS_OVERDRAFT_LIMITS_READ
                   - RESOURCES_READ
               expirationDateTime:
-                description: 'Data e hora de expiração da permissão. De preenchimento obrigatório, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC(UTC time format).'
-                type: string
-                maxLength: 20
-                format: date-time
-                example: '2021-05-21T08:30:00Z'
+                  description: |
+                    Data e hora de expiração da permissão. Reflete a data limite de validade do consentimento.
+                    Uma string com data e hora conforme especificação RFC-3339, sempre com a utilização de timezone UTC (UTC time format).
+                    
+                    [Restrição] De preenchimento obrigatório nos casos em que houver validade determinada.
+                    Em casos de consentimento com prazo indeterminado o campo não deve ser enviado. 
+                  type: string
+                  maxLength: 20
+                  format: date-time
+                  pattern: '^(\d{4})-(1[0-2]|0?[1-9])-(3[01]|[12][0-9]|0?[1-9])T(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)Z$'
+                  example: '2021-05-21T08:30:00Z'
+              isLinked:
+                type: boolean
+                description: | 
+                    Campo para identificação de consentimento iniciado em Jornada Otimizada. [RESTRIÇÃO] Campo de preenchimento obrigatório para todo consentimento iniciado a partir da jornada otimizada, independente do status do consentimento.
+                example: true
             additionalProperties: false
         additionalProperties: false
       RetryConsentResponse:

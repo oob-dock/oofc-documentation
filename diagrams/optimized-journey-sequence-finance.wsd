@@ -1,0 +1,229 @@
+@startuml optimized-journey-sequence
+
+title Jornada Otimizada - Consentimento de Dados vinculado a Pagamento ou Vínculo de Dispositivo
+
+actor "Usuário\ncorrentista" as cliente
+participant "Browser/Mobile" as app
+participant "Backend TPP" as tpp
+participant "OOC" as ooc
+participant "Instituição\nDestino" as inst
+
+group "Algo" iniciando Jornada Otimizada
+
+cliente->app:Quero realizar um pagamento\ncom compartilhamento de dados\n(verificação de saldo)
+app<-->tpp:Fluxo front/back TPP
+
+end
+
+group Obtenção dos dados para consentimento
+
+group #B4F8C8 Listagem de instituições
+
+tpp->ooc:**GET /opus-open-finance/participants**
+activate tpp
+tpp<--ooc:Lista de marcas que suportam a operação desejada
+deactivate tpp
+
+end
+
+app<-->tpp:Fluxo front/back TPP
+cliente->app:Seleciona marca da Instituição Destino\ne outros dados necessários
+app<-->tpp:Fluxo front/back TPP
+
+end
+
+group Criação do consentimento secundário (dados)
+
+group #B4F8C8 TPP realiza intenção de consentimento de dados
+
+note over tpp: Consentimento secundário criado com:\n- isLinked: true\n- permissions: \nACCOUNTS_READ,\nACCOUNTS_BALANCES_READ,\nACCOUNTS_OVERDRAFT_LIMITS_READ,\nRESOURCES_READ
+
+tpp->ooc:Cria a intenção do consentimento de dados:\n**POST /opus-open-finance/consents/v1/consents**
+
+activate tpp
+
+ooc<-->inst:Fluxo de intenção\nde consentimento
+tpp<--ooc:Consentimento secundário criado\n(consentId secundário)
+
+deactivate tpp
+
+end
+
+end
+
+group Criação do consentimento primário (pagamento ou vínculo)
+
+group TPP realiza intenção de consentimento primário
+
+note over tpp: Consentimento primário vinculado ao secundário com:\n- journey.isLinked: true\n- journey.linkId: <consentId secundário>
+
+alt Pagamento com redirecionamento (Transferências Inteligentes)
+
+group #B4F8C8 TPP realiza intenção de consentimento
+
+tpp->ooc:Cria a intenção do consentimento de pagamento:\n**POST /opus-open-finance/automatic-payments/v1/recurring-consents**
+
+activate tpp
+
+ooc<-->inst:Fluxo de intenção\nde consentimento
+ooc<-->inst:Criação da URL\nde autorização
+tpp<--ooc:Redirecionamento do usuário para\nautorização na Instituição Destino
+
+deactivate tpp
+
+end
+
+tpp-->app:Redirecionamento do usuário para\nautorização na Instituição Destino
+
+app-->cliente:Redirecionamento do usuário para\nautorização na Instituição Destino
+
+group Aceite do consentimento na marca da Instituição Destino
+
+note over inst: Usuário aprova AMBOS os consentimentos\n(primário e secundário) em um único fluxo
+
+cliente->app:Informa credenciais e\naprova/rejeita consentimentos
+app<-->inst:Fluxo front/back\nInstituição Destino
+
+end
+
+group #B4F8C8 Fluxo final de autorização pelo aplicativo
+
+inst-->app: Aplicativo intercepta a rota  /opus-open-finance/automatic-payments/redirect-uri\nobtendo a query string ou fragment com o retorno do fluxo OIDC
+app<-->tpp:Fluxo front/back TPP
+tpp->ooc:Envia retorno do fluxo OIDC\n**POST /opus-open-finance/authorization-result**
+
+activate tpp
+ooc-->tpp: Retorna o resultado da autorização: sucesso (204) ou erro (422)
+deactivate tpp
+
+end
+
+group #B4F8C8 Fluxo final de autorização pelo browser
+
+ooc<--inst:Redirect com resultado\nda autorização
+ooc-->app: Informa resultado da autorização via\nURL de callback informada na\ncriação do consentimento
+
+end
+
+else Pagamento sem redirecionamento (Vínculo de Dispositivo)
+
+group #B4F8C8 TPP realiza criação do vínculo de dispositivo
+
+note over tpp: Após a criação do vínculo \nde dispositivo o status \né AWAITING_RISK_SIGNALS
+
+tpp->ooc:Cria o vínculo de dispositivo:\n**POST /opus-open-finance/enrollments/v1/enrollments**
+
+activate tpp
+
+ooc-->inst:Fluxo de criação\nde vínculo de dispositivo
+tpp<--inst:Resposta da criação\ndo vínculo de dispositivo
+
+deactivate tpp
+
+end
+
+note over tpp: O fluxo de vínculo de dispositivo continua\ncom envio de sinais de risco, autorização\ne registro FIDO conforme documentado\nno diagrama enrollment-sequence-finance
+
+note over inst: Durante a autorização do vínculo,\nAMBOS os consentimentos\n(vínculo e dados) são aprovados
+
+end
+
+end
+
+end
+
+alt Consentimentos autorizados - status AUTHORISED
+
+app<-->tpp:Fluxo front/back TPP
+
+cliente<--app:Consentimentos concluídos\n(primário e secundário)
+
+note over tpp:Consentimento primário e segundário autorizados.\nO consentimento secundário pode ser\nutilizado para consultar dados da conta,\ne o primário para realizar pagamentos.
+
+group Utilização do consentimento secundário (dados)
+
+group #B4F8C8 TPP consulta saldo para verificação
+
+tpp->ooc:Consulta dados da conta com o consentimento secundário:\n**GET /proxy/open-banking/accounts/v2/accounts** **OU**\n**GET /proxy/open-banking/accounts/v2/accounts/{accountId}/balances** **OU**\n**GET /proxy/open-banking/accounts/v2/accounts/{accountId}/overdraft-limits**
+
+activate tpp
+
+ooc-->inst:Fluxo de consulta\nde dados
+tpp<--inst:Dados da conta e saldo
+
+deactivate tpp
+
+end
+
+app<--tpp:Retorna informações de saldo
+cliente<--app:Visualiza saldo disponível
+
+end
+
+group Utilização do consentimento primário (pagamento)
+
+note over tpp:O fluxo de pagamento segue\nconforme orientado em payment-sequence-finance\nou enrollment-sequence-finance
+
+end
+
+else Consentimentos rejeitados - status REJECTED
+
+app<-->tpp:Fluxo front/back TPP
+
+cliente<--app:Consentimentos rejeitados
+
+note over tpp:Ambos os consentimentos são rejeitados.\nNão será possível prosseguir.
+
+else Erro durante autorização - status AWAITING_AUTHORISATION
+
+app<-->tpp:Fluxo front/back TPP
+
+cliente<--app:Erro no consentimento
+
+note over tpp: É possível utilizar a operação de\nauthorisation-retry do consentimento primário\npara renovar a URL de autorização.
+
+end
+
+group Revogação de consentimentos
+
+note over tpp: O usuário pode revogar o consentimento secundário\nsem impactar o primário.\n\nMAS ao revogar o consentimento primário,\no secundário é automaticamente revogado.
+
+alt Revogação apenas do consentimento secundário (dados)
+
+group #B4F8C8 TPP revoga consentimento de dados
+
+tpp->ooc:Revoga consentimento de dados:\n**DELETE /proxy/open-banking/consents/v2/consents/{consentId}**
+
+activate tpp
+
+ooc-->inst:Fluxo de revogação
+tpp<--inst:Consentimento de dados revogado
+
+deactivate tpp
+
+end
+
+note over tpp:O consentimento de pagamento permanece ativo.\nPara recuperar acesso aos dados,\né necessário criar um novo consentimento secundário.
+
+else Revogação do consentimento primário (pagamento/vínculo)
+
+group #B4F8C8 TPP revoga consentimento de pagamentos
+
+tpp->ooc:Revoga consentimento de pagamento:\n**PATCH /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}** **OU**\n**PATCH /proxy/open-banking/enrollments/v1/enrollments/{enrollmentId}**
+
+activate tpp
+
+ooc-->inst:Fluxo de revogação
+tpp<--inst:Consentimento primário revogado
+
+deactivate tpp
+
+end
+
+note over tpp:Ao revogar o consentimento primário,\no consentimento secundário (dados)\nÉ AUTOMATICAMENTE REVOGADO.
+
+end
+
+end
+
+@enduml

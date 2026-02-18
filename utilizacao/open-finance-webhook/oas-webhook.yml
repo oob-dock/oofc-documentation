@@ -37,6 +37,7 @@ paths:
             type: string
         - name: x-webhook-interaction-id
           in: header
+          required: true
           schema:
             type: string
       responses:
@@ -70,6 +71,7 @@ paths:
             type: string
         - name: x-webhook-interaction-id
           in: header
+          required: true
           schema:
             type: string
       responses:
@@ -103,6 +105,7 @@ paths:
             type: string
         - name: x-webhook-interaction-id
           in: header
+          required: true
           schema:
             type: string
       responses:
@@ -138,6 +141,7 @@ paths:
             type: string
         - name: x-webhook-interaction-id
           in: header
+          required: true
           schema:
             type: string
       responses:
@@ -171,6 +175,12 @@ paths:
             type: string
         - name: x-webhook-interaction-id
           in: header
+          required: true
+          schema:
+            type: string
+        - name: x-authorization-server-id
+          in: header
+          required: true
           schema:
             type: string
       responses:
@@ -193,8 +203,11 @@ components:
             timestamp:
               type: string
               example: '2024-09-02T08:30:00Z'
+            eventType:
+              $ref: '#/components/schemas/EventType'
           required:
             - timestamp
+            - eventType
       required:
         - data
     webhookResponse:
@@ -210,3 +223,12 @@ components:
             - timestamp
       required:
         - data
+    EventType:
+      type: string
+      enum:
+        - STATE_CHANGED
+        - DATA_CHANGED
+      description:  |
+        Tipo de evento que disparou a notificação via webhook.  
+        - STATE_CHANGED: Indica que o estado do consentimento, do pagamento ou do vínculo de dispositivo foi alterado.  
+        - DATA_CHANGED: Indica que dados do consentimento ou do vínculo de dispositivo foram alterados.

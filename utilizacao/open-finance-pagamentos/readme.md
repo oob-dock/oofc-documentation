@@ -794,6 +794,65 @@ Request Body:
 }
 ```
 
+- **Versão 2**: `POST /proxy/open-banking/enrollments/v2/recurring-consents/{recurringConsentId}/authorise`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503617/v2.1.0+-+SV+V+nculo+de+dispositivo)
+
+Autorização de um consentimento de Pix Automático em status AWAITING_AUTHORISATION
+a partir do access_token emitido pela jornada sem redirecionamento e envio de
+sinais de risco. Consentimentos de alçadas únicas devem transitar para o status
+AUTHORISED na execução com sucesso desse método. Para consentimentos com
+múltiplas alçadas aprovadoras, o consentimento deverá permanecer em PARTIALLY_ACCEPTED
+até que todos os aprovadores tenham autorizado. Em caso de falha de negócio
+(HTTP Status Code 422), o consentimento de pagamento deve transitar para o
+status REJECTED e seguir os motivos de rejeição presentes na API de pagamentos Automáticos.
+Caso a detentora identifique que a conta de débito informada pelo iniciador na criação
+do consentimento diverge da conta de débito vinculada ao dispositivo, o detentor
+deve retornar neste método o erro HTTP 422 com código
+CONTA_DEBITO_DIVERGENTE_CONSENTIMENTO_VINCULO e rejeitar o consentimento com o
+motivo CONTA_NAO_PERMITE_PAGAMENTO. Se o iniciador, durante a criação do
+consentimento, omitir a conta de débito, o detentor deve considerar a conta de
+débito associada ao vínculo autorizado para o preenchimento do objeto
+/data/debtorAccount, presente no consentimento. Os limites relacionados ao vínculo
+não devem ser validados durante o processo de autorização deste consentimento nem
+durante o ciclo de vida.
+
+Exemplo de request:
+
+Request Body:
+
+```json
+{
+  "data": {
+    "enrollmentId": "urn:amazingbank:c25ddb43-08e5-47a7-b0f5-982b11fb3207",
+    "riskSignals": {
+      "screenBrightness": 90,
+      "deviceId": "5ad82a8f-37e5-4369-a1a3-be4b1fb9c034",
+      "isRootedDevice": true,
+      "elapsedTimeSinceBoot": 28800000,
+      "osVersion": "16.6",
+      "userTimeZoneOffset": "-03",
+      "language": "pt",
+      "accountTenure": "2023-01-01",
+      "screenDimensions": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    "fidoAssertion": {
+    "id": "5q3_lJE9-dt1Cktq8xvxEyhTM7G7VWaRab-V5p4uyTs",
+    "rawId": "5q3_lJE9-dt1Cktq8xvxEyhTM7G7VWaRab-V5p4uyTs",
+    "response": {
+      "clientDataJSON": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiTGFsSDVQNWJSbmEwRzhNU0RHWDdxdyIsIm9yaWdpbiI6Imh0dHBzOi8vZGVtby1hcHAtcGl4Lm9wdXMtc29mdHdhcmUuY29tLmJyIiwiY3Jvc3NPcmlnaW4iOmZhbHNlfQ",
+      "authenticatorData": "rE5ecEHcJknskhWmjFmogJ8AEaQjteWvBiAg4q5L2QYdAAAAAA",
+      "signature": "MEUCIQDysZDlRUPO43O5wfmWZ4MYOnYJS0u0uEaLH-_bYlF7JQIgJYbQnjmFsC9d0BSCZibTHwV0hutGfasgRdf61ulLzxg",
+      "userHandle": null
+    },
+    "type": "public-key"
+  }
+  }
+}
+```
+
 ## APIs
 
 | Tipo Request   | Endpoint                                                                                             | Descrição                                     | Sucesso  |
@@ -827,6 +886,7 @@ Request Body:
 | POST           | /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options              | Obtenção de parâmetros para criação de credenciais FIDO2                  | 201      |
 | POST           | /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration                      | Associação da credencial FIDO2 ao vínculo de conta                           | 201      |
 | POST           | /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise                                    | Autorização de um consentimento de pagamentos na jornada sem redirecionamento | 201      |
+| POST           | /proxy/open-banking/enrollments/v2/recurring-consents/{recurringConsentId}/authorise                                    | Autorização de um consentimento de pagamentos automáticos na jornada sem redirecionamento | 201      |
 
 ## Orientações importantes
 

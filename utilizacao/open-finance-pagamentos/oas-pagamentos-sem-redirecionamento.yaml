@@ -19,6 +19,9 @@ tags:
   - name: Consentimento
     description: |-
       Autorização de consentimentos criados via fluxo sem redirecionamento.
+  - name: Pix Automático
+    description: |-
+      Autorização de consentimentos de Pix Automático criados via fluxo sem redirecionamento.
 servers:
   - url: https://open-finance-core.instituicao.com.br
 paths:
@@ -531,6 +534,49 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+  /proxy/open-banking/enrollments/v2/recurring-consents/{recurringConsentId}/authorise:
+    post:
+      tags:
+        - Pix Automático
+      operationId: authorizeRecurringConsent
+      description: |
+        Autorização de um consentimento de Pix Automático em status AWAITING_AUTHORISATION a partir do access_token emitido pela jornada sem redirecionamento e envio de sinais de risco. Consentimentos de alçadas únicas devem transitar para o status AUTHORISED na execução com sucesso desse método. Para consentimentos com múltiplas alçadas aprovadoras, o consentimento deverá permanecer em PARTIALLY_ACCEPTED até que todos os aprovadores tenham autorizado. Em caso de falha de negócio (HTTP Status Code 422), o consentimento de pagamento deve transitar para o status REJECTED e seguir os motivos de rejeição presentes na API de pagamentos Automáticos.
+        Caso a detentora identifique que a conta de débito informada pelo iniciador na criação do consentimento diverge da conta de débito vinculada ao dispositivo, o detentor deve retornar neste método o erro HTTP 422 com código CONTA_DEBITO_DIVERGENTE_CONSENTIMENTO_VINCULO e rejeitar o consentimento com o motivo CONTA_NAO_PERMITE_PAGAMENTO.
+        Se o iniciador, durante a criação do consentimento, omitir a conta de débito, o detentor deve considerar a conta de débito associada ao vínculo autorizado para o preenchimento do objeto /data/debtorAccount, presente no consentimento.
+        Os limites relacionados ao vínculo não devem ser validados durante o processo de autorização deste consentimento nem durante o ciclo de vida.
+      summary: Autorização de um consentimento de Pix Automático na jornada sem redirecionamento
+      externalDocs:
+        description: Open Finance - API Enrollments for Payment Initiation
+        url: https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentAuthorization'
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/recurringConsentId'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
 components:
   schemas:
     UUID:
@@ -755,6 +801,8 @@ components:
               $ref: '#/components/schemas/BusinessEntity'
             debtorAccount:
               $ref: '#/components/schemas/DebtorAccount'
+            journey:
+              $ref: '#/components/schemas/EnrollmentJourney'
             enrollmentName:
               description: |
                 [Restrição] Deve ser preenchido sempre que o usuário pagador inserir alguma informação no nome do vínculo/dispositivo tanto no iniciador como no detentor de conta
@@ -1134,26 +1182,47 @@ components:
           type: object
           description: |
             Objeto que contém as informações sobre a Relying Party e a plataforma sobre a qual o usuário está utilizando o serviço da iniciadora para utilização de FIDO2.
-          required:
-            - rp
-            - platform
-            - consentId
-          properties:
-            rp:
-              type: string
-              description: Identificador único da Relying Party, que corresponde ao valor do CN do certificado de transporte da iniciadora.
-            platform:
-              type: string
-              description: |
-                Indica a plataforma em que o usuário criará a nova credencial FIDO2. 
-                Este campo permite que o servidor FIDO inclua extensões de acordo com a plataforma utilizada.
-              enum:
-                - ANDROID
-                - BROWSER
-                - CROSS_PLATFORM
-                - IOS
-            consentId:
-              $ref: '#/components/parameters/consentId'
+          oneOf:
+            - required:
+              - rp
+              - platform
+              - consentId
+              properties:
+                rp:
+                  type: string
+                  description: Identificador único da Relying Party, que corresponde ao valor do CN do certificado de transporte da iniciadora.
+                platform:
+                  type: string
+                  description: |
+                    Indica a plataforma em que o usuário criará a nova credencial FIDO2. 
+                    Este campo permite que o servidor FIDO inclua extensões de acordo com a plataforma utilizada.
+                  enum:
+                    - ANDROID
+                    - BROWSER
+                    - CROSS_PLATFORM
+                    - IOS
+                consentId:
+                  $ref: '#/components/schemas/consentId'
+            - required:
+              - rp
+              - platform
+              - recurringConsentId
+              properties:
+                rp:
+                  type: string
+                  description: Identificador único da Relying Party, que corresponde ao valor do CN do certificado de transporte da iniciadora.
+                platform:
+                  type: string
+                  description: |
+                    Indica a plataforma em que o usuário criará a nova credencial FIDO2. 
+                    Este campo permite que o servidor FIDO inclua extensões de acordo com a plataforma utilizada.
+                  enum:
+                    - ANDROID
+                    - BROWSER
+                    - CROSS_PLATFORM
+                    - IOS
+                recurringConsentId:
+                  $ref: '#/components/schemas/recurringConsentIdSignOptions'
     EnrollmentFidoSignOptionsResponse:
       type: object
       required:
@@ -1514,6 +1583,69 @@ components:
                   type: object
                   description: Estrutura para extensão de resultados
                   additionalProperties: true
+    enrollmentId:
+      type: string
+      maxLength: 256
+      pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
+      example: 'urn:bancoex:C1DD33123'
+      description: |
+        Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+        Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+        Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+        seja um identificador de recurso persistente e independente da localização.
+        Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
+        - o namespace(urn)
+        - o identificador associado ao namespace da instituição detentora de conta (bancoex)
+        - o identificador específico dentro do namespace (C1DD33123).
+        Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+    recurringConsentIdSignOptions:
+      type: string
+      pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
+      maxLength: 256
+      description: |
+        Identificador único do consentimento de longa duração criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name. 
+        Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+        Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+        seja um identificador de recurso persistente e independente da localização. 
+        Considerando a string urn:bancoex:C1DD33123 como exemplo para `recurringConsentId` temos:
+        - o namespace(urn)
+        - o identificador associado ao namespace da instituição transmissora (bancoex)
+        - o identificador específico dentro do namespace (C1DD33123).  
+        Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+    consentId:
+      type: string
+      maxLength: 256
+      pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
+      description: |
+        O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+        Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+        Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+        seja um identificador de recurso persistente e independente da localização.  
+        Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+        - o namespace(urn)
+        - o identificador associado ao namespace da instituição detentora de conta (bancoex) 
+        - o identificador específico dentro do namespace (C1DD33123).  
+    EnrollmentJourney:
+      type: object
+      required:
+        - isLinked
+        - linkId
+      description: | 
+        Informações adicionais sobre o contexto de Jornada Otimizada.  
+        [RESTRIÇÃO] Objeto de envio obrigatório quando o usuário manifestar consentimento para compartilhamento de saldo através da Jornada Otimizada, independente do status do consentimento de dados”
+      properties:
+        isLinked:
+          type: boolean
+          example: false
+          description: |
+            Campo para identificação de consentimento iniciado em Jornada Otimizada.
+        linkId:
+          type: string
+          pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+          maxLength: 256
+          example: urn:bancoex:C1DD331237
+          description: |
+            Identificador do consentimento de dados ao qual este consentimento está vinculado.
     EnumOriginError:
       type: string
       enum:
@@ -1556,38 +1688,53 @@ components:
         $ref: '#/components/schemas/UUID'
     enrollmentId:
       name: enrollmentId
-      required: true
       in: path
+      required: true
       description: |
-        Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - 
-        Uniform Resource Name. Um URN, conforme definido na RFC8141 é um Uniform Resource Identifier - URI - que é 
-        atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN seja um identificador
-        de recurso persistente e independente da localização. Considerando a string urn:bancoex:C1DD33123 
-        como exemplo para enrollmentId temos:
+        Identificador único do vínculo de conta criado para a iniciação de pagamento solicitada. Deverá ser um URN - Uniform Resource Name.
+        Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource
+        Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN
+        seja um identificador de recurso persistente e independente da localização.
+        Considerando a string urn:bancoex:C1DD33123 como exemplo para enrollmentId temos:
         - o namespace(urn)
-        - o identificador associado ao namespace da instituição transnmissora (bancox)
-        - o identificador específico dentro do namespace (f865cd66-392a-420b-9ff0-1b6d7cc60ee0).
+        - o identificador associado ao namespace da instituição detentora de conta (bancoex)
+        - o identificador específico dentro do namespace (C1DD33123).
         Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
       schema:
-        type: string
-        pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
-        maxLength: 256
-      example: 'urn:bancox:f865cd66-392a-420b-9ff0-1b6d7cc60ee0'
+        $ref: '#/components/schemas/enrollmentId'
     consentId:
       name: consentId
-      required: true
       in: path
       description: |
-        O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.
-        Um URN, conforme definido na RFC8141 é um Uniform Resource Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN seja um identificador de recurso persistente e independente da localização.
+        O consentId é o identificador único do consentimento e deverá ser um URN - Uniform Resource Name.  
+        Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+        Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+        seja um identificador de recurso persistente e independente da localização.  
         Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
-
-        - namespace(urn)
-        - identificador associado ao namespace da instituição detentora de conta (bancoex)
-        - identificador específico dentro do namespace (C1DD33123).
-        Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na RFC8141.
+        - o namespace(urn)
+        - o identificador associado ao namespace da instituição detentora de conta (bancoex) 
+        - o identificador específico dentro do namespace (C1DD33123).  
+        Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+      required: true
       schema:
         type: string
-        pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
+        pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
         maxLength: 256
-      example: 'urn:bancox:f865cd66-392a-420b-9ff0-1b6d7cc60ee0'
+    recurringConsentId:
+      name: recurringConsentId
+      in: path
+      description: |
+        O `recurringConsentId` é o identificador único do consentimento de longa duração e deverá ser um URN - Uniform Resource Name.  
+        Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141) é um Uniform Resource 
+        Identifier - URI - que é atribuído sob o URI scheme "urn" e um namespace URN específico, com a intenção de que o URN 
+        seja um identificador de recurso persistente e independe da localização.  
+        Considerando a string urn:bancoex:C1DD33123 como exemplo para `recurringConsentId` temos:
+        - o namespace(urn)
+        - o identificador associado ao namespace da instituição detentora (bancoex).
+        - o identificador específico dentro do namespace (C1DD33123).  
+        Informações mais detalhadas sobre a construção de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+      required: true
+      schema:
+        type: string
+        pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
+        maxLength: 256

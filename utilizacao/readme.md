@@ -27,15 +27,15 @@ instituição no Diretório de Participantes.
 
 ## Fluxo de solicitação de consentimento
 
-O fluxo para solicitação de consentimentos é muito similar
-para recepção de dados e para iniciação de pagamento,
-com diferença em apenas uma chamada.
+O fluxo para solicitação de consentimentos é muito similar para recepção de dados
+e para pagamentos, com diferença em apenas uma chamada, como mostra abaixo tanto para
+Open Finance quanto para Open Insurance.
 
-Para o Open Finance temos o seguinte diagrama:
+Para o Open Finance:
 
 ![Diagrama de sequência](../out/diagrams/consent-sequence-finance/consent-sequence.png)
 
-Para o Open Insurance temos o seguinte diagrama:
+Para o Open Insurance:
 
 ![Diagrama de sequência](../out/diagrams/consent-sequence-insurance/consent-sequence.png)
 
@@ -43,8 +43,7 @@ Para o Open Insurance temos o seguinte diagrama:
 
 Esta chamada retorna a lista de *marcas* de instituições cadastradas no
 Diretório de Participantes do Open Finance Brasil
-ou Open Insurance Brasil que suportam as operações selecionadas,
-exemplo: *"instituições que suportam pagamento Pix"*.
+ou Open Insurance Brasil que suportam as operações selecionadas.
 
 Existem dois tipos básicos de ***Instituições Destino***,
 que podem também ser filtradas de acordo com as operações que suportam:
@@ -262,6 +261,12 @@ que deverá ser utilizado nas etapas seguintes.
 
 O status do vínculo de dispositivo após esta etapa é **AWAITING_RISK_SIGNALS**.
 
+A criação do vínculo poderá ser para aprovação de consentimentos de pagamentos
+ou de transferências inteligentes. O que define isso é as permissões usadas no
+corpo da requisição. Não é possível criar um vinculo com permissões para aprovação
+de ambos os tipos de consentimentos. Para isso, é necessário criar dois vínculos
+com permissões distintas e aprovar em fluxos separados.
+
 **Importante**: Caso a instituição (Detentora) disponibilize mais de uma
 versão de API, a chamada será realizada sempre com a maior versão, ou seja,
 se disponível a versão 1 e versão 2 a chamada será através da versão 2.
@@ -343,9 +348,12 @@ O status do vínculo de dispositivo após esta etapa vai para **AUTHORISED**.
 Depois que o vínculo de dispositivo é aprovado, ele pode ser utilizado para
 intenção do consentimento de pagamento.
 
-Para isso, é necessário iniciar uma intenção de consentimento de pagamento via:
+Para isso, é necessário iniciar uma intenção de consentimento de pagamento através
+de algum dos seguintes endpoints a depender do fluxo ser de pagamento ou
+trasnferências inteligentes:
 
 - POST /opus-open-finance/payments/v1/consents
+- POST /opus-open-finance/automatic-payments/v1/recurring-consents
 
 ### 9 - Obtenção dos parâmetros para autenticação FIDO
 
@@ -359,6 +367,11 @@ o usuário está utilizando o serviço da iniciadora para utilização de FIDO2.
 E envia o ID da intenção de consentimento de pagamento para atrelar
 o consentimento ao vículo de dispositivo.
 
+Neste endpoint, é importante enviar o `id` do consentimento a ser aprovado no
+corpo da requisição. Se o consentimento for de pagamento, deve ser enviado o
+`consentId`. Se o consentimento for de transferências de inteligentes, deve ser
+enviado o `recurringConsentId`.
+
 Após a obtenção dos parâmetros para autenticação é necessário que o usuário
 realize o gesto de autenticação (ex.: biometria, PIN) e envie os dados
 (ex.: fidoAssertion, sinais de risco) para o Opus Open Client.
@@ -368,14 +381,64 @@ realize o gesto de autenticação (ex.: biometria, PIN) e envie os dados
 Após o usuário realizar a autenticação FIDO2 é necessário realizar
 a autorização do consentimento de pagamento.
 
-Nesta etapa o endpoint utilizado é:
+Nesta etapa o endpoint utilizado será algum destes a depender se o consentimento
+a ser aprovado é de pagamento ou trasnferências inteligentes.
 
 - POST /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise
+- POST /proxy/open-banking/enrollments/v2/recurring-consents/{recurringConsentId}/authorise
 
 Está chamada envia os sinais de risco e os dados da asserção FIDO2 para
 a Instituição Destino.
 
-Após a autorização do consentimento o status do consentimento de pagamento vai
-para **AUTHORISED**
+Após a autorização do consentimento o status do consentimento vai para **AUTHORISED**
 
 Com isso, a iniciação do pagamento pode ser realizado no padrão dos demais fluxos.
+
+## Fluxo Jornada Otimizada
+
+Jornada Otimizada tem como objetivo simplificar o fluxo, permitindo o compartilhamento de
+dados a partir da jornada de pagamentos em um processo unificado, reduzindo problemas
+de pagamentos sem saldo disponível. É possível compartilhar dados da conta a partir de
+dois produtos de pagamento: Transferências Inteligentes e Jornada Sem Redirecionamento.
+
+Na Jornada Otimizada, são gerados dois consentimentos: o consentimento de pagamentos,
+considerado primário, e o consentimento de dados, considerado secundário. O usuário
+pode revogar o consentimento de dados sem revogar o consentimento de pagamentos.
+Ao revogar o consentimento de pagamentos, o consentimento de dados relacionado deve
+ser automaticamente revogado. Em caso de cancelamento apenas do consentimento de
+dados, o usuário precisará conceder um novo consentimento de dados para que o saldo
+volte a ficar disponível.
+
+Para executar a Jornada Otimizada, primeiro deve ser criada a intenção de
+consentimento de transmissão de dados, informando no corpo da requisição que se
+trata de um consentimento secundário através do campo "isLinked".
+
+```json
+"isLinked": true
+```
+
+As permissões devem ser exatamente estas:
+
+```json
+"permissions": [
+  "ACCOUNTS_READ",
+  "ACCOUNTS_BALANCES_READ",
+  "ACCOUNTS_OVERDRAFT_LIMITS_READ",
+  "RESOURCES_READ"
+]
+```
+
+Em seguida, deve ser criada a intenção de consentimento de pagamento ou de
+vínculo de dispositivo, passando o ID do consentimento secundário da seguinte maneira:
+
+```json
+"journey":{
+  "isLinked": true,
+  "linkId": "consentId"
+}
+```
+
+Após a aprovação do consentimento primário, o consentimento secundário também será
+aprovado automaticamente. Após isso, é possível acessar os dados da conta consentida
+usando o ID do consentimento secundário. O fluxo de pagamento segue conforme orientado
+em outros tópicos.

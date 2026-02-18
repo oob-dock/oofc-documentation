@@ -4480,6 +4480,63 @@
 					"response": []
 				},
 				{
+					"name": "opus-open-finance/automatic-payments/v1/recurring-consents - Pix Automático",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"recurringConsentId\", response.data.recurringConsentId);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"callbackApplicationUri\":\"https://www.google.com/\",\r\n    \"creditors\": [\r\n      {\r\n        \"personType\": \"PESSOA_JURIDICA\",\r\n        \"cpfCnpj\": \"04913129000656\",\r\n        \"name\": \"Joao Silva\"\r\n      }\r\n    ],\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"12312312387\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"additionalInformation\": \"Minha recorrência\",\r\n    \"debtorAccount\": {\r\n      \"number\": \"600130\",\r\n      \"accountType\": \"TRAN\",\r\n      \"ispb\": \"11703662\",\r\n      \"issuer\": \"0001\"\r\n    },\r\n    \"recurringConfiguration\": {\r\n      \"automatic\": {\r\n        \"contractId\": \"XE00038166201907261559y6j6\",\r\n        \"referenceStartDate\": \"2026-03-04\",\r\n        \"maximumVariableAmount\": \"1000.12\",\r\n        \"interval\": \"MENSAL\",\r\n        \"month\": \"FEVEREIRO\",\r\n        \"contractDebtor\": {\r\n          \"name\": \"Policarpo Quaresma\",\r\n          \"document\": {\r\n            \"identification\": \"04913129000656\",\r\n            \"rel\": \"CNPJ\"\r\n          }\r\n        },\r\n        \"firstPayment\": {\r\n          \"type\": \"PIX\",\r\n          \"date\": \"2026-01-13\",\r\n          \"currency\": \"BRL\",\r\n          \"amount\": \"100.12\",\r\n          \"remittanceInformation\": \"Pagamento da nota RSTO035-002\",\r\n          \"creditorAccount\": {\r\n            \"number\": \"12345678\",\r\n            \"accountType\": \"CACC\",\r\n            \"ispb\": \"99999004\",\r\n            \"issuer\": \"0001\"\r\n          }\r\n        },\r\n        \"minimumVariableAmount\": \"1.12\",\r\n        \"isRetryAccepted\": false\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/automatic-payments/v1/recurring-consents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"automatic-payments",
+								"v1",
+								"recurring-consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "opus-open-finance/automatic-payments/v1/recurring-consents/{recurringConsentId}",
 					"event": [
 						{
@@ -5155,11 +5212,16 @@
 										"value": "a7737591-f0a3-4ca1-a55e-3783dd53c001",
 										"type": "text",
 										"disabled": true
+									},
+									{
+										"key": "x-authorization-server-id",
+										"value": "authorization-server-id",
+										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"data\": {\r\n    \"timestamp\": \"2024-09-02T08:30:00Z\"\r\n  }\r\n}",
+									"raw": "{\r\n  \"data\": {\r\n    \"timestamp\": \"2024-09-02T08:30:00Z\",\r\n    \"eventType\": \"STATE_CHANGED\"\r\n  }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5192,7 +5254,7 @@
 			"name": "Iniciação de Vinculo de dispositivo",
 			"item": [
 				{
-					"name": "opus-open-finance/enrollments/v1/enrollments",
+					"name": "opus-open-finance/enrollments/v1/enrollments - Payment",
 					"event": [
 						{
 							"listen": "test",
@@ -5202,7 +5264,8 @@
 									"postman.setEnvironmentVariable(\"enrollmentId\", response.data.enrollmentId);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -5223,6 +5286,60 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"data\": {\r\n    \"callbackApplicationUri\": \"https://oob4tpp-callback-url.com/\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"12312312387\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n      \"PAYMENTS_INITIATE\"\r\n    ],\r\n    \"debtorAccount\": {\r\n      \"ispb\": \"12345678\",\r\n      \"issuer\": \"1774\",\r\n      \"number\": \"1234567890\",\r\n      \"accountType\": \"CACC\"\r\n    },\r\n    \"enrollmentName\": \"Nome Dispositivo\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"enrollments",
+								"v1",
+								"enrollments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "opus-open-finance/enrollments/v1/enrollments - Recurring Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"enrollmentId\", response.data.enrollmentId);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"callbackApplicationUri\": \"https://oob4tpp-callback-url.com/\",\r\n    \"loggedUser\": {\r\n      \"document\": {\r\n        \"identification\": \"12312312387\",\r\n        \"rel\": \"CPF\"\r\n      }\r\n    },\r\n    \"permissions\": [\r\n      \"RECURRING_PAYMENTS_INITIATE\"\r\n    ],\r\n    \"debtorAccount\": {\r\n      \"ispb\": \"12345678\",\r\n      \"issuer\": \"1774\",\r\n      \"number\": \"1234567890\",\r\n      \"accountType\": \"CACC\"\r\n    },\r\n    \"enrollmentName\": \"Nome Dispositivo\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5277,6 +5394,48 @@
 					"response": []
 				},
 				{
+					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/risk-signals",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"deviceId\": \"00aa11bb22cc33dd\",\r\n    \"isRootedDevice\": false,\r\n    \"screenBrightness\": 255,\r\n    \"elapsedTimeSinceBoot\": 6356027,\r\n    \"osVersion\": \"14\",\r\n    \"userTimeZoneOffset\": \"-03\",\r\n    \"language\": \"pt\",\r\n    \"screenDimensions\": {\r\n      \"height\": 2340,\r\n      \"width\": 1080\r\n    },\r\n    \"accountTenure\": \"2023-08-20\",\r\n    \"geolocation\": {\r\n      \"latitude\": -15.738602,\r\n      \"longitude\": -47.926498,\r\n      \"type\": \"FINE\"\r\n    },\r\n    \"isCallInProgress\": false,\r\n    \"isDevModeEnabled\": false,\r\n    \"isMockGPS\": false,\r\n    \"isEmulated\": false,\r\n    \"isMonkeyRunner\": false,\r\n    \"isCharging\": false,\r\n    \"antennaInformation\": \"CellIdentityLte:{ mCi=2******60 mPci=274 mTac=5***1 mEarfcn=9510 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=10 mAlphaLong=VIVO mAlphaShort=VIVO mAdditionalPlmns={} mCsgInfo=null}, CellIdentityLte:{ mCi=1*****01 mPci=361 mTac=3***6 mEarfcn=9410 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=03 mAlphaLong=TIMBRASIL mAlphaShort=TIMBRASIL mAdditionalPlmns={} mCsgInfo=null}\",\r\n    \"isUsbConnected\": false,\r\n    \"integrity\": {\r\n      \"appRecognitionVerdict\": \"PLAY_RECOGNIZED\",\r\n      \"deviceRecognitionVerdict\": \"[\\\\\\\"MEETS_DEVICE_INTEGRITY\\\\\\\"]\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}/risk-signals",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"enrollments",
+								"v1",
+								"enrollments",
+								"{{enrollmentId}}",
+								"risk-signals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}",
 					"request": {
 						"method": "PATCH",
@@ -5312,48 +5471,6 @@
 								"v1",
 								"enrollments",
 								"{{enrollmentId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-application-id",
-								"value": "{{applicationId}}",
-								"type": "text"
-							},
-							{
-								"key": "x-authorisation-server-id",
-								"value": "{{authorisationServerId}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"rp\": \"tpp-client1.127.0.0.1.nip.io\",\r\n    \"platform\": \"ANDROID\",\r\n    \"consentId\": \"{{consentId}}\"\r\n  }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}/fido-sign-options",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"opus-open-finance",
-								"enrollments",
-								"v1",
-								"enrollments",
-								"{{enrollmentId}}",
-								"fido-sign-options"
 							]
 						}
 					},
@@ -5446,6 +5563,48 @@
 					"response": []
 				},
 				{
+					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options - Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"rp\": \"demo-app-pix.opus-software.com.br\",\r\n    \"platform\": \"ANDROID\",\r\n    \"consentId\": \"{{consentId}}\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}/fido-sign-options",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"opus-open-finance",
+								"enrollments",
+								"v1",
+								"enrollments",
+								"{{enrollmentId}}",
+								"fido-sign-options"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "proxy-open-banking/enrollments/v2/consents/{consentId}/authorise",
 					"request": {
 						"method": "POST",
@@ -5489,7 +5648,7 @@
 					"response": []
 				},
 				{
-					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/risk-signals",
+					"name": "opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/fido-sign-options - Recurring Payment",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -5506,7 +5665,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": {\r\n    \"deviceId\": \"00aa11bb22cc33dd\",\r\n    \"isRootedDevice\": false,\r\n    \"screenBrightness\": 255,\r\n    \"elapsedTimeSinceBoot\": 6356027,\r\n    \"osVersion\": \"14\",\r\n    \"userTimeZoneOffset\": \"-03\",\r\n    \"language\": \"pt\",\r\n    \"screenDimensions\": {\r\n      \"height\": 2340,\r\n      \"width\": 1080\r\n    },\r\n    \"accountTenure\": \"2023-08-20\",\r\n    \"geolocation\": {\r\n      \"latitude\": -15.738602,\r\n      \"longitude\": -47.926498,\r\n      \"type\": \"FINE\"\r\n    },\r\n    \"isCallInProgress\": false,\r\n    \"isDevModeEnabled\": false,\r\n    \"isMockGPS\": false,\r\n    \"isEmulated\": false,\r\n    \"isMonkeyRunner\": false,\r\n    \"isCharging\": false,\r\n    \"antennaInformation\": \"CellIdentityLte:{ mCi=2******60 mPci=274 mTac=5***1 mEarfcn=9510 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=10 mAlphaLong=VIVO mAlphaShort=VIVO mAdditionalPlmns={} mCsgInfo=null}, CellIdentityLte:{ mCi=1*****01 mPci=361 mTac=3***6 mEarfcn=9410 mBands=[28] mBandwidth=2147483647 mMcc=724 mMnc=03 mAlphaLong=TIMBRASIL mAlphaShort=TIMBRASIL mAdditionalPlmns={} mCsgInfo=null}\",\r\n    \"isUsbConnected\": false,\r\n    \"integrity\": {\r\n      \"appRecognitionVerdict\": \"PLAY_RECOGNIZED\",\r\n      \"deviceRecognitionVerdict\": \"[\\\\\\\"MEETS_DEVICE_INTEGRITY\\\\\\\"]\"\r\n    }\r\n  }\r\n}",
+							"raw": "{\r\n  \"data\": {\r\n    \"rp\": \"demo-app-pix.opus-software.com.br\",\r\n    \"platform\": \"ANDROID\",\r\n    \"recurringConsentId\": \"{{recurringConsentId}}\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5514,7 +5673,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}/risk-signals",
+							"raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}/fido-sign-options",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -5524,7 +5683,50 @@
 								"v1",
 								"enrollments",
 								"{{enrollmentId}}",
-								"risk-signals"
+								"fido-sign-options"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proxy-open-banking/enrollments/v2/recurring-consents/{recurringConsentId}/authorise",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-application-id",
+								"value": "{{applicationId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-authorisation-server-id",
+								"value": "{{authorisationServerId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"enrollmentId\": \"{{enrollmentId}}\",\r\n    \"riskSignals\": {\r\n      \"screenBrightness\": 90,\r\n      \"deviceId\": \"5ad82a8f-37e5-4369-a1a3-be4b1fb9c034\",\r\n      \"isRootedDevice\": true,\r\n      \"elapsedTimeSinceBoot\": 28800000,\r\n      \"osVersion\": \"16.6\",\r\n      \"userTimeZoneOffset\": \"-03\",\r\n      \"language\": \"pt\",\r\n      \"accountTenure\": \"2023-01-01\",\r\n      \"screenDimensions\": {\r\n        \"width\": 1920,\r\n        \"height\": 1080\r\n      }\r\n    },\r\n    \"fidoAssertion\": {\r\n    \"id\": \"5q3_lJE9-dt1Cktq8xvxEyhTM7G7VWaRab-V5p4uyTs\",\r\n    \"rawId\": \"5q3_lJE9-dt1Cktq8xvxEyhTM7G7VWaRab-V5p4uyTs\",\r\n    \"response\": {\r\n      \"clientDataJSON\": \"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiTGFsSDVQNWJSbmEwRzhNU0RHWDdxdyIsIm9yaWdpbiI6Imh0dHBzOi8vZGVtby1hcHAtcGl4Lm9wdXMtc29mdHdhcmUuY29tLmJyIiwiY3Jvc3NPcmlnaW4iOmZhbHNlfQ\",\r\n      \"authenticatorData\": \"rE5ecEHcJknskhWmjFmogJ8AEaQjteWvBiAg4q5L2QYdAAAAAA\",\r\n      \"signature\": \"MEUCIQDysZDlRUPO43O5wfmWZ4MYOnYJS0u0uEaLH-_bYlF7JQIgJYbQnjmFsC9d0BSCZibTHwV0hutGfasgRdf61ulLzxg\",\r\n      \"userHandle\": null\r\n    },\r\n    \"type\": \"public-key\"\r\n  }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/proxy/open-banking/enrollments/v2/recurring-consents/{{recurringConsentId}}/authorise",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"proxy",
+								"open-banking",
+								"enrollments",
+								"v2",
+								"recurring-consents",
+								"{{recurringConsentId}}",
+								"authorise"
 							]
 						}
 					},
