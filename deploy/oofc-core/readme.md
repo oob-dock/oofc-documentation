@@ -252,8 +252,17 @@ Possíveis valores: `true` ou `false`. Default: `true`.
     * `name`: Nome do componente Dapr a ser inicializado. Se o cache for habilitado, esse campo é obrigatório.
     * `type`: Tipo do componente Dapr a ser usado como state store. Se o cache for habilitado, esse campo é obrigatório.
       * Uma lista de componentes pode ser encontrada [aqui](https://docs.dapr.io/reference/components-reference/supported-state-stores/) 
-   * `version`: Nome do componente Dapr a ser inicializado. Se o cache for habilitado, esse campo é obrigatório.
+   * `version`: Versão do componente. Se o cache for habilitado, esse campo é obrigatório.
    * `connectionMetadata`: Configurações a serem carregadas do componente de state store do Dapr. Se o cache for habilitado, esse campo é obrigatório.
+ * `largeEventStateStore`:
+   * State store utilizada para armazenar eventos que possuem o payload muito grande e portanto não podem ser publicados diretamente nas filas. Neste caso o evento é persistido nesta state store e o ID da entrada persistida é enviado via evento para os sistemas de destino. **Utilizado no cenário de MQD, sua configuração é obrigatória.**
+     * `name`: Nome do componente Dapr a ser inicializado. **Importante:** a solução de MQD também utiliza este mesmo componente para buscar os eventos publicados, e a ligação entre os módulos ocorre através do nome do componente. Sendo assim, o nome definido aqui deverá ser o mesmo definido no módulo `oof-mqd-dispatcher` na variável `env.dapr.largeEventStateStore.name`. 
+      * `type`: Tipo do componente Dapr a ser usado como state store. 
+        * Uma lista de componentes pode ser encontrada [aqui](https://docs.dapr.io/reference/components-reference/supported-state-stores/) 
+     * `version`: Versão do componente.
+     * `connectionMetadata`: Configurações de conexão do componente a ser usado como state store.
+   * **ATENÇÃO:** O sistema de armazenamento escolhido pode ser o mesmo utilizado na configuração da `stateStore` definida acima (em outras palavras, é possível utilizar a mesma base de dados). No entanto, utilize o template fornecido no helm, no arquivo `helm/oofc-core/templates/large-event-state-store.yaml` para a criação deste componente. **Este template contém uma configuração de prefixo por nome, que é necessária para que a funcionalidade opere corretamente em sincronia com o módulo OOF MQD Dispatcher.**
+
 ```yaml
 env:
   dapr:
@@ -272,8 +281,34 @@ env:
           value: "host=db-opus-open-banking.namespace.us-east-1.rds.amazonaws.com user=user password=passwd database=dapr_state"
         - name: timeout
           value: 10 
+    largeEventStateStore:
+      name: "large-event-state-store"
+      type: "state.postgresql"
+      version: "v1"
+      connectionMetadata:
+        - name: "connectionString"
+          value: "host=db-opus-open-banking.namespace.us-east-1.rds.amazonaws.com user=user password=passwd database=dapr_state"
+        - name: timeout
+          value: 10 
 ```
-### Webhook cache
+
+### Dapr cache
+
+Para habilitar é necessário que as seguintes variáveis estejam configuradas :
+
+```yml
+  dapr:
+    enabled: "true"
+    stateStore:
+      enabled: "true"
+      name: "cacheStateStore"
+      type: "TYPE"
+      version: "v1"
+      connectionMetadata: {}
+```
+Essas variáveis do Dapr estão explicadas na sessão anterior.
+
+### Dapr cache
 
 Para habilitar é necessário que as seguinte variáveis estejam configuradas :
 
@@ -288,6 +323,31 @@ Para habilitar é necessário que as seguinte variáveis estejam configuradas :
       connectionMetadata: {}
 ```
 Essas variáveis do Dapr estão explicadas na sessão anterior.
+As configurações a seguir dependem do cache do dapr.
+
+#### Brand Cache
+
+Em relação ao cache das brands (diretório de participantes):
+
+* `name`: Nome do componente de cache. `NÃO DEVE SER ALTERADO!`
+* `enabled`: Indica se a consulta de brands no diretório de participantes será ou não salva em cache.
+  * Possíveis valores: `true` ou `false`. Default: `true`.
+* `ttl`: Tempo em segundos destinado para uma chave ser mantida no cache. 
+  * Default: `1800`.
+
+```yml
+env:
+  cache:
+    - name: "brands"
+      enabled: "true"
+      ttl: "1800"
+```
+
+***Importante***: Esse cache deve estar habilitado para bom funcionamento do produto, devido
+ao alto tempo de resposta do diretório de participantes.
+
+#### Webhook Cache
+
 Sobre o cache do Webhook:
 
 * `name`: Nome do componente de cache. `NÃO DEVE SER ALTERADO!`
