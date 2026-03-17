@@ -20,10 +20,19 @@ o OOC oferece APIs de *proxy* que se comportam
 de maneira idêntica às APIs regulatórias
 e garantem a correta utilização dos tokens de acesso gerados previamente.
 
-**Importante**: Nas APIs de *proxy* é possível alterar a versão da API de acordo
-com a versão retornada na API de solicitação de consentimento, dado que a
-solicitação de consentimento sempre utiliza a versão maior disponibilizada pela
-instituição no Diretório de Participantes.
+**Importante - Seleção de Versão Regulatória**:
+
+- **Rotas não-proxy** (como `/consents`): cliente pode escolher qual versão dos
+endpoints do participante deseja chamar através do header `x-regulatory-v`.
+Se não enviado, será utilizada a versão mais atual disponível. Se enviado com uma
+versão inexistente, será utilizada a versão mais recente da mesma major, se disponível.
+Formato aceito: versão completa (ex: "4.0.0") ou apenas a major (ex: "4").
+
+- **Rotas proxy**: a versão será sempre a mais atual da major indicada no endpoint
+do OpusTPP. Este header não é aceito em rotas proxy.
+
+- **Resposta**: todas as respostas indicam no header `x-selected-regulatory-v` qual
+versão foi efetivamente utilizada na requisição ao participante.
 
 ## Fluxo de solicitação de consentimento
 
@@ -79,11 +88,6 @@ e o payload contém o código identificador do consentimento (`consentId`)
 que deverá ser utilizado nas etapas seguintes.
 
 O status do consentimento após esta etapa é **AWAITING_AUTHORISATION**.
-
-**Importante**: Para obtenção de dados cadastrais e transacionais na chamada à Instituição
-Destino (Transmissora ou Detentora), caso a instituição disponibilize mais de uma
-versão de API, a chamada será realizada sempre com a maior versão, ou seja,
-se disponível a versão 1 e versão 2 a chamada será através da versão 2.
 
 ### 3 - Redirecionamento do usuário para autorização na Instituição Destino
 
@@ -267,9 +271,16 @@ corpo da requisição. Não é possível criar um vinculo com permissões para a
 de ambos os tipos de consentimentos. Para isso, é necessário criar dois vínculos
 com permissões distintas e aprovar em fluxos separados.
 
-**Importante**: Caso a instituição (Detentora) disponibilize mais de uma
-versão de API, a chamada será realizada sempre com a maior versão, ou seja,
-se disponível a versão 1 e versão 2 a chamada será através da versão 2.
+**Importante - Seleção de Versão Regulatória**:
+
+Na criação do vínculo de dispositivo, o comportamento é o mesmo das rotas não-proxy:
+- Se enviado o header `x-regulatory-v`, será tentado usar a versão
+solicitada.
+- Se não enviado, será utilizada a versão mais atual disponível.
+- Se enviado com uma versão inexistente, será utilizada a versão mais recente da
+mesma major, se disponível.
+- A resposta indica no header `x-selected-regulatory-v` qual versão foi efetivamente
+utilizada.
 
 ### 3 - Envio dos sinais de risco
 

@@ -43,6 +43,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/applicationId'
         - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/regulatoryV'
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a detentora de conta
@@ -51,6 +52,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -62,12 +65,17 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '201':
           description: Dados do vínculo de conta obtidos com sucesso.
+          headers:
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -79,6 +87,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -90,6 +100,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/jwt:
               schema:
@@ -108,6 +120,7 @@ paths:
         - $ref: '#/components/parameters/applicationId'
         - $ref: '#/components/parameters/authorisationServerId'
         - $ref: '#/components/parameters/enrollmentId'
+        - $ref: '#/components/parameters/regulatoryV'
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a detentora de conta
@@ -116,6 +129,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -127,12 +142,17 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '200':
           description: Dados do vínculo de conta obtidos com sucesso.
+          headers:
+              x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -144,6 +164,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -155,6 +177,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/jwt:
               schema:
@@ -194,6 +218,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -205,6 +231,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -212,6 +240,9 @@ paths:
         '204':
           description: 	
             Vínculo de conta revogado com sucesso.
+          headers:
+              x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
         '400':
           description: Erro enviado pela detentora de conta, respeitando o padrão definido pelo BACEN
           headers:
@@ -219,6 +250,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -230,6 +263,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/jwt:
               schema:
@@ -253,6 +288,7 @@ paths:
         - $ref: '#/components/parameters/applicationId'
         - $ref: '#/components/parameters/authorisationServerId'
         - $ref: '#/components/parameters/enrollmentId'
+        - $ref: '#/components/parameters/regulatoryV'
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a detentora de conta
@@ -261,6 +297,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -272,12 +310,17 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '201':
           description: Dados do vínculo de conta obtidos com sucesso.
+          headers:
+              x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -289,6 +332,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -300,6 +345,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/jwt:
               schema:
@@ -324,6 +371,7 @@ paths:
         - $ref: '#/components/parameters/applicationId'
         - $ref: '#/components/parameters/authorisationServerId'
         - $ref: '#/components/parameters/enrollmentId'
+        - $ref: '#/components/parameters/regulatoryV'
       responses:
         '502':
           description: Erro no Opus Open Client ao se comunicar com a detentora de conta
@@ -332,6 +380,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -343,12 +393,17 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
         '201':
           description: Dados do vínculo de conta obtidos com sucesso.
+          headers:
+              x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -360,6 +415,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -371,6 +428,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/jwt:
               schema:
@@ -404,6 +463,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -415,6 +476,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -426,6 +489,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
   /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration:
     post:
       tags:
@@ -456,6 +521,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -467,6 +534,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -478,6 +547,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
   /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise:
     post:
       tags:
@@ -512,6 +583,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -523,6 +596,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
           content:
             application/json:
               schema:
@@ -534,6 +609,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
   /proxy/open-banking/enrollments/v2/recurring-consents/{recurringConsentId}/authorise:
     post:
       tags:
@@ -577,6 +654,8 @@ paths:
               $ref: '#/components/headers/xOriginError'
             x-error-source-url:
               $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
 components:
   schemas:
     UUID:
@@ -1660,6 +1739,27 @@ components:
         - **participant**: erro originado na instituição transmissora ou detentora.
         - **directory**: erro originado no Diretório de Participantes.
         - **unknown**: origem não identificada.
+    RegulatoryVersion:
+        type: string
+        description: |
+          Versão regulatória desejada para a chamada ao participante (disponível apenas em rotas não-proxy).
+          
+          **Comportamento:**
+          - Se não enviado: será utilizada a versão mais atual disponível no participante.
+          - Se enviado com versão exata existente: usa a versão solicitada.
+          - Se enviado com versão inexistente: será utilizada a versão mais recente da mesma major, se disponível. Caso contrário, será utilizada a versão mais atual disponível.
+          
+          **Formato aceito:** É válido usar versão completa (ex: "4.0.0") ou apenas a major (ex: "4").
+          
+          **Nota:** Este header não é aceito em rotas proxy. Nas rotas proxy, a versão será sempre a mais atual da major indicada no endpoint do OpusTPP.
+        example: '4.0.0'
+    SelectedRegulatoryVersion:
+      type: string
+      description: |
+        Versão regulatória efetivamente utilizada na requisição ao participante.
+        
+        Este header é retornado em todas as respostas (rotas proxy e não-proxy) para indicar qual versão do endpoint do participante foi utilizada para processar a requisição.
+      example: '4.0.0'
   headers:
     xOriginError:
       description: Indica a origem do erro.
@@ -1671,6 +1771,16 @@ components:
       schema:
         type: string
       required: false
+    xRegulatoryV:
+      description: Versão regulatória desejada para a chamada ao participante (disponível apenas em rotas não-proxy).
+      schema:
+        $ref: '#/components/schemas/RegulatoryVersion'
+      required: false
+    xSelectedRegulatoryV:
+      description: Versão regulatória efetivamente utilizada na requisição ao participante.
+      schema:
+        $ref: '#/components/schemas/SelectedRegulatoryVersion'
+      required: true
   parameters:
     applicationId:
       name: x-application-id
@@ -1738,3 +1848,10 @@ components:
         type: string
         pattern: '^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*''%\/?#]+$'
         maxLength: 256
+    regulatoryV:
+        name: x-regulatory-v
+        required: false
+        description: Versão regulatória desejada para a chamada ao participante (disponível apenas em rotas não-proxy).
+        in: header
+        schema:
+          $ref: '#/components/schemas/RegulatoryVersion'
