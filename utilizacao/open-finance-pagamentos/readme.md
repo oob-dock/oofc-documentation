@@ -22,6 +22,9 @@ Endpoints disponíveis:
 - **Versão 4**: `POST /proxy/open-banking/payments/v4/pix/payments`
   - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078657/v4.0.0+-+SV+Pagamentos)
 
+- **Versão 5**: `POST /proxy/open-banking/payments/v5/pix/payments`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1600030254/v5.0.0-rc.1+-+SV+Pagamentos)
+
 Após a aprovação do consentimento,
 é necessário requisitar o início do pagamento junto à Detentora de Conta.
 
@@ -101,10 +104,28 @@ Endpoints disponíveis:
 - **Versão 4**: `GET /proxy/open-banking/payments/v4/pix/payments/{paymentId}`
   - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078805/M+quina+de+Estados+-+v4.0.0+-+SV+Pagamentos)
 
+
+- **Versão 5**: `GET /proxy/open-banking/payments/v5/pix/payments/{paymentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1600030254/v5.0.0-rc.1+-+SV+Pagamentos)
+
 Permite a consulta do status e as informações de um pagamento.
 
 Uma explicação detalhada da máquina de estados do status do pagamento pode ser
 encontrada na documentação oficial do Open Finance Brasil.
+
+#### Consulta de status de pagamentos
+
+Endpoints disponíveis:
+
+- **Versão 5**: `GET /proxy/open-banking/payments/v5/pix/payments/{paymentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1600030254/v5.0.0-rc.1+-+SV+Pagamentos)
+
+Permite a consulta do status e as informações de todos os pagamentos
+referentes ao mesmo consentimento.
+
+Uma explicação detalhada da máquina de estados do status do pagamento pode ser
+encontrada na documentação oficial do Open Finance Brasil.
+
 
 #### Revogação do pagamento
 
@@ -112,6 +133,9 @@ Endpoints disponíveis:
 
 - **Versão 4**: `PATCH /proxy/open-banking/payments/v4/pix/payments/{paymentId}`
   - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078657/v4.0.0+-+SV+Pagamentos)
+
+- **Versão 5**: `PATCH /proxy/open-banking/payments/v5/pix/payments/{paymentId}`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1600030254/v5.0.0-rc.1+-+SV+Pagamentos)
 
 Permite a revogação de um pagamento.
 
@@ -176,6 +200,9 @@ Endpoints disponíveis:
 - **Versão 4**: `PATCH /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}`
   - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078657/v4.0.0+-+SV+Pagamentos)
 
+- **Versão 5**: `PATCH /proxy/open-banking/payments/v5/consents/{consentId}/pix/payments`
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1600030254/v5.0.0-rc.1+-+SV+Pagamentos)
+
 Permite a revogação de todos os pagamentos referentes ao mesmo consentimento.
 
 É permitido realizar a revogação de um pagamento após a iniciação do pagamento e
@@ -238,7 +265,7 @@ Response Error no formato JSON - resposta é retornada no formato JWT:
 Permite a consulta do status e as informações de um consentimento.
 
 Uma explicação detalhada da máquina de estados do status do consentimento pode ser
-encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/347078805/M+quina+de+Estados+-+v4.0.0+-+SV+Pagamentos)
+encontrada na [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1600030254/v5.0.0-rc.1+-+SV+Pagamentos)
 do Open Finance Brasil.
 
 ### Iniciação de pagamento automático
@@ -651,7 +678,7 @@ Response Body:
 Endpoints disponíveis:
 
 - **Versão 2**: `POST /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options`
-  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503617/v2.1.0+-+SV+V+nculo+de+dispositivo)
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1436516353/v2.2.0+-+SV+V+nculo+de+dispositivo)
 
 Método para obter os parâmetros para criação de uma nova credencial FIDO2. Um novo
 challenge deve ser criado a cada chamada. Os parâmetros da resposta devem ser
@@ -679,7 +706,7 @@ eyJraWQiOiJoRUhYZ21BRS1IVlBVZUNEUFNjblpQVzZkWGp3dWIwLTJuQng2SHZMOUNrIiwidHlwIjoi
 Endpoints disponíveis:
 
 - **Versão 2**: `POST /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration`
-  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503617/v2.1.0+-+SV+V+nculo+de+dispositivo)
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1436516353/v2.2.0+-+SV+V+nculo+de+dispositivo)
 
 O vínculo de conta deve estar no status "AWAITING_ENROLLMENT". Após o registro
 com sucesso, o vínculo de conta deve transitar ao status "AUTHORISED". A falha de
@@ -738,7 +765,7 @@ Response Body:
 Endpoints disponíveis:
 
 - **Versão 2**: `POST /proxy/open-banking/enrollments/v2/consents/{consentId}/authorise`
-  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503617/v2.1.0+-+SV+V+nculo+de+dispositivo)
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1436516353/v2.2.0+-+SV+V+nculo+de+dispositivo)
 
 Autorização de um consentimento de pagamentos em status AWAITING_AUTHORISATION a
 partir do access_token emitido pela jornada sem redirecionamento e envio de sinais
@@ -795,7 +822,7 @@ Request Body:
 ```
 
 - **Versão 2**: `POST /proxy/open-banking/enrollments/v2/recurring-consents/{recurringConsentId}/authorise`
-  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/747503617/v2.1.0+-+SV+V+nculo+de+dispositivo)
+  - [documentação oficial](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1436516353/v2.2.0+-+SV+V+nculo+de+dispositivo)
 
 Autorização de um consentimento de Pix Automático em status AWAITING_AUTHORISATION
 a partir do access_token emitido pela jornada sem redirecionamento e envio de
@@ -860,10 +887,11 @@ Request Body:
 | POST           | /opus-open-finance/payments/v1/consents                                                              | Criação de um consentimento de pagamento                                     | 201      |
 | GET            | /opus-open-finance/payments/v1/consents/{consentId}                                                  | Obtenção dos dados do consentimento de pagamento                    | 200      |
 | POST           | /opus-open-finance/payments/v1/consents/{consentId}/authorisation-retry                              | Nova tentativa de autorização do consentimento                                 | 200      |
-| POST           | /proxy/open-banking/payments/v4/pix/payments                                                         | Criação de um pagamento                                     | 201      |
-| GET            | /proxy/open-banking/payments/v4/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                     | 200      |
-| PATCH          | /proxy/open-banking/payments/v4/pix/payments/{paymentId}                                             | Revogação de um pagamento                                     | 200      |
-| PATCH          | /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}                                    | Revogação de todos os pagamentos referentes ao mesmo consentimento             | 200      |
+| POST           | /proxy/open-banking/payments/v5/pix/payments                                                         | Criação de um pagamento                                     | 201      |
+| GET            | /proxy/open-banking/payments/v5/pix/payments/{paymentId}                                             | Obtenção dos dados do pagamento                                     | 200      |
+| PATCH          | /proxy/open-banking/payments/v5/pix/payments/{paymentId}                                             | Revogação de um pagamento                                     | 200      |
+| GET            | /proxy/open-banking/payments/v5/consents/{consentId}/pix/payments                                    | Consulta de todos os pagamentos referentes ao mesmo consentimento             | 200      |
+| PATCH          | /proxy/open-banking/payments/v5/consents/{consentId}/pix/payments                                    | Revogação de todos os pagamentos referentes ao mesmo consentimento             | 200      |
 | GET            | /opus-open-finance/dcm                                                                               | Obtenção dos dados de dcm dos brand clients                                 | 200      |
 | PUT            | /opus-open-finance/dcm                                                                               | Atualização dos dados de dcm dos brand clients                                 | 200      |
 | POST           | /opus-open-finance/automatic-payments/v1/recurring-consents                                          | Criação de um consentimento de pagamento automático                          | 201      |

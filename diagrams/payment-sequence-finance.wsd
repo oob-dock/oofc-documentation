@@ -23,7 +23,7 @@ note over tpp: Aqui foi feito o pedido do pagamento, mas não o pagamento em si.
 
 group #B4F8C8 TPP realiza criação do pagamento
 
-tpp->ooc:Cria a iniciação do pagamento:\n**POST /proxy/open-banking/payments/v4/pix/payments** **OU**\n**POST /proxy/open-banking/automatic-payments/v2/pix/recurring-payments**
+tpp->ooc:Cria a iniciação do pagamento:\n**POST /proxy/open-banking/payments/v5/pix/payments** **OU**\n**POST /proxy/open-banking/automatic-payments/v2/pix/recurring-payments**
 
 activate tpp
 
@@ -47,7 +47,7 @@ group #B4F8C8 Fluxo de notificação webhook
 
 inst<-->inst: Atualização do status do pagamento
 
-inst->ooc: Notificação de mudança de status do pagamento:\n**POST /open-banking/webhook/v1/payments/v4/pix/payments/{paymentId}** **OU**\n**POST /open-banking/webhook/v1/automatic-payments/v2/pix/recurring-payments/{paymentId}**
+inst->ooc: Notificação de mudança de status do pagamento:\n**POST /open-banking/webhook/v1/payments/v5/pix/payments/{paymentId}** **OU**\n**POST /open-banking/webhook/v1/automatic-payments/v2/pix/recurring-payments/{paymentId}**
 
 ooc-->tpp:Notificação de mudança de status do pagamento
 
@@ -61,11 +61,11 @@ end
 
 group Consulta do pagamento 
 
-note over tpp: É possível realizar o pooling do status do pagamento via GET /proxy/open-banking/payments/v4/pix/payments/{paymentId}.
+note over tpp: É possível realizar o pooling do status do pagamento via GET /proxy/open-banking/payments/v5/pix/payments/{paymentId}.
 
 group #B4F8C8 TPP realiza consulta do pagamento
 
-tpp->ooc: Cria a consulta do pagamento:\n**GET /proxy/open-banking/payments/v4/pix/payments/{paymentId}** **OU**\n**GET /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}** **OU**\n**GET /proxy/open-banking/automatic-payments/v2/pix/recurring-payments**
+tpp->ooc: Cria a consulta do pagamento:\n**GET /proxy/open-banking/payments/v5/pix/payments/{paymentId}** **OU**\n **GET proxy/open-banking/payments/v5/consents/{consentId}/pix/payments** **OU**\n**GET /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}** **OU**\n**GET /proxy/open-banking/automatic-payments/v2/pix/recurring-payments**
 
 activate tpp
 
@@ -85,7 +85,7 @@ group Revogação do pagamento
 
 group #B4F8C8 TPP realiza revogação do pagamento
 
-tpp->ooc: Cria revogação do pagamento:\n**PATCH /proxy/open-banking/payments/v4/pix/payments/{paymentId}** **OU**\n**PATCH /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}** **OU**\n**PATCH /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}**
+tpp->ooc: Cria revogação do pagamento:\n**PATCH /proxy/open-banking/payments/v5/pix/payments/{paymentId}** **OU**\n**PATCH /proxy/open-banking/payments/v5/consents/{consentId}/pix/payments** **OU**\n**PATCH /proxy/open-banking/automatic-payments/v2/pix/recurring-payments/{recurringPaymentId}**
 
 activate tpp
 

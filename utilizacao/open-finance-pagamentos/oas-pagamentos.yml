@@ -312,7 +312,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
-  /proxy/open-banking/payments/v4/pix/payments:
+  /proxy/open-banking/payments/v5/pix/payments:
     post:
       tags:
         - Pagamento
@@ -363,7 +363,7 @@ paths:
               $ref: '#/components/headers/xErrorSourceUrl'
             x-selected-regulatory-v:
                 $ref: '#/components/headers/xSelectedRegulatoryV'
-  /proxy/open-banking/payments/v4/pix/payments/{paymentId}:
+  /proxy/open-banking/payments/v5/pix/payments/{paymentId}:
     get:
       tags:
         - Pagamento
@@ -472,7 +472,58 @@ paths:
               $ref: '#/components/headers/xErrorSourceUrl'
             x-selected-regulatory-v:
                 $ref: '#/components/headers/xSelectedRegulatoryV'
-  /proxy/open-banking/payments/v4/pix/payments/consents/{consentId}:
+  /proxy/open-banking/payments/v5/consents/{consentId}/pix/payments:
+    get:
+      tags:
+        - Pagamento
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/headerConsentId'
+        - name: consentId
+          in: path
+          description: Identificador do consentimento
+          schema:
+            type: string
+          required: true
+          example: urn:amazingbank:5e456567-e53c-41c4-80f6-b16bcd63d243
+      description: Método de proxy para consultar todos os pagamentos referentes ao mesmo consentimento.
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        default:
+          description: Segue o padrão de resposta definido pelo BACEN
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
     patch:
       tags:
         - Pagamento

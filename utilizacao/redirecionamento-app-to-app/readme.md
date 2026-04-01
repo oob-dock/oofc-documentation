@@ -78,6 +78,69 @@ de exigir a autenticação de seu próprio correntista. Essa recomendação é
 baseada no fato de que o *authorization code* retornado pelo fluxo OIDC possui
 um TTL definido pelo AS da Instituição Transmissora que pode ser muito pequeno.
 
+## Retorno do fluxo de autorização conforme a origem
+
+O retorno do fluxo de autorização do consentimento é entregue de formas diferentes
+dependendo de **onde o fluxo foi iniciado** — em um aplicativo mobile ou em um
+browser:
+
+| Origem do fluxo | O que acontece no retorno | Caminho técnico |
+| --- | --- | --- |
+| **Aplicativo mobile** | App da Receptora intercepta o redirect da Transmissora via App Links / Universal Links | `POST /authorization-result` |
+| **Browser** | Browser segue o redirect da Transmissora até o Opus Open Client | `/redirect-uri` → 302 para `callbackApplicationUri` |
+
+> **Nota:** Mesmo quando o fluxo é iniciado em um app, caso a interceptação
+> falhe (ex.: App Links não configurado, ou usuário escolhe abrir com outro
+> aplicativo), o browser acaba seguindo o redirect e o resultado é entregue
+> pela rota `/redirect-uri`. Por isso, é **obrigatório** que a Instituição
+> Receptora implemente ambos os caminhos, mesmo quando a solução é 100% mobile.
+
+### Caminho 1 — Fluxo com Origem Mobile
+
+Quando o app da Receptora intercepta o redirect, ele extrai a query string ou
+fragment da URL e chama `POST /authorization-result` conforme descrito na
+[seção anterior](#o-que-fazer-ao-interceptar-uma-url). O resultado chega
+diretamente na resposta HTTP dessa chamada:
+
+* **Sucesso:** `204 No Content` (corpo vazio)
+* **Erro:** `422 Unprocessable Entity` com os campos `error` e
+  `error_description` no corpo JSON
+
+### Caminho 2 — Fluxo com Origem Web
+
+Quando o browser segue o redirect da Transmissora até a rota `/redirect-uri` do
+Opus Open Client, o Opus Open Client realiza um **redirect HTTP 302** para a
+`callbackApplicationUri` cadastrada no consentimento, acrescentando os
+seguintes parâmetros de consulta:
+
+**Sucesso:**
+
+```txt
+<callbackApplicationUri>?result=success
+```
+
+**Erro:**
+
+```txt
+<callbackApplicationUri>?result=error&error=<código>&error_description=<descrição>
+```
+
+| Parâmetro | Quem define | Valores possíveis |
+| --- | --- | --- |
+| `result` | Opus Open Client | `success` ou `error` |
+| `error` | Instituição Transmissora (OAuth 2.0) | Código de erro padrão [RFC 6749 §4.1.2.1](https://www.rfc-editor.org/rfc/rfc6749#section-4.1.2.1). Exemplos: `access_denied` (usuário negou), `invalid_grant` (código de autorização inválido/expirado) |
+| `error_description` | Instituição Transmissora (OAuth 2.0) | Descrição legível do erro, com texto livre definido por cada transmissora |
+
+### Sobre os parâmetros de erro
+
+Em ambos os caminhos, os parâmetros `error` e `error_description` são
+**padrão OAuth 2.0** (RFC 6749): são gerados e enviados pela Instituição
+Transmissora e repassados pelo Opus Open Client. O parâmetro `result` (presente
+apenas no caminho via `callbackApplicationUri`) é o único acrescentado pelo
+Opus Open Client, para facilitar a detecção do resultado sem precisar
+verificar a ausência de `error`. Os valores exatos de `error` e
+`error_description` podem variar conforme a implementação de cada transmissora.
+
 ## Suporte a múltiplos aplicativos
 
 Caso a Instituição Receptora possua mais de um aplicativo vinculado ao produto,
