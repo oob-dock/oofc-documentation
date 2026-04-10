@@ -30,7 +30,7 @@ disponibilizado, e incluem:
 - **Resources**: listagem de recursos vinculados a um consentimento
 e informações de status.
 - **Customers**: dados cadastrais de pessoa física e jurídica.
-- **Accounts**: dados de contas, saldos, transações e limites.
+- **Accounts**: dados de contas, saldos, saldos reservados, transações e limites.
 - **Credit Card Accounts**: dados de contas pós-pagas, faturas, transações e limites.
 - **Loans**: dados de contratos de empréstimos.
 - **Financings**: dados de contratos de financiamentos.

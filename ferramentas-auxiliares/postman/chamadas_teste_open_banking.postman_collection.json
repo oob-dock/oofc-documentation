@@ -162,6 +162,56 @@
               "response": []
             },
             {
+              "name": "accounts/{{accountId}}/reserved-balances",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-application-id",
+                    "value": "{{applicationId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-authorisation-server-id",
+                    "value": "{{authorisationServerId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-consent-id",
+                    "value": "{{consentId}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/proxy/open-banking/accounts/v2/accounts/{{accountId}}/reserved-balances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "proxy",
+                    "open-banking",
+                    "accounts",
+                    "v2",
+                    "accounts",
+                    "{{accountId}}",
+                    "reserved-balances"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
               "name": "accounts/{{accountId}}/transactions",
               "event": [
                 {
