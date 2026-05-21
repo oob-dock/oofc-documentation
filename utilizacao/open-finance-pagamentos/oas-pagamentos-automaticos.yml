@@ -937,9 +937,10 @@ components:
             - version
           properties:
             version:
+              description: 'Não existe um padrão fixo para o valor deste campo: pode ser uma data, um nome, um número ou qualquer string definida pelo responsável pela alteração no diretório. A versão serve apenas como referência interna para controle e rastreabilidade das mudanças aplicadas via DCM, não havendo validação ou consulta automática por outros sistemas. **Importante**: caso seja feita uma requisição com valor de versão igual ao de uma requisição anterior, não haverá requisição de DCM para nenhum participante.'
               type: string
-              description: String da versao
-              example: '1'
+              maxLength: 20
+              example: '2.0'
     RetryPaymentConsentRequest:
       type: object
       required:
@@ -1194,6 +1195,7 @@ components:
           maxLength: 40
           example: a9e62501-0b91-4af9-837d-c2d210736f28
         dcmVersion:
+          description: 'Não existe um padrão fixo para o valor deste campo: pode ser uma data, um nome, um número ou qualquer string definida pelo responsável pela alteração no diretório. A versão serve apenas como referência interna para controle e rastreabilidade das mudanças aplicadas via DCM, não havendo validação ou consulta automática por outros sistemas.'
           type: string
           maxLength: 20
           example: '2.0'

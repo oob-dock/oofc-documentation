@@ -224,7 +224,10 @@ As configurações que podem ser definidas neste formato estão listadas abaixo:
 ### OUTGOING_HTTP_LOGGER_ENABLED
 
 Define se a aplicação deverá logar todos os requests e responses das chamadas
-HTTP de saída. Por padrão este log é **habilitado**.
+HTTP de saída. Por padrão, este log é **habilitado**. Esses logs também cumprem
+o propósito regulatório, em que é necessário que todas as informações trafegadas
+pelas APIs do OPIN sejam armazenadas por, no mínimo, 5 anos. Recomenda-se
+fortemente que esteja sempre habilitado.
 
 **Formato:** `true` para habilitado ou `false` para desabilitado.
 

@@ -434,6 +434,59 @@ paths:
             application/jwt:
               schema:
                 $ref: '#/components/schemas/ResponseError'
+  /opus-open-finance/enrollments/v1/enrollments/{enrollmentId}/authorisation-retry:
+    post:
+      tags:
+        - Opus Open Finance
+      operationId: oofcEnrollmentsPostEnrollmentIdAuthorisationRetry
+      description: Método de geração de uma nova URL de autorização para o vínculo identificado por enrollmentId
+      summary: Gerar nova URL de autorização para o vínculo identificado por enrollmentId.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetryEnrollmentRequest'
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+        - $ref: '#/components/parameters/authorisationServerId'
+        - $ref: '#/components/parameters/enrollmentId'
+        - $ref: '#/components/parameters/regulatoryV'
+      responses:
+        '502':
+          description: Erro no Opus Open Client ao se comunicar com a detentora de conta
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '504':
+          description: Tempo limite de conexão excedido ao se comunicar com a detentora de conta
+          headers:
+            x-origin-error:
+              $ref: '#/components/headers/xOriginError'
+            x-error-source-url:
+              $ref: '#/components/headers/xErrorSourceUrl'
+            x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+        '200':
+          description: Successful response
+          headers:
+              x-selected-regulatory-v:
+                $ref: '#/components/headers/xSelectedRegulatoryV'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetryEnrollmentResponse'
   /proxy/open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options:
     post:
       tags:
@@ -901,7 +954,7 @@ components:
             - enrollment
           properties:
             enrollmentId:
-              $ref: '#/components/parameters/enrollmentId'
+              $ref: '#/components/schemas/enrollmentId'
             enrollment:
               type: string
               example: 'eyJraWQiOiJoRUhYZ21BRS1IVlBVZUNEUFNjblpQVzZkWGp3dWIwLTJuQng2SHZMOUNrIiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdWQiOiIyN2FlYThmNi0yMTE5LTU1ZjgtOTU1My01YWQ0YjA4ZWViMTciLCJkYXRhIjp7ImVucm9sbG1lbnRJZCI6InVybjphbWF6aW5nYmFuazowYjlkOGQ3Ny1hOWJkLTQxNmMtYTVjZC0yOWYwNzljN2Q0MWIiLCJjcmVhdGlvbkRhdGVUaW1lIjoiMjAyNC0xMi0xMlQxMTo0MDozMVoiLCJzdGF0dXNVcGRhdGVEYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIiwic3RhdHVzIjoiQVdBSVRJTkdfUklTS19TSUdOQUxTIiwicGVybWlzc2lvbnMiOlsiUEFZTUVOVFNfSU5JVElBVEUiXSwibG9nZ2VkVXNlciI6eyJkb2N1bWVudCI6eyJpZGVudGlmaWNhdGlvbiI6IjEyMzEyMzEyMzg3IiwicmVsIjoiQ1BGIn19LCJkZWJ0b3JBY2NvdW50Ijp7ImlzcGIiOiIxMjM0NTY3OCIsImlzc3VlciI6IjE3NzQiLCJudW1iZXIiOiIxMjM0NTY3ODkwIiwiYWNjb3VudFR5cGUiOiJDQUNDIn0sImVucm9sbG1lbnROYW1lIjoiTm9tZSBEaXNwb3NpdGl2byJ9LCJtZXRhIjp7InJlcXVlc3REYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIn0sImlzcyI6IjI3YWVhOGY2LTIxMTktNTVmOC05NTUzLTVhZDRiMDhlZWIxNyIsImxpbmtzIjp7InNlbGYiOiJodHRwczovL210bHMtb2JiLnFhLm9vYi5vcHVzLXNvZnR3YXJlLmNvbS5ici9vcGVuLWJhbmtpbmcvZW5yb2xsbWVudHMvdjIvZW5yb2xsbWVudHMvdXJuOmFtYXppbmdiYW5rOjBiOWQ4ZDc3LWE5YmQtNDE2Yy1hNWNkLTI5ZjA3OWM3ZDQxYiJ9LCJpYXQiOjE3MzQwMDM2MzEsImp0aSI6IjI2N2EwOGFjLTViNGQtNDViYS1hOWNmLTllM2M4MDUxYWZhMiJ9.QxXNbSlzBIlLPY8qTNEy5dI_0BTCbauadj2vkKm8ytW7GDeNQKwbMMnUXe9MrtmCpxBRa762IvsSCsTMjJfWzwTGnY99pkoW5gY3uOSyBFpsMiSy3zhFQYFcBbaYZmVqUKzKSBZB2-Kw4TNJQ5_-nA2ZOBYMEs1VNkoqsqtHmnKkYHx10HbDT_LCGfFPCveoZn1smEEU-uPtMv8FZf88WRqa4qCW8cDsaW7HbmNn2XjL6oU5ozHIna3tldhcoFG-w3kEJkidbWs6Uyh579TnfOgof33YoORDWvAETJWHqZBNiLAwqT96yM_vcEER6Fz44U90QEEv7dW-w1Pi3FZAYw'
@@ -921,7 +974,7 @@ components:
               example: 'eyJraWQiOiJoRUhYZ21BRS1IVlBVZUNEUFNjblpQVzZkWGp3dWIwLTJuQng2SHZMOUNrIiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdWQiOiIyN2FlYThmNi0yMTE5LTU1ZjgtOTU1My01YWQ0YjA4ZWViMTciLCJkYXRhIjp7ImVucm9sbG1lbnRJZCI6InVybjphbWF6aW5nYmFuazowYjlkOGQ3Ny1hOWJkLTQxNmMtYTVjZC0yOWYwNzljN2Q0MWIiLCJjcmVhdGlvbkRhdGVUaW1lIjoiMjAyNC0xMi0xMlQxMTo0MDozMVoiLCJzdGF0dXNVcGRhdGVEYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIiwic3RhdHVzIjoiQVdBSVRJTkdfUklTS19TSUdOQUxTIiwicGVybWlzc2lvbnMiOlsiUEFZTUVOVFNfSU5JVElBVEUiXSwibG9nZ2VkVXNlciI6eyJkb2N1bWVudCI6eyJpZGVudGlmaWNhdGlvbiI6IjEyMzEyMzEyMzg3IiwicmVsIjoiQ1BGIn19LCJkZWJ0b3JBY2NvdW50Ijp7ImlzcGIiOiIxMjM0NTY3OCIsImlzc3VlciI6IjE3NzQiLCJudW1iZXIiOiIxMjM0NTY3ODkwIiwiYWNjb3VudFR5cGUiOiJDQUNDIn0sImVucm9sbG1lbnROYW1lIjoiTm9tZSBEaXNwb3NpdGl2byJ9LCJtZXRhIjp7InJlcXVlc3REYXRlVGltZSI6IjIwMjQtMTItMTJUMTE6NDA6MzFaIn0sImlzcyI6IjI3YWVhOGY2LTIxMTktNTVmOC05NTUzLTVhZDRiMDhlZWIxNyIsImxpbmtzIjp7InNlbGYiOiJodHRwczovL210bHMtb2JiLnFhLm9vYi5vcHVzLXNvZnR3YXJlLmNvbS5ici9vcGVuLWJhbmtpbmcvZW5yb2xsbWVudHMvdjIvZW5yb2xsbWVudHMvdXJuOmFtYXppbmdiYW5rOjBiOWQ4ZDc3LWE5YmQtNDE2Yy1hNWNkLTI5ZjA3OWM3ZDQxYiJ9LCJpYXQiOjE3MzQwMDM2MzEsImp0aSI6IjI2N2EwOGFjLTViNGQtNDViYS1hOWNmLTllM2M4MDUxYWZhMiJ9.QxXNbSlzBIlLPY8qTNEy5dI_0BTCbauadj2vkKm8ytW7GDeNQKwbMMnUXe9MrtmCpxBRa762IvsSCsTMjJfWzwTGnY99pkoW5gY3uOSyBFpsMiSy3zhFQYFcBbaYZmVqUKzKSBZB2-Kw4TNJQ5_-nA2ZOBYMEs1VNkoqsqtHmnKkYHx10HbDT_LCGfFPCveoZn1smEEU-uPtMv8FZf88WRqa4qCW8cDsaW7HbmNn2XjL6oU5ozHIna3tldhcoFG-w3kEJkidbWs6Uyh579TnfOgof33YoORDWvAETJWHqZBNiLAwqT96yM_vcEER6Fz44U90QEEv7dW-w1Pi3FZAYw'
               description: JWT contendo o objeto de vínculo de conta retornado pela detentora de conta conforme padrão definido pelo BACEN - https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/141557761/SV+API+-+Pagamentos+sem+Redirecionamento. Ver ResponseCreateEnrollmentJWT
             enrollmentId:
-              $ref: '#/components/parameters/enrollmentId'
+              $ref: '#/components/schemas/enrollmentId'
     PatchEnrollmentRequest:
       type: object
       required:
@@ -1167,7 +1220,7 @@ components:
             - loggedUser
           properties:
             enrollmentId:
-              $ref: '#/components/parameters/enrollmentId'
+              $ref: '#/components/schemas/enrollmentId'
             creationDateTime:
               type: string
               format: date-time
@@ -1436,7 +1489,7 @@ components:
             - fidoAssertion
           properties:
             enrollmentId:
-              $ref: '#/components/parameters/enrollmentId'
+              $ref: '#/components/schemas/enrollmentId'
             riskSignals:
               type: object
               required:
@@ -1760,6 +1813,40 @@ components:
         
         Este header é retornado em todas as respostas (rotas proxy e não-proxy) para indicar qual versão do endpoint do participante foi utilizada para processar a requisição.
       example: '4.0.0'
+    RetryEnrollmentRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - callbackApplicationUri
+          properties:
+            callbackApplicationUri:
+              type: string
+              format: uri
+              maxLength: 2000
+              description: URI de callback da aplicação após o processo de autenticação
+              example: 'https://aplicativo.instituicao.com.br'
+              pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
+    RetryEnrollmentResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - redirectUrl
+          properties:
+            redirectUrl:
+              type: string
+              format: uri
+              maxLength: 2000
+              description: URI de redirecionamento para o Authorisation Server da detentora de conta a fim de solicitar aprovação do vínculo
+              example: 'https://authorisation-server.detentora.com.br'
+              pattern: '^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$'
   headers:
     xOriginError:
       description: Indica a origem do erro.

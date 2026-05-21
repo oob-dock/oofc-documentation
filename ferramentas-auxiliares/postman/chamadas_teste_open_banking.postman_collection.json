@@ -9310,6 +9310,64 @@
               "response": []
             },
             {
+              "name": "opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}/authorisation-retry",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {}
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-application-id",
+                    "value": "{{applicationId}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-authorisation-server-id",
+                    "value": "{{authorisationServerId}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"data\": {\r\n        \"callbackApplicationUri\": \"https://tpp-client3.127.0.0.1.nip.io:3100/cb\"\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/opus-open-finance/enrollments/v1/enrollments/{{enrollmentId}}/authorisation-retry",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "opus-open-finance",
+                    "enrollments",
+                    "v1",
+                    "enrollments",
+                    "{{enrollmentId}}",
+                    "authorisation-retry"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
               "name": "proxy-open-banking/enrollments/v2/enrollments/{enrollmentId}/fido-registration-options",
               "request": {
                 "method": "POST",

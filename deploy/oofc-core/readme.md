@@ -414,7 +414,10 @@ As configurações que podem ser definidas neste formato estão listadas abaixo:
 ### OUTGOING_HTTP_LOGGER_ENABLED
 
 Define se a aplicação deverá logar todos os requests e responses das chamadas
-HTTP de saída. Por padrão este log é **habilitado**.
+HTTP de saída. Por padrão, este log é **habilitado**. Esses logs também cumprem
+o propósito regulatório, em que é necessário que todas as informações trafegadas
+pelas APIs do OFB sejam armazenadas por, no mínimo, 5 anos. Recomenda-se
+fortemente que esteja sempre habilitado.
 
 **Formato:** `true` para habilitado ou `false` para desabilitado.
 
@@ -466,4 +469,62 @@ Define se a aplicação deverá logar todos logs do sequelize. Por padrão este 
 additionalVars:
   - name: SEQUELIZE_LOG_ENABLED
     value: "false"
+```
+
+
+### DAPR_JOBS_PAYMENT_STATUS_DISABLED
+
+Define se a aplicação deverá gerar reportes de status de pagamento. Por padrão este job é **desabilitado**.
+
+**Formato:** `true` para desabilitado ou `false` para habilitado.
+
+**Ex:**
+
+```yaml
+additionalVars:
+  - name: DAPR_JOBS_PAYMENT_STATUS_DISABLED
+    value: "true"
+```
+
+### DAPR_JOBS_PAYMENTS_STATUS_CRON
+
+Define a frequência de execução do job que gera reportes de status de pagamento. Por padrão este valor é **0 0 * * * ***.
+
+**Formato:** `* * * * * *` sintaxe de cron
+
+**Ex:**
+
+```yaml
+additionalVars:
+  - name: DAPR_JOBS_PAYMENTS_STATUS_CRON
+    value: "0 0 * * * *"
+```
+
+
+### DAPR_JOBS_CONSENTS_STOCK_DISABLED
+
+Define se a aplicação deverá gerar reportes de estoque de consentimento. Por padrão este job é **desabilitado**, porém o envio é obrigatório, portanto deve-se declarar a variável com valor false
+
+**Formato:** `true` para desabilitado ou `false` para habilitado.
+
+**Ex:**
+
+```yaml
+additionalVars:
+  - name: DAPR_JOBS_CONSENTS_STOCK_DISABLED
+    value: "false"
+```
+
+### DAPR_JOBS_CONSENTS_STOCK_CRON
+
+Define a frequência de execução do job que gera reportes de estoque de consentimento. Por padrão este valor é **0 0 4 * * ***.
+
+**Formato:** `* * * * * *` sintaxe de cron
+
+**Ex:**
+
+```yaml
+additionalVars:
+  - name: DAPR_JOBS_PAYMENTS_STATUS_CRON
+    value: "0 0 4 * * *"
 ```
