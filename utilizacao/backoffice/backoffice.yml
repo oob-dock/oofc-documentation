@@ -535,6 +535,18 @@ components:
             - SWEEPING
             - SCHEDULED
             - AUTOMATIC
+        purpose:
+          type: string
+          nullable: true
+          description: |-
+            Finalidade da transação (campo /data/payment/purpose da API de Iniciação de Pagamento, adicionado na V5).
+          example: IMMEDIATE
+          enum:
+            - IMMEDIATE
+            - SINGLE_SCHEDULED
+            - RECURRENT_SCHEDULED
+            - WITHDRAW
+            - CHANGE
         authorisationServerId:
           $ref: '#/components/schemas/UUID'
           description: Identificador do servidor de autorização
