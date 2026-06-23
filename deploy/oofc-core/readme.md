@@ -396,6 +396,56 @@ env:
     enabled: "true"
 ```
 
+### httpProxy
+
+Este módulo possui suporte ao uso do [OOF Proxy Server](../oof-proxy-server/readme.md)
+oferecido junto à solução do Opus Open Finance. Quando esta funcionalidade está
+configurada, todas as requisições ao mundo externo realizadas pelo
+OOFC Core passam antes pelo servidor de proxy. O objetivo é utilizar
+as respostas em cache armazenadas pelo proxy (quando disponíveis) com a
+finalidade de diminuir a latência das respostas obtidas nas chamadas realizadas
+junto ao OOFC Core.
+
+**Importante**: Requisições que utilizam certificados de cliente (MTLS) — como
+as chamadas às Transmissoras de Dados e Detentoras de Conta — são
+automaticamente excluídas do roteamento pelo proxy, pois a autenticação mútua
+exige que o certificado do cliente seja apresentado diretamente ao servidor de
+destino.
+
+**Hosts Automaticamente Excluídos do Proxy (NO_PROXY):**
+
+Os seguintes hosts NUNCA passam pelo proxy, garantindo que serviços internos não sejam
+interceptados:
+
+- `localhost` e `127.0.0.1` (sempre)
+- Hostname do sidecar do Dapr
+- Hostname do coletor de logs regulatórios (se definido)
+- Hostname do coletor de traces (se definido)
+
+Configurações:
+
+* `env.httpProxy.url`: Endereço interno do módulo OOF Proxy Server. Esta
+variável é de preenchimento **opcional**. Quando definida, as requisições
+HTTP/HTTPS externas realizadas pelo OOFC Core serão encaminhadas
+para o Proxy Server. **Importante**: A porta destino deste endereço deve ser a
+mesma definida na variável `env.httpProxy.port` do módulo OOF Proxy Server.
+
+* `env.httpProxy.caCertSecretName` / `env.httpProxy.caCertSecretKey`: Nome e chave de um Secret Kubernetes que contém o certificado CA
+utilizado para assinar certificados na interceptação MITM HTTPS.
+**Obrigatórios quando a variável `env.httpProxy.url` estiver definida.** Os
+valores definidos nestas variáveis devem ser os mesmos valores configurados
+nas variáveis de mesmo nome do módulo OOF Proxy Server.
+
+Exemplo:
+
+```yaml
+env:
+  httpProxy:
+    url: "http://oof-proxy-server:8081"
+    caCertSecretName: "http-proxy-ca-cert"
+    caCertSecretKey: "tls.crt"
+```
+
 ## additionalVars
 
 Utilizado para definir configurações opcionais na aplicação. Essa configuração
